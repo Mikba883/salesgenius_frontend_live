@@ -77,7 +77,15 @@
   }
   
   .hero-subtitle-gradient:before {
-    @apply gradient-border;
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    z-index: -1;
     background: linear-gradient(
       180deg,
       rgba(255, 255, 255, 0.11) 0%,
@@ -107,7 +115,15 @@
   }
 
   .hero-circle-gradient:before {
-    @apply gradient-border;
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    z-index: -1;
     background: linear-gradient(
       180deg,
       rgba(255, 255, 255, 0) 0%,
@@ -143,7 +159,15 @@
   }
   
   .icon-border:before {
-    @apply gradient-border;
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    z-index: -1;
     background: linear-gradient(
       180deg,
       rgba(255, 255, 255, 0.06) 0%,
@@ -171,11 +195,23 @@
       rgba(255, 255, 255, 0) 97.44%
     );
     height: 1px;
-    @apply absolute top-0 w-1/2 -translate-x-1/2 left-1/2;
+    position: absolute;
+    top: 0;
+    width: 50%;
+    transform: translateX(-50%);
+    left: 50%;
   }
 
   .features-box-border:before {
-    @apply gradient-border;
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    z-index: -1;
     background: linear-gradient(
       106.24deg,
       rgba(255, 255, 255, 0.15) -0.68%,
@@ -192,7 +228,15 @@
   }
   
   .features-button-gradient:before {
-    @apply gradient-border;
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    z-index: -1;
     background: linear-gradient(
       90deg,
       rgba(229, 156, 255, 0.45) 0.01%,
@@ -210,7 +254,15 @@
   }
   
   .button-border-gradient:before {
-    @apply gradient-border;
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    z-index: -1;
     background: linear-gradient(
       90deg,
       rgba(229, 156, 255, 0.45) 0.01%,
@@ -224,12 +276,52 @@
       inset 0px 6px 17px rgba(229, 156, 255, 0.3);
   }
 
-  .box-hover {
-    @apply before:duration-500 before:transition-opacity before:blur-[100px] before:opacity-0 before:bg-purple before:rounded-full before:w-96 before:h-96 before:z-30 before:absolute before:-top-48 before:-left-48 before:pointer-events-none before:translate-x-[var(--mouse-x)] before:translate-y-[var(--mouse-y)] hover:before:opacity-20 after:duration-500 after:transition-opacity after:opacity-0 after:rounded-[inherit] after:z-10 after:inset-0 after:absolute hover:after:opacity-100 after:box-bg;
+  .box-hover::before {
+    transition-duration: 500ms;
+    transition-property: opacity;
+    filter: blur(100px);
+    opacity: 0;
+    background-color: #8646f4;
+    border-radius: 9999px;
+    width: 24rem;
+    height: 24rem;
+    z-index: 30;
+    position: absolute;
+    top: -12rem;
+    left: -12rem;
+    pointer-events: none;
+    transform: translate(var(--mouse-x), var(--mouse-y));
+  }
+  
+  .box-hover:hover::before {
+    opacity: 0.2;
+  }
+  
+  .box-hover::after {
+    transition-duration: 500ms;
+    transition-property: opacity;
+    opacity: 0;
+    border-radius: inherit;
+    z-index: 10;
+    inset: 0;
+    position: absolute;
+    background: radial-gradient(
+      180px circle at var(--mouse-x) var(--mouse-y),
+      #030014,
+      transparent
+    );
+  }
+  
+  .box-hover:hover::after {
+    opacity: 1;
   }
 
-  .box-hover-small {
-    @apply before:blur-[50px]! before:w-48 before:h-48 before:-top-24 before:-left-24;
+  .box-hover-small::before {
+    filter: blur(50px) !important;
+    width: 12rem;
+    height: 12rem;
+    top: -6rem;
+    left: -6rem;
   }
 
   .box-bg {
@@ -249,7 +341,15 @@
   }
   
   .form-box-gradient:before {
-    @apply gradient-border;
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    z-index: -1;
     background: linear-gradient(
       180deg,
       rgba(255, 255, 255, 0.12) 0%,
