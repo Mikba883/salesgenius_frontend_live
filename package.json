@@ -23,6 +23,7 @@
     "autoprefixer": "^10.4.21",
     "fslightbox": "^3.4.1",
     "lovable-tagger": "^1.1.11",
+    "lucide-react": "^0.552.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.9.5",

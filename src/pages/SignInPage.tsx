@@ -1,85 +1,154 @@
-import React from 'react';
-import { useState } from 'react';
-import Layout from '@/components/layout/Layout';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import AuthLayout from '@/components/layout/AuthLayout';
 import { supabase } from '@/integrations/supabase/client';
+import { Mail } from 'lucide-react';
 
 const SignInPage = () => {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [rememberMe, setRememberMe] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (session?.user) {
+        navigate('/');
+      }
+    });
+    return () => subscription.unsubscribe();
+  }, [navigate]);
+
+  const handleGoogleSignIn = async () => {
+    setLoading(true);
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: `${window.location.origin}/`
+      }
+    });
+    if (error) {
+      setMessage(error.message);
+      setLoading(false);
+    }
+  };
+
+  const handleAppleSignIn = async () => {
+    setLoading(true);
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'apple',
+      options: {
+        redirectTo: `${window.location.origin}/`
+      }
+    });
+    if (error) {
+      setMessage(error.message);
+      setLoading(false);
+    }
+  };
+
+  const handleEmailSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    if (error) console.error('Error:', error);
+    setLoading(true);
+    setMessage('');
+
+    const { error } = await supabase.auth.signInWithOtp({
+      email,
+      options: {
+        emailRedirectTo: `${window.location.origin}/`
+      }
+    });
+
+    if (error) {
+      setMessage(error.message);
+    } else {
+      setMessage('Check your email for the magic link!');
+    }
+    setLoading(false);
   };
 
   return (
-    <Layout>
-      <section className="pt-17.5 pb-17.5 lg:pb-22.5 xl:pb-27.5">
-        <div className="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0">
-          <div className="rounded-3xl bg-white/[0.05]">
-            <div className="flex">
-              <div className="hidden lg:block w-full lg:w-1/2">
-                <div className="relative py-20 pl-17.5 pr-22">
-                  <div className="absolute top-0 right-0 w-[1px] h-full bg-linear-to-b from-white/0 via-white/20 to-white/0"></div>
-                  <h2 className="max-w-[292px] font-bold text-white text-heading-4 mb-10">
-                    Unlock the Power of Writing Tool
-                  </h2>
-                  <img src="/images/sigin.svg" alt="signin" />
-                </div>
-              </div>
+    <AuthLayout>
+      <div className="w-full max-w-[520px]">
+        <div className="rounded-3xl bg-white/[0.05] backdrop-blur-sm border border-white/[0.08] p-8 sm:p-12">
+          <h2 className="text-3xl font-bold text-white mb-8 text-center">Sign In</h2>
 
-              <div className="w-full lg:w-1/2">
-                <div className="py-8 sm:py-20 pl-8 sm:pl-21 pr-8 sm:pr-20">
-                  <form onSubmit={handleSubmit}>
-                    <div className="mb-4 relative">
-                      <input
-                        type="email"
-                        placeholder="Enter your email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="w-full border border-white/[0.12] bg-transparent rounded-lg focus:border-purple pl-14.5 pr-4 py-3.5 font-medium outline-hidden focus-visible:shadow-none text-white"
-                      />
-                    </div>
+          {/* OAuth Buttons */}
+          <div className="space-y-3 mb-6">
+            <button
+              onClick={handleGoogleSignIn}
+              disabled={loading}
+              className="w-full flex items-center justify-center gap-3 py-3.5 px-6 rounded-lg bg-white/[0.08] border border-white/[0.12] text-white font-medium hover:bg-white/[0.12] transition-colors duration-300 disabled:opacity-50"
+            >
+              <svg className="w-5 h-5" viewBox="0 0 24 24">
+                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+              </svg>
+              Sign in with Google
+            </button>
 
-                    <div className="mb-5 relative">
-                      <input
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        className="w-full border border-white/[0.12] bg-transparent rounded-lg focus:border-purple pl-14.5 pr-4 py-3.5 font-medium outline-hidden focus-visible:shadow-none text-white"
-                      />
-                    </div>
+            <button
+              onClick={handleAppleSignIn}
+              disabled={loading}
+              className="w-full flex items-center justify-center gap-3 py-3.5 px-6 rounded-lg bg-white/[0.08] border border-white/[0.12] text-white font-medium hover:bg-white/[0.12] transition-colors duration-300 disabled:opacity-50"
+            >
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+              </svg>
+              Sign in with Apple
+            </button>
+          </div>
 
-                    <div className="flex items-center justify-between mb-7.5">
-                      <label className="flex cursor-pointer select-none items-center font-medium text-sm">
-                        <input
-                          type="checkbox"
-                          checked={rememberMe}
-                          onChange={(e) => setRememberMe(e.target.checked)}
-                          className="mr-2"
-                        />
-                        Remember me
-                      </label>
-                      <a href="/#" className="font-medium text-sm text-purple">Forgot Password?</a>
-                    </div>
-
-                    <button
-                      type="submit"
-                      className="hero-button-gradient flex justify-center w-full rounded-lg py-3 px-7 text-white font-medium ease-in duration-300 hover:opacity-80"
-                    >
-                      Sign in
-                    </button>
-                  </form>
-                </div>
-              </div>
+          {/* Divider */}
+          <div className="relative my-8">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-white/[0.12]"></div>
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="px-4 bg-dark-2 text-white/60">Or sign in with email</span>
             </div>
           </div>
+
+          {/* Email Form */}
+          <form onSubmit={handleEmailSignIn} className="space-y-5">
+            <div className="relative">
+              <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="w-full border border-white/[0.12] bg-transparent rounded-lg pl-12 pr-4 py-3.5 font-medium outline-none focus:border-purple text-white placeholder:text-white/40 transition-colors duration-300"
+              />
+            </div>
+
+            {message && (
+              <p className={`text-sm text-center ${message.includes('Check') ? 'text-green-400' : 'text-red-400'}`}>
+                {message}
+              </p>
+            )}
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full hero-button-gradient py-3.5 px-7 text-white font-medium rounded-lg hover:opacity-80 transition-opacity duration-300 disabled:opacity-50"
+            >
+              {loading ? 'Sending...' : 'Sign in with AI Tool'}
+            </button>
+          </form>
+
+          <p className="mt-6 text-center text-white/60 text-sm">
+            Don't have an account?{' '}
+            <a href="/signup" className="text-purple hover:text-purple-light transition-colors">
+              Sign up
+            </a>
+          </p>
         </div>
-      </section>
-    </Layout>
+      </div>
+    </AuthLayout>
   );
 };
 
