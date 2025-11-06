@@ -17,7 +17,6 @@
   "devDependencies": {
     "@babel/core": "^7.16.12",
     "@babel/preset-env": "^7.16.11",
-    "@tailwindcss/postcss": "^4.0.9",
     "babel-loader": "^8.2.3",
     "css-loader": "^6.5.1",
     "glob": "^7.2.0",
@@ -28,7 +27,6 @@
     "postcss-loader": "^6.2.1",
     "postcss-preset-env": "^7.2.3",
     "style-loader": "^3.3.1",
-    "tailwindcss": "^4.0.9",
     "webpack": "^5.67.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.3"
@@ -40,12 +38,14 @@
     "@types/react-dom": "^19.2.2",
     "@vitejs/plugin-react": "^5.1.0",
     "alpinejs": "^3.12.1",
+    "autoprefixer": "^10.4.21",
     "fslightbox": "^3.4.1",
     "lovable-tagger": "^1.1.11",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.9.5",
     "swiper": "^9.4.1",
+    "tailwindcss": "^3.4.1",
     "vite": "^7.2.1",
     "wowjs": "^1.1.3"
   }

@@ -1,0 +1,86 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      fontFamily: {
+        'plus-jakarta': ['Plus Jakarta Sans', 'sans-serif'],
+      },
+      screens: {
+        'xsm': '375px',
+        'lsm': '425px',
+        'sm': '640px',
+        'md': '768px',
+        'lg': '1024px',
+        'xl': '1280px',
+        '2xl': '1536px',
+        '3xl': '2000px',
+      },
+      colors: {
+        current: 'currentColor',
+        transparent: 'transparent',
+        white: '#ffffff',
+        dark: {
+          DEFAULT: '#030014',
+          2: '#495270',
+          3: '#918ea0',
+          4: '#8d93a5',
+          5: '#bbbec9',
+        },
+        purple: {
+          DEFAULT: '#8646f4',
+          dark: '#6d28d9',
+          'dark-2': '#5b21b6',
+          light: '#a78bfa',
+          'light-2': '#c4b5fd',
+          'light-3': '#ddd6fe',
+          'light-4': '#ede9fe',
+          'light-5': '#f5f3ff',
+        },
+        pink: {
+          DEFAULT: '#d345f8',
+          dark: '#c814f6',
+          light: '#df76fa',
+          'light-2': '#eaa7fc',
+          'light-3': '#f6d8fe',
+          'light-4': '#fcf1fe',
+        },
+      },
+      fontSize: {
+        'heading-1': ['60px', '72px'],
+        'heading-2': ['48px', '58px'],
+        'heading-3': ['40px', '48px'],
+        'heading-4': ['30px', '38px'],
+        'heading-5': ['28px', '40px'],
+        'heading-6': ['24px', '30px'],
+        'custom-1': ['45px', '55px'],
+      },
+      spacing: {
+        '30': '7.5rem',
+        '40': '10rem',
+        '50': '12.5rem',
+      },
+      zIndex: {
+        '1': '1',
+        '999': '999',
+        '9999': '9999',
+        '99999': '99999',
+      },
+      boxShadow: {
+        '1': '0px 1px 2px rgba(166, 175, 195, 0.25)',
+        '2': '0px 2px 4px rgba(148, 163, 184, 0.05), 0px 6px 24px rgba(235, 238, 251, 0.4)',
+        '3': '0px 2px 16px rgba(13, 10, 44, 0.12)',
+        '4': '0px -8px 18px rgba(13, 10, 44, 0.04), 0px 13px 40px rgba(13, 10, 44, 0.22)',
+        '5': '0px -18px 38px rgba(85, 106, 235, 0.04), 0px 4px 10px rgba(85, 106, 235, 0.04), 0px 10px 30px rgba(85, 106, 235, 0.12)',
+        '6': '0px 34px 26px rgba(13, 10, 44, 0.05), 0px 12px 34px rgba(13, 10, 44, 0.08)',
+        'button': 'inset 0px -6px 15px rgba(156, 178, 255, 0.25), inset 0px 6px 15px rgba(229, 156, 255, 0.25)',
+        'dark': '0px 2px 4px rgba(11, 20, 51, 0.05), 0px 6px 24px rgba(11, 20, 51, 0.4)',
+        'video': '0px -3px 10px 0px rgba(0, 0, 0, 0.25) inset, 0px 26px 50px 0px rgba(18, 9, 36, 0.1)',
+      },
+    },
+  },
+  plugins: [],
+}
