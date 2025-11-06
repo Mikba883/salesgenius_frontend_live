@@ -1,3 +1,4 @@
+import React from 'react';
 import Layout from '@/components/layout/Layout';
 import FeaturesGrid from '@/components/home/FeaturesGrid';
 import FeaturesList from '@/components/home/FeaturesList';
