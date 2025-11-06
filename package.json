@@ -6,6 +6,9 @@
   "scripts": {
     "start": "webpack serve --open --config webpack.config.js",
     "build": "webpack --config webpack.config.js",
+    "build:dev": "vite build --mode development",
+    "dev": "vite",
+    "preview": "vite preview",
     "sort": "npx prettier --write src"
   },
   "keywords": [],
