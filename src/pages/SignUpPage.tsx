@@ -13,7 +13,7 @@ const SignUpPage = () => {
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       if (session?.user) {
-        navigate('/');
+        navigate('/dashboard');
       }
     });
     return () => subscription.unsubscribe();
@@ -24,7 +24,7 @@ const SignUpPage = () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: `${window.location.origin}/`
+        redirectTo: `${window.location.origin}/dashboard`
       }
     });
     if (error) {
@@ -38,7 +38,7 @@ const SignUpPage = () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'apple',
       options: {
-        redirectTo: `${window.location.origin}/`
+        redirectTo: `${window.location.origin}/dashboard`
       }
     });
     if (error) {
@@ -55,14 +55,14 @@ const SignUpPage = () => {
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: `${window.location.origin}/`
+        emailRedirectTo: `${window.location.origin}/dashboard`
       }
     });
 
     if (error) {
       setMessage(error.message);
     } else {
-      setMessage('Check your email for the magic link!');
+      navigate('/check-email');
     }
     setLoading(false);
   };
@@ -107,7 +107,7 @@ const SignUpPage = () => {
               <div className="w-full border-t border-white/[0.12]"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-4 bg-dark-2 text-white/60">Or sign up with email</span>
+              <span className="px-4 bg-transparent text-white/60">Or sign up with email</span>
             </div>
           </div>
 

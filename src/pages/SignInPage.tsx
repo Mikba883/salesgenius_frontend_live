@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthLayout from '@/components/layout/AuthLayout';
 import { supabase } from '@/integrations/supabase/client';
-import { Mail } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
 
 const SignInPage = () => {
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
@@ -13,7 +16,7 @@ const SignInPage = () => {
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       if (session?.user) {
-        navigate('/');
+        navigate('/dashboard');
       }
     });
     return () => subscription.unsubscribe();
@@ -24,7 +27,7 @@ const SignInPage = () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: `${window.location.origin}/`
+        redirectTo: `${window.location.origin}/dashboard`
       }
     });
     if (error) {
@@ -38,7 +41,7 @@ const SignInPage = () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'apple',
       options: {
-        redirectTo: `${window.location.origin}/`
+        redirectTo: `${window.location.origin}/dashboard`
       }
     });
     if (error) {
@@ -52,17 +55,15 @@ const SignInPage = () => {
     setLoading(true);
     setMessage('');
 
-    const { error } = await supabase.auth.signInWithOtp({
+    const { error } = await supabase.auth.signInWithPassword({
       email,
-      options: {
-        emailRedirectTo: `${window.location.origin}/`
-      }
+      password,
     });
 
     if (error) {
       setMessage(error.message);
     } else {
-      setMessage('Check your email for the magic link!');
+      navigate('/dashboard');
     }
     setLoading(false);
   };
@@ -107,11 +108,11 @@ const SignInPage = () => {
               <div className="w-full border-t border-white/[0.12]"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-4 bg-dark-2 text-white/60">Or sign in with email</span>
+              <span className="px-4 bg-transparent text-white/60">Or sign in with email</span>
             </div>
           </div>
 
-          {/* Email Form */}
+          {/* Email/Password Form */}
           <form onSubmit={handleEmailSignIn} className="space-y-5">
             <div className="relative">
               <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
@@ -125,8 +126,43 @@ const SignInPage = () => {
               />
             </div>
 
+            <div className="relative">
+              <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="w-full border border-white/[0.12] bg-transparent rounded-lg pl-12 pr-12 py-3.5 font-medium outline-none focus:border-purple text-white placeholder:text-white/40 transition-colors duration-300"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-white/40 hover:text-white/60 transition-colors"
+              >
+                {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+              </button>
+            </div>
+
+            {/* Remember me & Forgot Password */}
+            <div className="flex items-center justify-between">
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={rememberMe}
+                  onChange={(e) => setRememberMe(e.target.checked)}
+                  className="w-4 h-4 rounded border-white/[0.12] bg-transparent"
+                />
+                <span className="text-sm text-white/60">Remember me</span>
+              </label>
+              <a href="/forgot-password" className="text-sm text-purple hover:text-purple-light transition-colors">
+                Forgot Password?
+              </a>
+            </div>
+
             {message && (
-              <p className={`text-sm text-center ${message.includes('Check') ? 'text-green-400' : 'text-red-400'}`}>
+              <p className="text-sm text-center text-red-400">
                 {message}
               </p>
             )}
@@ -136,7 +172,7 @@ const SignInPage = () => {
               disabled={loading}
               className="w-full hero-button-gradient py-3.5 px-7 text-white font-medium rounded-lg hover:opacity-80 transition-opacity duration-300 disabled:opacity-50"
             >
-              {loading ? 'Sending...' : 'Sign in with AI Tool'}
+              {loading ? 'Signing in...' : 'Sign in with AI Tool'}
             </button>
           </form>
 

@@ -41,7 +41,7 @@ const HomePage = () => {
             <p className="max-w-[500px] mx-auto mb-9 font-medium md:text-lg">
               Highly customizable Tailwind CSS template for AI - Tool, Startup, Software, App and Product Sites.
             </p>
-            <a href="#" className="inline-flex py-3 font-medium text-white duration-300 ease-in rounded-lg hero-button-gradient px-7 hover:opacity-80">
+            <a href="/signup" className="inline-flex py-3 font-medium text-white duration-300 ease-in rounded-lg hero-button-gradient px-12 min-w-[280px] justify-center hover:opacity-80">
               Start Your Free Trial
             </a>
           </div>
