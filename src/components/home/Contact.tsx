@@ -1,3 +1,5 @@
+import React from 'react';
+
 const Contact = () => {
   return (
     <section id="support" className="scroll-mt-17">

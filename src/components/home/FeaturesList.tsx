@@ -1,3 +1,5 @@
+import React from 'react';
+
 const FeaturesList = () => {
   return (
     <section className="pt-12.5">
