@@ -70,10 +70,10 @@ const Header = () => {
         </div>
 
         <div
-          className={`w-full md:w-auto h-0 md:h-auto invisible md:visible md:flex items-center justify-end ${
+          className={`w-full md:w-auto md:h-auto md:visible md:flex items-center justify-end ${
             navigationOpen
-              ? 'visible! bg-dark/95 shadow-lg relative h-auto! rounded-md mt-4 p-6 flex!'
-              : ''
+              ? 'h-auto visible flex flex-col bg-dark/95 shadow-lg relative rounded-md mt-4 p-6'
+              : 'h-0 invisible'
           }`}
         >
           <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 w-full md:w-auto">
