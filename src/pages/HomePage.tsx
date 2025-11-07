@@ -33,21 +33,21 @@ const HomePage = () => {
           <div className="text-center">
             <a href="/#" className="hero-subtitle-gradient hover:hero-subtitle-hover relative mb-5 font-medium text-sm inline-flex items-center gap-2 py-2 px-4.5 rounded-full">
               <img src="/images/hero/icon-title.svg" alt="icon" />
-              <span className="hero-subtitle-text">Your Ultimate Creative Companion!</span>
+              <span className="hero-subtitle-text">The #1 AI Sales Assistant.</span>
             </a>
             <h1 className="mb-6 text-3xl font-extrabold text-white sm:text-5xl xl:text-heading-1">
-              Elevate Your Content with Our AI-Powered Writing Tool
+              Get the AI-Powered Line to Win the Call.
             </h1>
-            <p className="max-w-[500px] mx-auto mb-9 font-medium md:text-lg">
-              Highly customizable Tailwind CSS template for AI - Tool, Startup, Software, App and Product Sites.
+            <p className="max-w-[600px] mx-auto mb-9 font-medium md:text-lg">
+              SalesGenius listens, analyzes tone and intent, and whispers your next best line — live, during the negotiation.
             </p>
             <a href="/signup" className="inline-flex py-3 font-medium text-white duration-300 ease-in rounded-lg hero-button-gradient px-12 min-w-[280px] justify-center hover:opacity-80">
-              Start Your Free Trial
+              🚀 Try It in Your Next Call
             </a>
           </div>
         </div>
 
-        <div className="mt-17">
+        <div className="mt-24">
           <img className="mx-auto" src="/images/hero/hero.svg" alt="hero" />
         </div>
       </section>
