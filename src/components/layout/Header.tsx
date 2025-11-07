@@ -1,12 +1,10 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [stickyMenu, setStickyMenu] = useState(false);
   const [navigationOpen, setNavigationOpen] = useState(false);
-  const [dropdown, setDropdown] = useState(false);
-  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,7 +14,7 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const isActivePage = (path: string) => location.pathname === path;
+  
 
   return (
     <header
@@ -29,7 +27,7 @@ const Header = () => {
       <div className="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0 lg:flex items-center justify-between relative">
         <div className="w-full lg:w-1/4 flex items-center justify-between">
           <Link to="/">
-            <img src="/images/logo.svg" alt="Logo" />
+            <img src="/images/logo/logo.svg" alt="Logo" />
           </Link>
 
           {/* Hamburger Toggle BTN */}
@@ -72,112 +70,20 @@ const Header = () => {
         </div>
 
         <div
-          className={`w-full lg:w-3/4 h-0 lg:h-auto invisible lg:visible lg:flex items-center justify-between ${
+          className={`w-full lg:w-auto h-0 lg:h-auto invisible lg:visible lg:flex items-center justify-end ${
             navigationOpen
-              ? 'visible! bg-dark shadow-lg relative h-auto! max-h-[400px] overflow-y-scroll rounded-md mt-4 p-7.5'
+              ? 'visible! bg-dark shadow-lg relative h-auto! rounded-md mt-4 p-6'
               : ''
           }`}
         >
-          <nav>
-            <ul className="flex lg:items-center flex-col lg:flex-row gap-5 lg:gap-2">
-              <li className={`nav__menu lg:py-7 ${stickyMenu ? 'lg:py-4!' : ''}`}>
-                <a
-                  href="/#home"
-                  className={`relative text-white/80 text-sm py-1.5 px-4 border border-transparent hover:text-white hover:nav-gradient ${
-                    isActivePage('/') ? 'text-white! nav-gradient' : ''
-                  }`}
-                >
-                  Home
-                </a>
-              </li>
-              <li className={`nav__menu lg:py-7 ${stickyMenu ? 'lg:py-4!' : ''}`}>
-                <a
-                  href="/#features"
-                  className="relative text-white/80 text-sm py-1.5 px-4 border border-transparent hover:text-white hover:nav-gradient"
-                >
-                  Features
-                </a>
-              </li>
-              <li className={`nav__menu lg:py-7 ${stickyMenu ? 'lg:py-4!' : ''}`}>
-                <a
-                  href="/#pricing"
-                  className="relative text-white/80 text-sm py-1.5 px-4 border border-transparent hover:text-white hover:nav-gradient"
-                >
-                  Pricing
-                </a>
-              </li>
-              <li
-                className={`group relative lg:py-7 ${stickyMenu ? 'lg:py-4!' : ''}`}
-              >
-                <a
-                  href="#"
-                  className={`relative text-white/80 text-sm py-1.5 px-4 border border-transparent hover:text-white hover:nav-gradient flex items-center justify-between gap-3 ${
-                    isActivePage('/signin') || isActivePage('/signup')
-                      ? 'text-white! nav-gradient'
-                      : ''
-                  }`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setDropdown(!dropdown);
-                  }}
-                >
-                  Pages
-                  <svg
-                    className="fill-current w-3 h-3 cursor-pointer"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512"
-                  >
-                    <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
-                  </svg>
-                </a>
-
-                {/* Dropdown */}
-                <ul
-                  className={`flex-col gap-1 min-w-max lg:w-[208px] mt-2 lg:mt-0 bg-[#1C192C] shadow-lg ease-in duration-300 p-3 rounded-lg left-0 ${
-                    dropdown ? 'flex' : 'hidden'
-                  } lg:translate-y-10 lg:opacity-0 lg:invisible lg:absolute lg:flex lg:group-hover:translate-y-3 lg:group-hover:opacity-100 lg:group-hover:visible`}
-                >
-                  <li>
-                    <Link
-                      to="/signin"
-                      className={`flex text-sm text-white/70 hover:text-white py-2 px-4 rounded-md hover:bg-white/5 ${
-                        isActivePage('/signin') ? 'text-white! bg-white/5' : ''
-                      }`}
-                    >
-                      Sign In
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/signup"
-                      className={`flex text-sm text-white/70 hover:text-white py-2 px-4 rounded-md hover:bg-white/5 ${
-                        isActivePage('/signup') ? 'text-white! bg-white/5' : ''
-                      }`}
-                    >
-                      Sign Up
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-              <li className={`nav__menu lg:py-7 ${stickyMenu ? 'lg:py-4!' : ''}`}>
-                <a
-                  href="/#support"
-                  className="relative text-white/80 text-sm py-1.5 px-4 border border-transparent hover:text-white hover:nav-gradient"
-                >
-                  Support
-                </a>
-              </li>
-            </ul>
-          </nav>
-
-          <div className="flex items-center gap-6 mt-7 lg:mt-0">
+          <div className="flex items-center gap-6">
             <Link to="/signin" className="text-white text-sm hover:text-opacity-75">
               Sign in
             </Link>
 
             <Link
               to="/signup"
-              className="button-border-gradient relative rounded-lg text-white text-sm flex items-center gap-1.5 py-2 px-4.5 shadow-button hover:button-gradient-hover hover:shadow-none"
+              className="button-border-gradient relative rounded-lg text-white text-sm flex items-center gap-1.5 py-2 px-6 shadow-button hover:button-gradient-hover hover:shadow-none"
             >
               Sign up
               <svg
