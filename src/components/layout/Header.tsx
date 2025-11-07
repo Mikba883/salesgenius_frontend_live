@@ -24,7 +24,7 @@ const Header = () => {
           : ''
       }`}
     >
-      <div className="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0 lg:flex items-center justify-between relative">
+      <div className="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0 md:flex items-center justify-between relative">
         <div className="w-full md:w-1/4 flex items-center justify-between">
           <Link to="/">
             <img src="/images/logo/logo.svg" alt="Logo" />
@@ -72,7 +72,7 @@ const Header = () => {
         <div
           className={`w-full md:w-auto h-0 md:h-auto invisible md:visible md:flex items-center justify-end ${
             navigationOpen
-              ? 'visible! bg-dark shadow-lg relative h-auto! rounded-md mt-4 p-6'
+              ? 'visible! bg-dark shadow-lg relative h-auto! rounded-md mt-4 p-6 flex!'
               : ''
           }`}
         >
