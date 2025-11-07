@@ -2,7 +2,7 @@ import React from 'react';
 
 const Contact = () => {
   return (
-    <section id="support" className="scroll-mt-17">
+    <section id="support" className="pt-20 lg:pt-25 xl:pt-27.5 scroll-mt-17">
       <div className="max-w-[1104px] mx-auto px-4 sm:px-8 xl:px-0">
         <div className="relative z-999 overflow-hidden rounded-[30px] bg-dark pt-25 px-4 sm:px-20 lg:px-27.5">
           {/* grid row */}

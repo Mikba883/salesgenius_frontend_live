@@ -2,7 +2,7 @@ import React from 'react';
 
 const CTA = () => {
   return (
-    <section>
+    <section className="py-20 lg:py-25">
       <div className="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0">
         <div className="cta-box-gradient bg-dark rounded-[30px] relative overflow-hidden px-4 py-20 lg:py-25 z-999">
           {/* bg shapes */}

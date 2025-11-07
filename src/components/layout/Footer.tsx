@@ -23,7 +23,7 @@ const Footer = () => {
         <div className="flex flex-wrap justify-between">
           <div className="mb-10 max-w-[571px] w-full">
             <Link className="mb-8.5 inline-block" to="/">
-              <img src="/images/logo.svg" alt="Logo" />
+              <img src="/images/logo/logo.svg" alt="Logo" />
             </Link>
 
             <p className="mb-12 xl:w-4/5">
