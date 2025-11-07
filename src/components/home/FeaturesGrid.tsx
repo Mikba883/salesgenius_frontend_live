@@ -55,15 +55,43 @@ const FeaturesGrid = () => {
         {/* Animated Beam Diagram */}
         <div className="relative w-full max-w-[1000px] mx-auto min-h-[500px] flex items-center justify-center" ref={containerRef}>
           <div className="relative w-full h-[500px]">
-            {/* Static Lines - Linee fisse visibili */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none z-0" xmlns="http://www.w3.org/2000/svg">
-              <line x1="10%" y1="10%" x2="50%" y2="50%" stroke="rgb(148 163 184 / 0.2)" strokeWidth="2" />
-              <line x1="90%" y1="10%" x2="50%" y2="50%" stroke="rgb(148 163 184 / 0.2)" strokeWidth="2" />
-              <line x1="5%" y1="50%" x2="50%" y2="50%" stroke="rgb(148 163 184 / 0.2)" strokeWidth="2" />
-              <line x1="95%" y1="50%" x2="50%" y2="50%" stroke="rgb(148 163 184 / 0.2)" strokeWidth="2" />
-              <line x1="10%" y1="90%" x2="50%" y2="50%" stroke="rgb(148 163 184 / 0.2)" strokeWidth="2" />
-              <line x1="90%" y1="90%" x2="50%" y2="50%" stroke="rgb(148 163 184 / 0.2)" strokeWidth="2" />
-            </svg>
+            {/* Static Beams - Path curve statiche sotto i raggi (z-1) */}
+            <StaticBeam
+              containerRef={containerRef}
+              fromRef={node1Ref}
+              toRef={aiRef}
+              className="z-[1]"
+            />
+            <StaticBeam
+              containerRef={containerRef}
+              fromRef={node2Ref}
+              toRef={aiRef}
+              className="z-[1]"
+            />
+            <StaticBeam
+              containerRef={containerRef}
+              fromRef={node3Ref}
+              toRef={aiRef}
+              className="z-[1]"
+            />
+            <StaticBeam
+              containerRef={containerRef}
+              fromRef={node4Ref}
+              toRef={aiRef}
+              className="z-[1]"
+            />
+            <StaticBeam
+              containerRef={containerRef}
+              fromRef={node5Ref}
+              toRef={aiRef}
+              className="z-[1]"
+            />
+            <StaticBeam
+              containerRef={containerRef}
+              fromRef={node6Ref}
+              toRef={aiRef}
+              className="z-[1]"
+            />
 
             {/* Center - AI Brain (z-20 per stare sopra tutto) */}
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-3 z-20">
@@ -125,7 +153,7 @@ const FeaturesGrid = () => {
               containerRef={containerRef}
               fromRef={node1Ref}
               toRef={aiRef}
-              className="z-5"
+              className="z-[5]"
               pathColor="transparent"
               pathWidth={2}
               gradientStartColor="#3b82f6"
@@ -136,7 +164,7 @@ const FeaturesGrid = () => {
               containerRef={containerRef}
               fromRef={node2Ref}
               toRef={aiRef}
-              className="z-5"
+              className="z-[5]"
               pathColor="transparent"
               pathWidth={2}
               gradientStartColor="#3b82f6"
@@ -148,7 +176,7 @@ const FeaturesGrid = () => {
               containerRef={containerRef}
               fromRef={node3Ref}
               toRef={aiRef}
-              className="z-5"
+              className="z-[5]"
               pathColor="transparent"
               pathWidth={2}
               gradientStartColor="#8b5cf6"
@@ -160,7 +188,7 @@ const FeaturesGrid = () => {
               containerRef={containerRef}
               fromRef={node4Ref}
               toRef={aiRef}
-              className="z-5"
+              className="z-[5]"
               pathColor="transparent"
               pathWidth={2}
               gradientStartColor="#f97316"
@@ -172,7 +200,7 @@ const FeaturesGrid = () => {
               containerRef={containerRef}
               fromRef={node5Ref}
               toRef={aiRef}
-              className="z-5"
+              className="z-[5]"
               pathColor="transparent"
               pathWidth={2}
               gradientStartColor="#10b981"
@@ -184,7 +212,7 @@ const FeaturesGrid = () => {
               containerRef={containerRef}
               fromRef={node6Ref}
               toRef={aiRef}
-              className="z-5"
+              className="z-[5]"
               pathColor="transparent"
               pathWidth={2}
               gradientStartColor="#ec4899"
