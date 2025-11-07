@@ -13,7 +13,7 @@ const HomePage = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <section id="home" className="relative z-10 overflow-hidden pt-35 md:pt-40 xl:pt-45">
+      <section id="home" className="relative z-10 overflow-hidden pt-45 md:pt-50 xl:pt-55">
         {/* Hero Bg Shapes */}
         <div className="mx-auto max-w-7xl">
           <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10 -mx-28">

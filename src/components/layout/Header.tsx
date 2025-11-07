@@ -18,9 +18,9 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed left-0 top-0 w-full z-9999 py-7 lg:py-0 ${
+      className={`fixed left-0 top-0 w-full z-9999 py-4 lg:py-0 ${
         stickyMenu
-          ? 'bg-dark/70 backdrop-blur-lg shadow-sm py-4! lg:py-0! transition duration-100 before:absolute before:w-full before:h-[1px] before:bottom-0 before:left-0 before:features-row-border'
+          ? 'bg-dark/70 backdrop-blur-lg shadow-sm py-3! lg:py-0! transition duration-100 before:absolute before:w-full before:h-[1px] before:bottom-0 before:left-0 before:features-row-border'
           : ''
       }`}
     >
@@ -72,7 +72,7 @@ const Header = () => {
         <div
           className={`w-full lg:w-auto h-0 lg:h-auto invisible lg:visible lg:flex items-center justify-end ${
             navigationOpen
-              ? 'visible! bg-dark shadow-lg relative h-auto! rounded-md mt-4 p-6'
+              ? 'visible! bg-dark shadow-lg relative h-auto! rounded-md mt-4 p-6 pt-6'
               : ''
           }`}
         >
