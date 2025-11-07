@@ -1,41 +1,14 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { AnimatedBeam, Circle } from '@/components/ui/animated-beam';
+import { Mic, Brain, MessageSquare, TrendingUp } from 'lucide-react';
 
 const FeaturesGrid = () => {
-  const features = [
-    {
-      icon: "/images/features/icon-01.svg",
-      title: "Intelligent Writing Assistance",
-      description: "Our AI writing tool analyzes your content, suggests improvements,",
-    },
-    {
-      icon: "/images/features/icon-02.svg",
-      title: "Grammar and Spell Check",
-      description: "Say goodbye to embarrassing typos and grammar mistakes",
-    },
-    {
-      icon: "/images/features/icon-03.svg",
-      title: "Plagiarism Detection",
-      description: "Originality is key, and our AI writing tool helps you maintain it",
-    },
-    {
-      icon: "/images/features/icon-04.svg",
-      title: "Voice to Text Conversion",
-      description: "Transform your spoken words into written text easily & effortlessly",
-      rotated: true,
-    },
-    {
-      icon: "/images/features/icon-05.svg",
-      title: "Style and Tone Adaptation",
-      description: "Whether you need a professional, or positive tone it has everyone",
-      rotated: true,
-    },
-    {
-      icon: "/images/features/icon-06.svg",
-      title: "Content Generation",
-      description: "Need inspiration or assistance with generating content?",
-      rotated: true,
-    },
-  ];
+  const containerRef = useRef<HTMLDivElement>(null);
+  const micRef = useRef<HTMLDivElement>(null);
+  const toneRef = useRef<HTMLDivElement>(null);
+  const aiRef = useRef<HTMLDivElement>(null);
+  const outputRef = useRef<HTMLDivElement>(null);
+  const resultsRef = useRef<HTMLDivElement>(null);
 
   return (
     <section
@@ -47,53 +20,123 @@ const FeaturesGrid = () => {
         <div className="text-center">
           <span className="hero-subtitle-gradient relative mb-4 font-medium text-sm inline-flex items-center gap-2 py-2 px-4.5 rounded-full">
             <img src="/images/hero/icon-title.svg" alt="icon" />
-            <span className="hero-subtitle-text">Some of Main Features</span>
+            <span className="hero-subtitle-text">How It Works</span>
           </span>
           <h2 className="text-white mb-4.5 text-2xl font-extrabold sm:text-4xl xl:text-heading-2">
             Key Features of Our Tool
           </h2>
-          <p className="max-w-[714px] mx-auto mb-5 font-medium">
-            Our AI writing tool is designed to empower you with exceptional writing capabilities, 
-            making the writing process more efficient, accurate, and enjoyable.
+          <p className="max-w-[714px] mx-auto mb-12 font-medium">
+            SalesGenius analyzes your conversations in real-time, providing AI-powered suggestions to help you close more deals.
           </p>
         </div>
 
-        <div className="relative">
-          <div className="features-row-border rotate-90 w-1/2 h-[1px] absolute top-1/2 left-1/2 -translate-y-1/2 lg:-translate-x-1/3 lg:left-1/4 hidden lg:block"></div>
-          <div className="features-row-border rotate-90 w-1/2 h-[1px] absolute top-1/2 right-1/2 -translate-y-1/2 lg:right-[8.3%] hidden lg:block"></div>
-
-          {/* First Row */}
-          <div className="flex flex-wrap justify-center">
-            {features.slice(0, 3).map((feature, index) => (
-              <div key={index} className="w-full sm:w-1/2 lg:w-1/3">
-                <div className="relative px-4 py-8 overflow-hidden text-center group sm:py-10 xl:py-15 lg:px-8 xl:px-13">
-                  <span className="absolute top-0 left-0 w-full h-full opacity-0 group-hover:opacity-100 features-bg -z-1"></span>
-                  <span className="icon-border relative max-w-[80px] w-full h-20 rounded-full inline-flex items-center justify-center mb-8 mx-auto">
-                    <img src={feature.icon} alt="icon" />
-                  </span>
-                  <h4 className="mb-4 text-lg font-semibold text-white">{feature.title}</h4>
-                  <p className="font-medium">{feature.description}</p>
-                </div>
+        {/* Animated Beam Diagram */}
+        <div className="relative w-full max-w-[800px] mx-auto" ref={containerRef}>
+          <div className="flex items-center justify-center gap-8 py-20 md:py-32">
+            {/* Left Column - Inputs */}
+            <div className="flex flex-col gap-12">
+              <div className="flex flex-col items-center gap-3">
+                <Circle ref={micRef} className="size-16 border-primary/20 bg-primary/10">
+                  <Mic className="size-6 text-primary" />
+                </Circle>
+                <p className="text-sm font-medium text-white">Audio Input</p>
               </div>
-            ))}
+              
+              <div className="flex flex-col items-center gap-3">
+                <Circle ref={toneRef} className="size-16 border-primary/20 bg-primary/10">
+                  <TrendingUp className="size-6 text-primary" />
+                </Circle>
+                <p className="text-sm font-medium text-white">Tone Analysis</p>
+              </div>
+            </div>
+
+            {/* Center - AI Brain */}
+            <div className="flex flex-col items-center gap-3">
+              <Circle ref={aiRef} className="size-24 border-primary bg-primary/20">
+                <Brain className="size-10 text-primary" />
+              </Circle>
+              <p className="text-sm font-bold text-white">AI Engine</p>
+            </div>
+
+            {/* Right Column - Outputs */}
+            <div className="flex flex-col gap-12">
+              <div className="flex flex-col items-center gap-3">
+                <Circle ref={outputRef} className="size-16 border-primary/20 bg-primary/10">
+                  <MessageSquare className="size-6 text-primary" />
+                </Circle>
+                <p className="text-sm font-medium text-white">Suggestions</p>
+              </div>
+              
+              <div className="flex flex-col items-center gap-3">
+                <Circle ref={resultsRef} className="size-16 border-primary/20 bg-primary/10">
+                  <TrendingUp className="size-6 text-primary" />
+                </Circle>
+                <p className="text-sm font-medium text-white">Win Rate</p>
+              </div>
+            </div>
           </div>
 
-          <div className="features-row-border w-full h-[1px]"></div>
+          {/* Animated Beams */}
+          <AnimatedBeam
+            containerRef={containerRef}
+            fromRef={micRef}
+            toRef={aiRef}
+            curvature={20}
+            gradientStartColor="hsl(var(--primary))"
+            gradientStopColor="hsl(var(--primary))"
+          />
+          <AnimatedBeam
+            containerRef={containerRef}
+            fromRef={toneRef}
+            toRef={aiRef}
+            curvature={-20}
+            gradientStartColor="hsl(var(--primary))"
+            gradientStopColor="hsl(var(--primary))"
+          />
+          <AnimatedBeam
+            containerRef={containerRef}
+            fromRef={aiRef}
+            toRef={outputRef}
+            curvature={20}
+            reverse={true}
+            gradientStartColor="hsl(var(--primary))"
+            gradientStopColor="hsl(var(--primary))"
+          />
+          <AnimatedBeam
+            containerRef={containerRef}
+            fromRef={aiRef}
+            toRef={resultsRef}
+            curvature={-20}
+            reverse={true}
+            gradientStartColor="hsl(var(--primary))"
+            gradientStopColor="hsl(var(--primary))"
+          />
+        </div>
 
-          {/* Second Row */}
-          <div className="flex flex-wrap justify-center">
-            {features.slice(3, 6).map((feature, index) => (
-              <div key={index} className="w-full sm:w-1/2 lg:w-1/3">
-                <div className="relative px-4 py-8 overflow-hidden text-center group sm:py-10 xl:py-15 lg:px-8 xl:px-13">
-                  <span className="absolute top-0 left-0 w-full h-full rotate-180 opacity-0 group-hover:opacity-100 features-bg -z-1"></span>
-                  <span className="icon-border relative max-w-[80px] w-full h-20 rounded-full inline-flex items-center justify-center mb-8 mx-auto">
-                    <img src={feature.icon} alt="icon" />
-                  </span>
-                  <h4 className="mb-4 text-lg font-semibold text-white">{feature.title}</h4>
-                  <p className="font-medium">{feature.description}</p>
-                </div>
-              </div>
-            ))}
+        {/* Feature Highlights Below */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 max-w-[900px] mx-auto">
+          <div className="text-center">
+            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+              <Mic className="w-6 h-6 text-primary" />
+            </div>
+            <h3 className="text-white font-semibold mb-2">Real-Time Listening</h3>
+            <p className="text-sm opacity-80">Captures every word during your sales calls</p>
+          </div>
+          
+          <div className="text-center">
+            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+              <Brain className="w-6 h-6 text-primary" />
+            </div>
+            <h3 className="text-white font-semibold mb-2">AI Analysis</h3>
+            <p className="text-sm opacity-80">Analyzes tone, intent, and context instantly</p>
+          </div>
+          
+          <div className="text-center">
+            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+              <MessageSquare className="w-6 h-6 text-primary" />
+            </div>
+            <h3 className="text-white font-semibold mb-2">Smart Suggestions</h3>
+            <p className="text-sm opacity-80">Whispers your next best line in real-time</p>
           </div>
         </div>
       </div>

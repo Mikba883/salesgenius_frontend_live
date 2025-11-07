@@ -21,6 +21,8 @@
     "@vitejs/plugin-react": "^5.1.0",
     "alpinejs": "^3.12.1",
     "autoprefixer": "^10.4.21",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.23.24",
     "fslightbox": "^3.4.1",
     "lovable-tagger": "^1.1.11",
     "lucide-react": "^0.552.0",
@@ -28,6 +30,7 @@
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.9.5",
     "swiper": "^9.4.1",
+    "tailwind-merge": "^3.3.1",
     "tailwindcss": "^3.4.1",
     "vite": "^7.2.1",
     "wowjs": "^1.1.3"
