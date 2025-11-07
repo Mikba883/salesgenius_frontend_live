@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import AuthLayout from '@/components/layout/AuthLayout';
 import { supabase } from '@/integrations/supabase/client';
 import { Mail } from 'lucide-react';
+import { syncSessionWithExtension } from '@/utils/extensionSync';
 
 const SignUpPage = () => {
   const [email, setEmail] = useState('');
@@ -11,11 +12,17 @@ const SignUpPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      if (session?.user) {
-        navigate('/dashboard');
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        if (session?.user) {
+          // Sincronizza per OAuth redirect, email OTP verification, e sessioni esistenti
+          if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
+            await syncSessionWithExtension(session);
+          }
+          navigate('/dashboard');
+        }
       }
-    });
+    );
     return () => subscription.unsubscribe();
   }, [navigate]);
 

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import AuthLayout from '@/components/layout/AuthLayout';
 import { supabase } from '@/integrations/supabase/client';
 import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
+import { syncSessionWithExtension } from '@/utils/extensionSync';
 
 const SignInPage = () => {
   const [email, setEmail] = useState('');
@@ -14,11 +15,17 @@ const SignInPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      if (session?.user) {
-        navigate('/dashboard');
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        if (session?.user) {
+          // Sincronizza anche per OAuth redirect e sessioni esistenti
+          if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
+            await syncSessionWithExtension(session);
+          }
+          navigate('/dashboard');
+        }
       }
-    });
+    );
     return () => subscription.unsubscribe();
   }, [navigate]);
 
@@ -55,7 +62,7 @@ const SignInPage = () => {
     setLoading(true);
     setMessage('');
 
-    const { error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
@@ -63,6 +70,8 @@ const SignInPage = () => {
     if (error) {
       setMessage(error.message);
     } else {
+      // Sincronizza sessione con estensione DOPO login successful
+      await syncSessionWithExtension(data.session);
       navigate('/dashboard');
     }
     setLoading(false);

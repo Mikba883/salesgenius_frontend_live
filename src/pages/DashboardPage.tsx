@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import Layout from '@/components/layout/Layout';
+import { syncSessionWithExtension } from '@/utils/extensionSync';
 
 const DashboardPage = () => {
   const [user, setUser] = useState<any>(null);
@@ -10,25 +11,33 @@ const DashboardPage = () => {
 
   useEffect(() => {
     const checkUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
+      const { data: { session } } = await supabase.auth.getSession();
       
-      if (!user) {
+      if (!session) {
         navigate('/signin');
       } else {
-        setUser(user);
+        setUser(session.user);
+        // Sincronizza sessione esistente all'avvio
+        await syncSessionWithExtension(session);
       }
       setLoading(false);
     };
 
     checkUser();
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      if (!session) {
-        navigate('/signin');
-      } else {
-        setUser(session.user);
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        if (!session) {
+          navigate('/signin');
+        } else {
+          setUser(session.user);
+          // Sincronizza quando la sessione viene aggiornata
+          if (event === 'TOKEN_REFRESHED') {
+            await syncSessionWithExtension(session);
+          }
+        }
       }
-    });
+    );
 
     return () => subscription.unsubscribe();
   }, [navigate]);
