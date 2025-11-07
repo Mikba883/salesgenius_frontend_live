@@ -25,42 +25,42 @@ const Header = () => {
       }`}
     >
       <div className="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0 lg:flex items-center justify-between relative">
-        <div className="w-full lg:w-1/4 flex items-center justify-between">
+        <div className="w-full md:w-1/4 flex items-center justify-between">
           <Link to="/">
             <img src="/images/logo/logo.svg" alt="Logo" />
           </Link>
 
           {/* Hamburger Toggle BTN */}
           <button
-            className="md:hidden block"
+            className="md:hidden block relative z-50"
             onClick={() => setNavigationOpen(!navigationOpen)}
           >
-            <span className="block relative cursor-pointer w-5.5 h-5.5">
+            <span className="block relative cursor-pointer w-7 h-7">
               <span className="du-block absolute right-0 w-full h-full">
                 <span
-                  className={`block relative top-0 left-0 bg-white rounded-xs h-0.5 my-1 ease-in-out duration-200 ${
+                  className={`block relative top-0 left-0 bg-white rounded-sm h-[2px] my-[3px] ease-in-out duration-200 ${
                     !navigationOpen ? 'w-full delay-300' : 'w-0 delay-0'
                   }`}
                 ></span>
                 <span
-                  className={`block relative top-0 left-0 bg-white rounded-xs h-0.5 my-1 ease-in-out duration-200 ${
+                  className={`block relative top-0 left-0 bg-white rounded-sm h-[2px] my-[3px] ease-in-out duration-200 ${
                     !navigationOpen ? 'w-full delay-400' : 'w-0 delay-150'
                   }`}
                 ></span>
                 <span
-                  className={`block relative top-0 left-0 bg-white rounded-xs h-0.5 my-1 ease-in-out duration-200 ${
+                  className={`block relative top-0 left-0 bg-white rounded-sm h-[2px] my-[3px] ease-in-out duration-200 ${
                     !navigationOpen ? 'w-full delay-500' : 'w-0 delay-200'
                   }`}
                 ></span>
               </span>
               <span className="du-block absolute right-0 w-full h-full rotate-45">
                 <span
-                  className={`block bg-white rounded-xs ease-in-out duration-200 absolute left-2.5 top-0 w-0.5 ${
+                  className={`block bg-white rounded-sm ease-in-out duration-200 absolute left-3 top-0 w-[2px] ${
                     !navigationOpen ? 'h-0 delay-0' : 'h-full delay-300'
                   }`}
                 ></span>
                 <span
-                  className={`block bg-white rounded-xs ease-in-out duration-200 absolute left-0 top-2.5 h-0.5 ${
+                  className={`block bg-white rounded-sm ease-in-out duration-200 absolute left-0 top-3 h-[2px] ${
                     !navigationOpen ? 'w-0 delay-200' : 'w-full delay-400'
                   }`}
                 ></span>
