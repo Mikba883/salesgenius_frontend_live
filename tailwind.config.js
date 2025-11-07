@@ -56,7 +56,7 @@ module.exports = {
         'heading-4': ['30px', '38px'],
         'heading-5': ['28px', '40px'],
         'heading-6': ['24px', '30px'],
-        'custom-1': ['45px', '55px'],
+        'custom-1': ['64px', '76px'],
       },
       spacing: {
         '30': '7.5rem',

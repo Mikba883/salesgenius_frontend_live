@@ -64,7 +64,7 @@ const Pricing = () => {
           </div>
           <div className="max-w-[830px] w-full h-[830px] rounded-full bg-dark absolute left-1/2 -translate-x-1/2 top-0 pricing-circle"></div>
 
-          <div className="max-w-[482px] w-full h-60 overflow-hidden absolute -z-1 -top-30 left-1/2 -translate-x-1/2">
+          <div className="max-w-[482px] w-full h-60 overflow-hidden absolute -z-1 -top-30 left-1/2 -translate-x-1/2 opacity-40">
             <div className="stars"></div>
             <div className="stars2"></div>
           </div>
