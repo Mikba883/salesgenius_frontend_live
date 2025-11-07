@@ -1,14 +1,36 @@
-import React, { useRef } from 'react';
-import { AnimatedBeam, Circle } from '@/components/ui/animated-beam';
+import React, { useRef, forwardRef } from 'react';
+import { AnimatedBeam } from '@/components/ui/animated-beam';
 import { Mic, Brain, MessageSquare, TrendingUp } from 'lucide-react';
+import { cn } from '@/lib/utils';
+
+const Circle = forwardRef<
+  HTMLDivElement,
+  { className?: string; children?: React.ReactNode }
+>(({ className, children }, ref) => {
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        "z-10 flex size-12 items-center justify-center rounded-full border-2 bg-slate-900/80 backdrop-blur-sm p-3 shadow-[0_0_20px_-12px_rgba(0,0,0,0.8)]",
+        className
+      )}
+    >
+      {children}
+    </div>
+  );
+});
+
+Circle.displayName = "Circle";
 
 const FeaturesGrid = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const micRef = useRef<HTMLDivElement>(null);
-  const toneRef = useRef<HTMLDivElement>(null);
+  const node1Ref = useRef<HTMLDivElement>(null);
+  const node2Ref = useRef<HTMLDivElement>(null);
+  const node3Ref = useRef<HTMLDivElement>(null);
+  const node4Ref = useRef<HTMLDivElement>(null);
+  const node5Ref = useRef<HTMLDivElement>(null);
+  const node6Ref = useRef<HTMLDivElement>(null);
   const aiRef = useRef<HTMLDivElement>(null);
-  const outputRef = useRef<HTMLDivElement>(null);
-  const resultsRef = useRef<HTMLDivElement>(null);
 
   return (
     <section
@@ -31,86 +53,130 @@ const FeaturesGrid = () => {
         </div>
 
         {/* Animated Beam Diagram */}
-        <div className="relative w-full max-w-[800px] mx-auto" ref={containerRef}>
-          <div className="flex items-center justify-center gap-8 py-20 md:py-32">
-            {/* Left Column - Inputs */}
-            <div className="flex flex-col gap-12">
-              <div className="flex flex-col items-center gap-3">
-                <Circle ref={micRef} className="size-16 border-primary/20 bg-primary/10">
-                  <Mic className="size-6 text-primary" />
-                </Circle>
-                <p className="text-sm font-medium text-white">Audio Input</p>
-              </div>
-              
-              <div className="flex flex-col items-center gap-3">
-                <Circle ref={toneRef} className="size-16 border-primary/20 bg-primary/10">
-                  <TrendingUp className="size-6 text-primary" />
-                </Circle>
-                <p className="text-sm font-medium text-white">Tone Analysis</p>
-              </div>
-            </div>
-
+        <div className="relative w-full max-w-[1000px] mx-auto min-h-[500px] flex items-center justify-center" ref={containerRef}>
+          <div className="relative w-full h-[500px]">
             {/* Center - AI Brain */}
-            <div className="flex flex-col items-center gap-3">
-              <Circle ref={aiRef} className="size-24 border-primary bg-primary/20">
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-3">
+              <Circle ref={aiRef} className="size-20 border-primary/50">
                 <Brain className="size-10 text-primary" />
               </Circle>
-              <p className="text-sm font-bold text-white">AI Engine</p>
             </div>
 
-            {/* Right Column - Outputs */}
-            <div className="flex flex-col gap-12">
-              <div className="flex flex-col items-center gap-3">
-                <Circle ref={outputRef} className="size-16 border-primary/20 bg-primary/10">
-                  <MessageSquare className="size-6 text-primary" />
-                </Circle>
-                <p className="text-sm font-medium text-white">Suggestions</p>
-              </div>
-              
-              <div className="flex flex-col items-center gap-3">
-                <Circle ref={resultsRef} className="size-16 border-primary/20 bg-primary/10">
-                  <TrendingUp className="size-6 text-primary" />
-                </Circle>
-                <p className="text-sm font-medium text-white">Win Rate</p>
-              </div>
+            {/* Top Left - Audio Input */}
+            <div className="absolute left-[10%] top-[10%] flex flex-col items-center gap-2">
+              <Circle ref={node1Ref} className="size-16 border-slate-700">
+                <Mic className="size-6 text-blue-400" />
+              </Circle>
+              <p className="text-xs font-medium text-white/80">Audio Input</p>
             </div>
+
+            {/* Top Right - Suggestions */}
+            <div className="absolute right-[10%] top-[10%] flex flex-col items-center gap-2">
+              <Circle ref={node2Ref} className="size-16 border-slate-700">
+                <MessageSquare className="size-6 text-blue-400" />
+              </Circle>
+              <p className="text-xs font-medium text-white/80">Suggestions</p>
+            </div>
+
+            {/* Middle Left - Tone Analysis */}
+            <div className="absolute left-[5%] top-1/2 -translate-y-1/2 flex flex-col items-center gap-2">
+              <Circle ref={node3Ref} className="size-16 border-slate-700">
+                <TrendingUp className="size-6 text-purple-400" />
+              </Circle>
+              <p className="text-xs font-medium text-white/80">Tone Analysis</p>
+            </div>
+
+            {/* Middle Right - Win Rate */}
+            <div className="absolute right-[5%] top-1/2 -translate-y-1/2 flex flex-col items-center gap-2">
+              <Circle ref={node4Ref} className="size-16 border-slate-700">
+                <TrendingUp className="size-6 text-orange-400" />
+              </Circle>
+              <p className="text-xs font-medium text-white/80">Win Rate</p>
+            </div>
+
+            {/* Bottom Left - Real-time */}
+            <div className="absolute left-[10%] bottom-[10%] flex flex-col items-center gap-2">
+              <Circle ref={node5Ref} className="size-16 border-slate-700">
+                <MessageSquare className="size-6 text-green-400" />
+              </Circle>
+              <p className="text-xs font-medium text-white/80">Real-time</p>
+            </div>
+
+            {/* Bottom Right - AI Analysis */}
+            <div className="absolute right-[10%] bottom-[10%] flex flex-col items-center gap-2">
+              <Circle ref={node6Ref} className="size-16 border-slate-700">
+                <Brain className="size-6 text-pink-400" />
+              </Circle>
+              <p className="text-xs font-medium text-white/80">AI Analysis</p>
+            </div>
+
+            {/* Animated Beams - da tutti i nodi verso il centro */}
+            <AnimatedBeam
+              containerRef={containerRef}
+              fromRef={node1Ref}
+              toRef={aiRef}
+              pathColor="rgb(148 163 184 / 0.1)"
+              pathWidth={2}
+              gradientStartColor="#3b82f6"
+              gradientStopColor="#8b5cf6"
+              duration={3}
+            />
+            <AnimatedBeam
+              containerRef={containerRef}
+              fromRef={node2Ref}
+              toRef={aiRef}
+              pathColor="rgb(148 163 184 / 0.1)"
+              pathWidth={2}
+              gradientStartColor="#3b82f6"
+              gradientStopColor="#8b5cf6"
+              duration={3}
+              delay={0.5}
+            />
+            <AnimatedBeam
+              containerRef={containerRef}
+              fromRef={node3Ref}
+              toRef={aiRef}
+              pathColor="rgb(148 163 184 / 0.1)"
+              pathWidth={2}
+              gradientStartColor="#8b5cf6"
+              gradientStopColor="#ec4899"
+              duration={3}
+              delay={1}
+            />
+            <AnimatedBeam
+              containerRef={containerRef}
+              fromRef={node4Ref}
+              toRef={aiRef}
+              pathColor="rgb(148 163 184 / 0.1)"
+              pathWidth={2}
+              gradientStartColor="#f97316"
+              gradientStopColor="#eab308"
+              duration={3}
+              delay={1.5}
+            />
+            <AnimatedBeam
+              containerRef={containerRef}
+              fromRef={node5Ref}
+              toRef={aiRef}
+              pathColor="rgb(148 163 184 / 0.1)"
+              pathWidth={2}
+              gradientStartColor="#10b981"
+              gradientStopColor="#06b6d4"
+              duration={3}
+              delay={2}
+            />
+            <AnimatedBeam
+              containerRef={containerRef}
+              fromRef={node6Ref}
+              toRef={aiRef}
+              pathColor="rgb(148 163 184 / 0.1)"
+              pathWidth={2}
+              gradientStartColor="#ec4899"
+              gradientStopColor="#f43f5e"
+              duration={3}
+              delay={2.5}
+            />
           </div>
-
-          {/* Animated Beams */}
-          <AnimatedBeam
-            containerRef={containerRef}
-            fromRef={micRef}
-            toRef={aiRef}
-            curvature={20}
-            gradientStartColor="hsl(var(--primary))"
-            gradientStopColor="hsl(var(--primary))"
-          />
-          <AnimatedBeam
-            containerRef={containerRef}
-            fromRef={toneRef}
-            toRef={aiRef}
-            curvature={-20}
-            gradientStartColor="hsl(var(--primary))"
-            gradientStopColor="hsl(var(--primary))"
-          />
-          <AnimatedBeam
-            containerRef={containerRef}
-            fromRef={aiRef}
-            toRef={outputRef}
-            curvature={20}
-            reverse={true}
-            gradientStartColor="hsl(var(--primary))"
-            gradientStopColor="hsl(var(--primary))"
-          />
-          <AnimatedBeam
-            containerRef={containerRef}
-            fromRef={aiRef}
-            toRef={resultsRef}
-            curvature={-20}
-            reverse={true}
-            gradientStartColor="hsl(var(--primary))"
-            gradientStopColor="hsl(var(--primary))"
-          />
         </div>
 
         {/* Feature Highlights Below */}
