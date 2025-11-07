@@ -1,5 +1,6 @@
 import React, { useRef, forwardRef } from 'react';
 import { AnimatedBeam } from '@/components/ui/animated-beam';
+import { StaticBeam } from '@/components/ui/static-beam';
 import { Mic, Brain, MessageSquare, TrendingUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
