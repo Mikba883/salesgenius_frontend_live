@@ -55,8 +55,18 @@ const FeaturesGrid = () => {
         {/* Animated Beam Diagram */}
         <div className="relative w-full max-w-[1000px] mx-auto min-h-[500px] flex items-center justify-center" ref={containerRef}>
           <div className="relative w-full h-[500px]">
-            {/* Center - AI Brain */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-3">
+            {/* Static Lines - Linee fisse visibili */}
+            <svg className="absolute inset-0 w-full h-full pointer-events-none z-0" xmlns="http://www.w3.org/2000/svg">
+              <line x1="10%" y1="10%" x2="50%" y2="50%" stroke="rgb(148 163 184 / 0.2)" strokeWidth="2" />
+              <line x1="90%" y1="10%" x2="50%" y2="50%" stroke="rgb(148 163 184 / 0.2)" strokeWidth="2" />
+              <line x1="5%" y1="50%" x2="50%" y2="50%" stroke="rgb(148 163 184 / 0.2)" strokeWidth="2" />
+              <line x1="95%" y1="50%" x2="50%" y2="50%" stroke="rgb(148 163 184 / 0.2)" strokeWidth="2" />
+              <line x1="10%" y1="90%" x2="50%" y2="50%" stroke="rgb(148 163 184 / 0.2)" strokeWidth="2" />
+              <line x1="90%" y1="90%" x2="50%" y2="50%" stroke="rgb(148 163 184 / 0.2)" strokeWidth="2" />
+            </svg>
+
+            {/* Center - AI Brain (z-20 per stare sopra tutto) */}
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-3 z-20">
               <Circle ref={aiRef} className="size-20 border-primary/50">
                 <Brain className="size-10 text-primary" />
               </Circle>
@@ -110,12 +120,13 @@ const FeaturesGrid = () => {
               <p className="text-xs font-medium text-white/80">AI Analysis</p>
             </div>
 
-            {/* Animated Beams - da tutti i nodi verso il centro */}
+            {/* Animated Beams - lampi animati sopra le linee fisse (z-5) */}
             <AnimatedBeam
               containerRef={containerRef}
               fromRef={node1Ref}
               toRef={aiRef}
-              pathColor="rgb(148 163 184 / 0.1)"
+              className="z-5"
+              pathColor="transparent"
               pathWidth={2}
               gradientStartColor="#3b82f6"
               gradientStopColor="#8b5cf6"
@@ -125,7 +136,8 @@ const FeaturesGrid = () => {
               containerRef={containerRef}
               fromRef={node2Ref}
               toRef={aiRef}
-              pathColor="rgb(148 163 184 / 0.1)"
+              className="z-5"
+              pathColor="transparent"
               pathWidth={2}
               gradientStartColor="#3b82f6"
               gradientStopColor="#8b5cf6"
@@ -136,7 +148,8 @@ const FeaturesGrid = () => {
               containerRef={containerRef}
               fromRef={node3Ref}
               toRef={aiRef}
-              pathColor="rgb(148 163 184 / 0.1)"
+              className="z-5"
+              pathColor="transparent"
               pathWidth={2}
               gradientStartColor="#8b5cf6"
               gradientStopColor="#ec4899"
@@ -147,7 +160,8 @@ const FeaturesGrid = () => {
               containerRef={containerRef}
               fromRef={node4Ref}
               toRef={aiRef}
-              pathColor="rgb(148 163 184 / 0.1)"
+              className="z-5"
+              pathColor="transparent"
               pathWidth={2}
               gradientStartColor="#f97316"
               gradientStopColor="#eab308"
@@ -158,7 +172,8 @@ const FeaturesGrid = () => {
               containerRef={containerRef}
               fromRef={node5Ref}
               toRef={aiRef}
-              pathColor="rgb(148 163 184 / 0.1)"
+              className="z-5"
+              pathColor="transparent"
               pathWidth={2}
               gradientStartColor="#10b981"
               gradientStopColor="#06b6d4"
@@ -169,7 +184,8 @@ const FeaturesGrid = () => {
               containerRef={containerRef}
               fromRef={node6Ref}
               toRef={aiRef}
-              pathColor="rgb(148 163 184 / 0.1)"
+              className="z-5"
+              pathColor="transparent"
               pathWidth={2}
               gradientStartColor="#ec4899"
               gradientStopColor="#f43f5e"
