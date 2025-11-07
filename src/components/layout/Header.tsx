@@ -24,7 +24,7 @@ const Header = () => {
           : ''
       }`}
     >
-      <div className="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0 md:flex items-center justify-between relative">
+      <div className="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0 md:flex md:items-center md:py-4 lg:py-0 items-center justify-between relative">
         <div className="w-full md:w-1/4 flex items-center justify-between">
           <Link to="/">
             <img src="/images/logo/logo.svg" alt="Logo" />
@@ -72,18 +72,18 @@ const Header = () => {
         <div
           className={`w-full md:w-auto h-0 md:h-auto invisible md:visible md:flex items-center justify-end ${
             navigationOpen
-              ? 'visible! bg-dark shadow-lg relative h-auto! rounded-md mt-4 p-6 flex!'
+              ? 'visible! bg-dark/95 shadow-lg relative h-auto! rounded-md mt-4 p-6 flex!'
               : ''
           }`}
         >
-          <div className="flex items-center gap-6">
-            <Link to="/signin" className="text-white text-sm hover:text-opacity-75">
+          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 w-full md:w-auto">
+            <Link to="/signin" className="text-white text-sm hover:text-opacity-75 w-full md:w-auto text-center py-2">
               Sign in
             </Link>
 
             <Link
               to="/signup"
-              className="button-border-gradient relative rounded-lg text-white text-sm flex items-center gap-1.5 py-2 px-6 shadow-button hover:button-gradient-hover hover:shadow-none"
+              className="button-border-gradient relative rounded-lg text-white text-sm flex items-center justify-center gap-1.5 py-2 px-6 shadow-button hover:button-gradient-hover hover:shadow-none w-full md:w-auto"
             >
               Sign up
               <svg
