@@ -32,36 +32,36 @@ const Header = () => {
 
           {/* Hamburger Toggle BTN */}
           <button
-            className="lg:hidden block"
+            className="md:hidden block"
             onClick={() => setNavigationOpen(!navigationOpen)}
           >
             <span className="block relative cursor-pointer w-5.5 h-5.5">
               <span className="du-block absolute right-0 w-full h-full">
                 <span
-                  className={`block relative top-0 left-0 bg-white rounded-xs w-0 h-0.5 my-1 ease-in-out duration-200 delay-0 ${
-                    !navigationOpen ? 'w-full! delay-300' : ''
+                  className={`block relative top-0 left-0 bg-white rounded-xs h-0.5 my-1 ease-in-out duration-200 ${
+                    !navigationOpen ? 'w-full delay-300' : 'w-0 delay-0'
                   }`}
                 ></span>
                 <span
-                  className={`block relative top-0 left-0 bg-white rounded-xs w-0 h-0.5 my-1 ease-in-out duration-200 delay-150 ${
-                    !navigationOpen ? 'w-full! delay-400' : ''
+                  className={`block relative top-0 left-0 bg-white rounded-xs h-0.5 my-1 ease-in-out duration-200 ${
+                    !navigationOpen ? 'w-full delay-400' : 'w-0 delay-150'
                   }`}
                 ></span>
                 <span
-                  className={`block relative top-0 left-0 bg-white rounded-xs w-0 h-0.5 my-1 ease-in-out duration-200 delay-200 ${
-                    !navigationOpen ? 'w-full! delay-500' : ''
+                  className={`block relative top-0 left-0 bg-white rounded-xs h-0.5 my-1 ease-in-out duration-200 ${
+                    !navigationOpen ? 'w-full delay-500' : 'w-0 delay-200'
                   }`}
                 ></span>
               </span>
               <span className="du-block absolute right-0 w-full h-full rotate-45">
                 <span
-                  className={`block bg-white rounded-xs ease-in-out duration-200 delay-300 absolute left-2.5 top-0 w-0.5 h-full ${
-                    !navigationOpen ? 'h-0! delay-0' : ''
+                  className={`block bg-white rounded-xs ease-in-out duration-200 absolute left-2.5 top-0 w-0.5 ${
+                    !navigationOpen ? 'h-0 delay-0' : 'h-full delay-300'
                   }`}
                 ></span>
                 <span
-                  className={`block bg-white rounded-xs ease-in-out duration-200 delay-400 absolute left-0 top-2.5 w-full h-0.5 ${
-                    !navigationOpen ? 'h-0! dealy-200' : ''
+                  className={`block bg-white rounded-xs ease-in-out duration-200 absolute left-0 top-2.5 h-0.5 ${
+                    !navigationOpen ? 'w-0 delay-200' : 'w-full delay-400'
                   }`}
                 ></span>
               </span>
@@ -70,9 +70,9 @@ const Header = () => {
         </div>
 
         <div
-          className={`w-full lg:w-auto h-0 lg:h-auto invisible lg:visible lg:flex items-center justify-end ${
+          className={`w-full md:w-auto h-0 md:h-auto invisible md:visible md:flex items-center justify-end ${
             navigationOpen
-              ? 'visible! bg-dark shadow-lg relative h-auto! rounded-md mt-4 p-6 pt-6'
+              ? 'visible! bg-dark shadow-lg relative h-auto! rounded-md mt-4 p-6'
               : ''
           }`}
         >
