@@ -31,12 +31,12 @@ const HomePage = () => {
         {/* Hero Content */}
         <div className="mx-auto max-w-[900px] px-4 sm:px-8 xl:px-0 relative z-1">
           <div className="text-center">
-            <a href="/#" className="hero-subtitle-gradient hover:hero-subtitle-hover relative mb-5 font-medium text-sm inline-flex items-center gap-2 py-2 px-4.5 rounded-full">
+            <a href="/#" className="hero-subtitle-gradient hover:hero-subtitle-hover relative mb-5 font-medium text-sm inline-flex items-center gap-2 py-2 px-8 rounded-full">
               <img src="/images/hero/icon-title.svg" alt="icon" />
-              <span className="hero-subtitle-text">The #1 AI Sales Assistant.</span>
+              <span className="hero-subtitle-text">The #1 AI Sales Assistant</span>
             </a>
             <h1 className="mb-6 text-3xl font-extrabold text-white sm:text-5xl xl:text-heading-1">
-              Get the AI-Powered Line to Win the Call.
+              Get the AI-Powered Line to Win the Call
             </h1>
             <p className="max-w-[600px] mx-auto mb-9 font-medium md:text-lg">
               SalesGenius listens, analyzes tone and intent, and whispers your next best line — live, during the negotiation.
