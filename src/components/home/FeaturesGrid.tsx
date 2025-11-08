@@ -48,7 +48,7 @@ const FeaturesGrid = () => {
           <h2 className="text-white mb-4.5 text-2xl font-extrabold sm:text-4xl xl:text-heading-2">
             AI Sales Assistant that works with any video call
           </h2>
-          <p className="max-w-[714px] mx-auto mb-12 font-medium">
+          <p className="max-w-[714px] mx-auto mb-12 mt-6 font-medium">
             Just open your call. It works instantly. No setup needed.
           </p>
         </div>
@@ -74,14 +74,14 @@ const FeaturesGrid = () => {
               fromRef={node3Ref}
               toRef={aiRef}
               className="z-[1]"
-              endXOffset={-120}
+              endXOffset={-100}
             />
             <StaticBeam
               containerRef={containerRef}
               fromRef={node4Ref}
               toRef={aiRef}
               className="z-[1]"
-              endXOffset={120}
+              endXOffset={100}
             />
             <StaticBeam
               containerRef={containerRef}
@@ -98,15 +98,15 @@ const FeaturesGrid = () => {
 
             {/* Center - AI Brain (z-20 per stare sopra tutto) */}
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-3 z-20">
-              <Circle ref={aiRef} className="size-52 border-primary/50">
+              <Circle ref={aiRef} className="size-44 border-primary/50">
                 <img src="/images/features/ai-brain.svg" alt="AI Brain" className="size-48" />
               </Circle>
             </div>
 
             {/* Top Left - Audio Input */}
             <div className="absolute left-[10%] top-[10%] flex flex-col items-center gap-2">
-              <Circle ref={node1Ref} className="size-20 border-slate-700">
-                <img src="/images/features/node-audio.svg" alt="Audio Input" className="size-16" />
+              <Circle ref={node1Ref} className="size-24 border-slate-700">
+                <img src="/images/features/node-audio.svg" alt="Audio Input" className="size-20" />
               </Circle>
               <p className="text-xs font-medium text-white/80">Audio Input</p>
             </div>
@@ -145,8 +145,8 @@ const FeaturesGrid = () => {
 
             {/* Bottom Right - AI Analysis */}
             <div className="absolute right-[10%] bottom-[10%] flex flex-col items-center gap-2">
-              <Circle ref={node6Ref} className="size-16 border-slate-700">
-                <img src="/images/features/node-analysis.svg" alt="AI Analysis" className="size-12" />
+              <Circle ref={node6Ref} className="size-24 border-slate-700">
+                <img src="/images/features/node-analysis.svg" alt="AI Analysis" className="size-20" />
               </Circle>
               <p className="text-xs font-medium text-white/80">AI Analysis</p>
             </div>
