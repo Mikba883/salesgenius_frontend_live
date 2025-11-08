@@ -74,14 +74,14 @@ const FeaturesGrid = () => {
               fromRef={node3Ref}
               toRef={aiRef}
               className="z-[1]"
-              endXOffset={-100}
+              endXOffset={-130}
             />
             <StaticBeam
               containerRef={containerRef}
               fromRef={node4Ref}
               toRef={aiRef}
               className="z-[1]"
-              endXOffset={100}
+              endXOffset={130}
             />
             <StaticBeam
               containerRef={containerRef}
@@ -106,7 +106,7 @@ const FeaturesGrid = () => {
             {/* Top Left - Audio Input */}
             <div className="absolute left-[10%] top-[10%] flex flex-col items-center gap-0">
               <Circle ref={node1Ref} className="size-24 border-slate-700 z-10">
-                <img src="/images/features/node-audio.svg" alt="Audio Input" className="size-[18px]" />
+                <img src="/images/features/node-audio.svg" alt="Audio Input" className="size-20" />
               </Circle>
             </div>
 
@@ -134,14 +134,14 @@ const FeaturesGrid = () => {
             {/* Bottom Left - Real-time */}
             <div className="absolute left-[10%] bottom-[10%] flex flex-col items-center gap-0">
               <Circle ref={node5Ref} className="size-24 border-slate-700 z-10">
-                <img src="/images/features/node-insights.svg" alt="Real-time" className="size-[22px]" />
+                <img src="/images/features/node-insights.svg" alt="Real-time" className="size-20" />
               </Circle>
             </div>
 
             {/* Bottom Right - AI Analysis */}
             <div className="absolute right-[10%] bottom-[10%] flex flex-col items-center gap-0">
               <Circle ref={node6Ref} className="size-24 border-slate-700 z-10">
-                <img src="/images/features/node-analysis.svg" alt="AI Analysis" className="size-14" />
+                <img src="/images/features/node-analysis.svg" alt="AI Analysis" className="size-20" />
               </Circle>
             </div>
 
