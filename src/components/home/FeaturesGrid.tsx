@@ -99,14 +99,14 @@ const FeaturesGrid = () => {
             {/* Center - AI Brain (z-20 per stare sopra tutto) */}
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-3 z-20">
               <Circle ref={aiRef} className="size-20 border-primary/50">
-                <img src="/images/features/ai-brain.svg" alt="AI Brain" className="size-10" />
+                <img src="/images/features/ai-brain.svg" alt="AI Brain" className="size-16" />
               </Circle>
             </div>
 
             {/* Top Left - Audio Input */}
             <div className="absolute left-[10%] top-[10%] flex flex-col items-center gap-2">
               <Circle ref={node1Ref} className="size-16 border-slate-700">
-                <img src="/images/features/node-audio.svg" alt="Audio Input" className="size-6" />
+                <img src="/images/features/node-audio.svg" alt="Audio Input" className="size-10" />
               </Circle>
               <p className="text-xs font-medium text-white/80">Audio Input</p>
             </div>
@@ -114,7 +114,7 @@ const FeaturesGrid = () => {
             {/* Top Right - Suggestions */}
             <div className="absolute right-[10%] top-[10%] flex flex-col items-center gap-2">
               <Circle ref={node2Ref} className="size-16 border-slate-700">
-                <img src="/images/features/node-suggestions.svg" alt="Suggestions" className="size-6" />
+                <img src="/images/features/node-suggestions.svg" alt="Suggestions" className="size-10" />
               </Circle>
               <p className="text-xs font-medium text-white/80">Suggestions</p>
             </div>
@@ -122,7 +122,7 @@ const FeaturesGrid = () => {
             {/* Middle Left - Tone Analysis */}
             <div className="absolute left-[5%] top-1/2 -translate-y-1/2 flex flex-col items-center gap-2">
               <Circle ref={node3Ref} className="size-16 border-slate-700">
-                <img src="/images/features/node-tone.svg" alt="Tone Analysis" className="size-6" />
+                <img src="/images/features/node-tone.svg" alt="Tone Analysis" className="size-10" />
               </Circle>
               <p className="text-xs font-medium text-white/80">Tone Analysis</p>
             </div>
@@ -130,7 +130,7 @@ const FeaturesGrid = () => {
             {/* Middle Right - Win Rate */}
             <div className="absolute right-[5%] top-1/2 -translate-y-1/2 flex flex-col items-center gap-2">
               <Circle ref={node4Ref} className="size-16 border-slate-700">
-                <img src="/images/features/node-tracking.svg" alt="Win Rate" className="size-6" />
+                <img src="/images/features/node-tracking.svg" alt="Win Rate" className="size-10" />
               </Circle>
               <p className="text-xs font-medium text-white/80">Win Rate</p>
             </div>
@@ -138,7 +138,7 @@ const FeaturesGrid = () => {
             {/* Bottom Left - Real-time */}
             <div className="absolute left-[10%] bottom-[10%] flex flex-col items-center gap-2">
               <Circle ref={node5Ref} className="size-16 border-slate-700">
-                <img src="/images/features/node-insights.svg" alt="Real-time" className="size-6" />
+                <img src="/images/features/node-insights.svg" alt="Real-time" className="size-10" />
               </Circle>
               <p className="text-xs font-medium text-white/80">Real-time</p>
             </div>
@@ -146,7 +146,7 @@ const FeaturesGrid = () => {
             {/* Bottom Right - AI Analysis */}
             <div className="absolute right-[10%] bottom-[10%] flex flex-col items-center gap-2">
               <Circle ref={node6Ref} className="size-16 border-slate-700">
-                <img src="/images/features/node-analysis.svg" alt="AI Analysis" className="size-6" />
+                <img src="/images/features/node-analysis.svg" alt="AI Analysis" className="size-10" />
               </Circle>
               <p className="text-xs font-medium text-white/80">AI Analysis</p>
             </div>
