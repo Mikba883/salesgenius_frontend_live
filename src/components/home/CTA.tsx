@@ -23,7 +23,7 @@ const CTA = () => {
 
           {/* content */}
           <div className="relative z-10 max-w-[530px] w-full mx-auto text-center">
-            <span className="hero-subtitle-gradient relative mb-4 font-medium text-sm inline-flex items-center gap-2 py-2 px-4.5 rounded-full">
+            <span className="hero-subtitle-gradient relative mb-4 font-medium text-sm inline-flex items-center gap-2 py-2 px-6 rounded-full">
               <img src="/images/hero/icon-title.svg" alt="icon" />
               <span className="hero-subtitle-text">Get Started Today</span>
             </span>

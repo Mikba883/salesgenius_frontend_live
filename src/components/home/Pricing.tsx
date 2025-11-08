@@ -79,7 +79,7 @@ const Pricing = () => {
 
         {/* section title */}
         <div className="mb-17.5 -mt-24 text-center z-10 relative">
-          <span className="hero-subtitle-gradient relative mb-4 font-medium text-sm inline-flex items-center gap-2 py-2 px-4.5 rounded-full">
+          <span className="hero-subtitle-gradient relative mb-4 font-medium text-sm inline-flex items-center gap-2 py-2 px-6 rounded-full">
             <img src="/images/hero/icon-title.svg" alt="icon" />
             <span className="hero-subtitle-text">Get access</span>
           </span>
