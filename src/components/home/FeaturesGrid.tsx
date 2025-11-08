@@ -74,14 +74,12 @@ const FeaturesGrid = () => {
               fromRef={node3Ref}
               toRef={aiRef}
               className="z-[1]"
-              endXOffset={-130}
             />
             <StaticBeam
               containerRef={containerRef}
               fromRef={node4Ref}
               toRef={aiRef}
               className="z-[1]"
-              endXOffset={130}
             />
             <StaticBeam
               containerRef={containerRef}
@@ -141,7 +139,7 @@ const FeaturesGrid = () => {
             {/* Bottom Right - AI Analysis */}
             <div className="absolute right-[10%] bottom-[10%] flex flex-col items-center gap-0">
               <Circle ref={node6Ref} className="size-24 border-slate-700 z-10">
-                <img src="/images/features/node-analysis.svg" alt="AI Analysis" className="size-20" />
+                <img src="/images/features/node-analysis.svg" alt="AI Analysis" className="size-16" />
               </Circle>
             </div>
 
