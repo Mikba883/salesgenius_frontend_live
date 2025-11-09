@@ -96,49 +96,49 @@ const FeaturesGrid = () => {
 
             {/* Center - AI Brain (z-20 per stare sopra tutto) */}
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-3 z-20">
-              <div ref={aiRef} className="z-20">
-                <img src="/images/features/ai-brain.svg" alt="AI Brain" className="size-32 sm:size-36 md:size-40 lg:size-44" />
-              </div>
+              <Circle ref={aiRef} className="size-32 sm:size-36 md:size-40 lg:size-44 border-transparent">
+                <img src="/images/features/ai-brain.svg" alt="AI Brain" className="size-48" />
+              </Circle>
             </div>
 
             {/* Top Left - Audio Input */}
             <div className="absolute left-[10%] top-[10%] flex flex-col items-center gap-0">
-              <Circle ref={node1Ref} className="size-24 border-slate-700 z-10">
+              <Circle ref={node1Ref} className="size-24 border-transparent z-10">
                 <img src="/images/features/node-audio.svg" alt="Audio Input" className="size-20" />
               </Circle>
             </div>
 
             {/* Top Right - Suggestions */}
             <div className="absolute right-[10%] top-[10%] flex flex-col items-center gap-0">
-              <Circle ref={node2Ref} className="size-24 border-slate-700 z-10">
+              <Circle ref={node2Ref} className="size-24 border-transparent z-10">
                 <img src="/images/features/node-suggestions.svg" alt="Suggestions" className="size-20" />
               </Circle>
             </div>
 
             {/* Middle Left - Tone Analysis */}
             <div className="absolute left-[5%] top-1/2 -translate-y-1/2 flex flex-col items-center gap-0">
-              <Circle ref={node3Ref} className="size-24 border-slate-700 z-10">
+              <Circle ref={node3Ref} className="size-24 border-transparent z-[15]">
                 <img src="/images/features/node-tone.svg" alt="Tone Analysis" className="size-20" />
               </Circle>
             </div>
 
             {/* Middle Right - Win Rate */}
             <div className="absolute right-[5%] top-1/2 -translate-y-1/2 flex flex-col items-center gap-0">
-              <Circle ref={node4Ref} className="size-24 border-slate-700 z-10">
+              <Circle ref={node4Ref} className="size-24 border-transparent z-[15]">
                 <img src="/images/features/node-tracking.svg" alt="Win Rate" className="size-20" />
               </Circle>
             </div>
 
             {/* Bottom Left - Real-time */}
             <div className="absolute left-[10%] bottom-[10%] flex flex-col items-center gap-0">
-              <Circle ref={node5Ref} className="size-24 border-slate-700 z-10">
+              <Circle ref={node5Ref} className="size-24 border-transparent z-10">
                 <img src="/images/features/node-insights.svg" alt="Real-time" className="size-20" />
               </Circle>
             </div>
 
             {/* Bottom Right - AI Analysis */}
             <div className="absolute right-[10%] bottom-[10%] flex flex-col items-center gap-0">
-              <Circle ref={node6Ref} className="size-24 border-slate-700 z-10">
+              <Circle ref={node6Ref} className="size-24 border-transparent z-10">
                 <img src="/images/features/node-analysis.svg" alt="AI Analysis" className="size-16" />
               </Circle>
             </div>
