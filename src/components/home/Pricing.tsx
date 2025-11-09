@@ -46,7 +46,7 @@ const Pricing = () => {
   return (
     <section
       id="pricing"
-      className="relative py-32 lg:py-40 xl:py-48 overflow-hidden min-h-[1200px] flex items-end scroll-mt-17"
+      className="relative py-32 lg:py-40 xl:py-48 overflow-hidden min-h-[1800px] flex items-end scroll-mt-17"
     >
       {/* Background stars */}
       <div className="absolute inset-0 -z-10">
@@ -105,7 +105,7 @@ const Pricing = () => {
       {/* Sunrise gradient */}
       <div className="absolute inset-x-0 bottom-0 h-[1000px] bg-gradient-to-b from-transparent from-0% via-transparent via-20% via-[#030014]/70 via-30% via-[#030014]/95 via-40% to-[#030014] to-45% pointer-events-none"></div>
 
-      <div className="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0 relative z-10 w-full">
+      <div className="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0 relative z-10 w-full pt-[350px]">
 
         {/* section title */}
         <div className="mb-17.5 text-center z-10 relative">
