@@ -11,20 +11,26 @@ const VisualEffect = () => {
         </div>
       </div>
 
-      {/* Subtle purple glow at bottom only */}
-      <div className="absolute bottom-0 left-0 right-0 h-[400px] pointer-events-none">
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[1200px] h-[300px]">
-          <img src="/images/blur/blur-15.svg" alt="" className="w-full h-full opacity-20" />
+      {/* Purple glow effects - centered */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <img src="/images/blur/blur-15.svg" alt="blur" className="max-w-none scale-[1.5] opacity-80" />
+        </div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <img src="/images/blur/blur-14.svg" alt="blur" className="max-w-none scale-[2] opacity-60" />
+        </div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <img src="/images/blur/blur-13.svg" alt="blur" className="max-w-none scale-[2.5] opacity-50" />
         </div>
       </div>
 
-      {/* Giant black circle - positioned from top */}
-      <div className="absolute left-1/2 -translate-x-1/2 top-[200px] w-[900px] h-[450px] md:w-[1200px] md:h-[600px] lg:w-[1800px] lg:h-[900px] rounded-[50%] bg-[#0a0118]"></div>
+      {/* Giant black circle - positioned below title, above table */}
+      <div className="absolute left-1/2 -translate-x-1/2 top-[350px] md:top-[400px] lg:top-[450px] w-[900px] h-[450px] md:w-[1200px] md:h-[600px] lg:w-[1800px] lg:h-[900px] rounded-[50%] bg-[#0a0118] z-0"></div>
 
       {/* Content on top */}
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-8 xl:px-0 relative z-10 pt-32 lg:pt-40">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-8 xl:px-0 relative z-10 pt-16 lg:pt-20">
         <div className="flex flex-col items-center gap-16 text-center">
-          {/* Title with more breathing room */}
+          {/* Title - moved higher */}
           <div className="space-y-6">
             <h2 className="text-white font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl max-w-[1000px]">
               Why SalesGenius Beats Generic AI
