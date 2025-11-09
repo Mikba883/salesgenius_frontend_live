@@ -53,7 +53,7 @@ const VisualEffect = () => {
       <div className="absolute inset-x-0 bottom-0 h-[1000px] bg-gradient-to-b from-transparent from-0% via-transparent via-20% via-[#030014]/70 via-30% via-[#030014]/95 via-40% to-[#030014] to-45% pointer-events-none"></div>
 
       {/* Content on top of planet */}
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-8 xl:px-0 relative z-10 w-full pb-32 lg:pb-48 xl:pb-64">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-8 xl:px-0 relative z-10 w-full pb-48 lg:pb-64 xl:pb-80">
         <div className="flex flex-col items-center gap-12 text-center">
           {/* Title */}
           <h2 className="text-white font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl max-w-[1000px]">
@@ -80,7 +80,7 @@ const VisualEffect = () => {
                 </div>
                 
                 {/* Table Rows */}
-                <div className="divide-y divide-white/5">
+                <div className="space-y-0">
                   {/* Row 1 */}
                   <div className="grid grid-cols-3 hover:bg-white/5 transition-colors">
                     <div className="bg-dark/40 px-6 py-5">
