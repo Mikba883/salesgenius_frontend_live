@@ -63,7 +63,7 @@ const FeaturesList = () => {
           {/* Medium Feature */}
           <div className="sm:col-span-7">
             <div className="relative rounded-3xl features-box-border">
-              <div className="relative overflow-hidden rounded-3xl px-11 pt-12.5 pb-14 box-hover box-hover-small">
+              <div className="relative overflow-hidden rounded-3xl px-11 pt-20 pb-14 box-hover box-hover-small">
                 <div className="relative z-20">
                   <span className="icon-border relative max-w-[80px] w-full h-20 rounded-full inline-flex items-center justify-center mb-13.5 mx-auto">
                     <img src="/images/features/icon-05.svg" alt="icon" />
@@ -103,10 +103,10 @@ const FeaturesList = () => {
           {/* Small Feature */}
           <div className="sm:col-span-5">
             <div className="relative rounded-3xl features-box-border">
-              <div className="relative overflow-hidden rounded-3xl px-11 pt-12.5 pb-14 box-hover box-hover-small">
+              <div className="relative overflow-hidden rounded-3xl px-11 pt-20 pb-14 box-hover box-hover-small">
                 <div className="relative z-20">
                   <span className="icon-border relative max-w-[80px] w-full h-20 rounded-full inline-flex items-center justify-center mb-13.5 mx-auto">
-                    <img src="/images/features/icon-07.svg" alt="icon" />
+                    <img src="/images/features/icon-05.svg" alt="icon" />
                   </span>
 
                   <h3 className="text-white mb-4.5 font-semibold text-heading-6">
