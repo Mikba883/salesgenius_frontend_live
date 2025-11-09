@@ -112,12 +112,9 @@ const SignInPage = () => {
           </div>
 
           {/* Divider */}
-          <div className="relative my-8">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-white/[0.12]"></div>
-            </div>
-            <div className="relative flex justify-center text-sm">
-              <span className="px-4 bg-transparent text-white/60">Or sign in with email</span>
+          <div className="my-8">
+            <div className="flex justify-center text-sm">
+              <span className="text-white/60">Or sign in with email</span>
             </div>
           </div>
 
