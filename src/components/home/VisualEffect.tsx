@@ -2,7 +2,7 @@ import React from 'react';
 
 const VisualEffect = () => {
   return (
-    <section className="relative py-20 lg:py-32 overflow-hidden min-h-[800px] flex items-center">
+    <section className="relative py-32 lg:py-40 xl:py-48 overflow-hidden min-h-[900px] lg:min-h-[1000px] flex items-center">
       {/* Background stars */}
       <div className="absolute inset-0 -z-10">
         <div className="max-w-[600px] w-full h-60 overflow-hidden absolute top-20 left-1/2 -translate-x-1/2">
@@ -35,6 +35,9 @@ const VisualEffect = () => {
 
       {/* Giant planet circle - positioned at bottom */}
       <div className="absolute left-1/2 -translate-x-1/2 bottom-0 translate-y-1/2 w-[1400px] h-[1400px] rounded-full bg-dark pricing-circle"></div>
+      
+      {/* Seamless gradient overlay to blend with next section */}
+      <div className="absolute inset-x-0 bottom-0 h-[300px] bg-gradient-to-b from-transparent via-[#0f172a]/50 to-[#0f172a] pointer-events-none"></div>
 
       {/* Content on top of planet */}
       <div className="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0 relative z-10 w-full">
