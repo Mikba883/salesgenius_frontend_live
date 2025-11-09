@@ -12,7 +12,7 @@ const VisualEffect = () => {
       </div>
 
       {/* Purple glow effects - under everything */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none -z-20">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <img src="/images/blur/blur-15.svg" alt="blur" className="max-w-none scale-[1.5] opacity-100" />
         </div>
@@ -24,8 +24,10 @@ const VisualEffect = () => {
         </div>
       </div>
 
-      {/* Giant black circle - only top half visible, with radial gradient from white center to edges */}
-      <div className="absolute left-1/2 -translate-x-1/2 top-[600px] w-[900px] h-[450px] md:w-[1200px] md:h-[600px] lg:w-[1800px] lg:h-[900px] rounded-[50%] bg-gradient-radial from-white/10 via-[#0a0118] via-30% to-[#030014] z-0"></div>
+      {/* Giant black circle - only top half visible, with radial gradient overlay from white center to edges */}
+      <div className="absolute left-1/2 -translate-x-1/2 top-[600px] w-[900px] h-[450px] md:w-[1200px] md:h-[600px] lg:w-[1800px] lg:h-[900px] rounded-[50%] bg-[#0a0118] z-0 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center_top,rgba(255,255,255,0.15)_0%,rgba(10,1,24,0.8)_30%,rgba(3,0,20,1)_60%)]"></div>
+      </div>
 
       {/* Content on top */}
       <div className="max-w-[1200px] mx-auto px-4 sm:px-8 xl:px-0 relative z-10 pt-16 lg:pt-20">
