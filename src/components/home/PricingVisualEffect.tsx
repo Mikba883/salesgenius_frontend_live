@@ -46,7 +46,7 @@ const PricingVisualEffect = () => {
   return (
     <section className="relative py-32 lg:py-40 xl:py-48 overflow-hidden min-h-[1600px] flex items-end">
       {/* Background stars */}
-      <div className="absolute inset-0 -z-10">
+      <div className="absolute inset-0 z-10">
         <div className="max-w-[600px] w-full h-60 overflow-hidden absolute top-20 left-1/2 -translate-x-1/2">
           <div className="stars"></div>
           <div className="stars2"></div>
@@ -58,38 +58,38 @@ const PricingVisualEffect = () => {
         {/* Center concentrated light - MAXIMUM BRIGHTNESS */}
         {/* Multiple layers for extreme intensity */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/4">
-          <img src="/images/blur/blur-15.svg" alt="blur" className="max-w-none scale-[1] opacity-100" />
+          <img src="/images/blur/blur-15.svg" alt="blur" className="max-w-none scale-[1] opacity-70" />
         </div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/4">
-          <img src="/images/blur/blur-15.svg" alt="blur" className="max-w-none scale-[1.2] opacity-100" />
+          <img src="/images/blur/blur-15.svg" alt="blur" className="max-w-none scale-[1.2] opacity-70" />
         </div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/4">
-          <img src="/images/blur/blur-14.svg" alt="blur" className="max-w-none scale-[1.5] opacity-100" />
+          <img src="/images/blur/blur-14.svg" alt="blur" className="max-w-none scale-[1.5] opacity-75" />
         </div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/4">
-          <img src="/images/blur/blur-14.svg" alt="blur" className="max-w-none scale-[1.8] opacity-100" />
+          <img src="/images/blur/blur-14.svg" alt="blur" className="max-w-none scale-[1.8] opacity-75" />
         </div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/4">
           <div className="relative">
-            <img src="/images/blur/blur-13.svg" alt="blur" className="max-w-none scale-[2] opacity-100" />
+            <img src="/images/blur/blur-13.svg" alt="blur" className="max-w-none scale-[2] opacity-80" />
           </div>
         </div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/4">
-          <img src="/images/blur/blur-13.svg" alt="blur" className="max-w-none scale-[2.2] opacity-100" />
+          <img src="/images/blur/blur-13.svg" alt="blur" className="max-w-none scale-[2.2] opacity-80" />
         </div>
         {/* Extra glow layers for powerful effect */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/4">
-          <img src="/images/blur/blur-14.svg" alt="blur" className="max-w-none scale-[2.5] opacity-95" />
+          <img src="/images/blur/blur-14.svg" alt="blur" className="max-w-none scale-[2.5] opacity-70" />
         </div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/4">
-          <img src="/images/blur/blur-13.svg" alt="blur" className="max-w-none scale-[3] opacity-90" />
+          <img src="/images/blur/blur-13.svg" alt="blur" className="max-w-none scale-[3] opacity-65" />
         </div>
         {/* Radial fade overlay - molto più debole per lasciare passare la luce */}
         <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent via-[#030014]/10 to-[#030014]/80"></div>
       </div>
 
       {/* Giant planet circle - positioned at bottom */}
-      <div className="absolute left-1/2 -translate-x-1/2 bottom-0 translate-y-1/2 w-[1400px] h-[1400px] rounded-full bg-dark pricing-circle"></div>
+      <div className="absolute left-1/2 -translate-x-1/2 bottom-0 translate-y-1/2 w-[1400px] h-[1400px] rounded-full bg-dark pricing-circle z-5 shadow-[0_0_100px_rgba(139,92,246,0.3)]"></div>
       
       {/* Sunrise effect - VERY rapid fade from bright center to dark */}
       <div className="absolute inset-x-0 bottom-0 h-[1000px] bg-gradient-to-b from-transparent from-0% via-transparent via-20% via-[#030014]/70 via-30% via-[#030014]/95 via-40% to-[#030014] to-45% pointer-events-none"></div>

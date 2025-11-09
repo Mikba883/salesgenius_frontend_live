@@ -47,7 +47,7 @@ const VisualEffect = () => {
       </div>
 
       {/* Giant planet circle - positioned at bottom */}
-      <div className="absolute left-1/2 -translate-x-1/2 bottom-0 translate-y-1/2 w-[1400px] h-[1400px] rounded-full bg-dark pricing-circle"></div>
+      <div className="absolute left-1/2 -translate-x-1/2 bottom-[200px] w-[1600px] h-[800px] rounded-[50%] bg-dark pricing-circle border-2 border-white/20"></div>
       
       {/* Sunrise effect - VERY rapid fade from bright center to dark */}
       <div className="absolute inset-x-0 bottom-0 h-[1000px] bg-gradient-to-b from-transparent from-0% via-transparent via-20% via-[#030014]/70 via-30% via-[#030014]/95 via-40% to-[#030014] to-45% pointer-events-none"></div>

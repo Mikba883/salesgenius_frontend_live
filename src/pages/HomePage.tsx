@@ -55,8 +55,8 @@ const HomePage = () => {
 
       {/* All Other Sections */}
       <FeaturesGrid />
-      <VisualEffect />
       <FeaturesList />
+      <VisualEffect />
       <Testimonials />
       <Clients />
       <Contact />
