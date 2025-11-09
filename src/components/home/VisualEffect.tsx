@@ -11,16 +11,20 @@ const VisualEffect = () => {
         </div>
       </div>
 
-      {/* Blur effects */}
+      {/* Blur effects - intensified sunrise effect */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/4">
-          <img src="/images/blur/blur-13.svg" alt="blur" className="max-w-none scale-150" />
+          <img src="/images/blur/blur-13.svg" alt="blur" className="max-w-none scale-[2.5] opacity-90" />
         </div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/4">
-          <img src="/images/blur/blur-14.svg" alt="blur" className="max-w-none scale-150" />
+          <img src="/images/blur/blur-14.svg" alt="blur" className="max-w-none scale-[2.2] opacity-95" />
         </div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/4">
-          <img src="/images/blur/blur-15.svg" alt="blur" className="max-w-none scale-125" />
+          <img src="/images/blur/blur-15.svg" alt="blur" className="max-w-none scale-[1.8] opacity-80" />
+        </div>
+        {/* Extra glow layer */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/4">
+          <img src="/images/blur/blur-14.svg" alt="blur" className="max-w-none scale-[3] opacity-60" />
         </div>
       </div>
 
