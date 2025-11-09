@@ -4,7 +4,7 @@ const VisualEffect = () => {
   return (
     <section className="relative py-32 lg:py-40 xl:py-48 overflow-hidden min-h-[900px] lg:min-h-[1000px] flex items-end -mt-32 lg:-mt-40">
       {/* Background stars */}
-      <div className="absolute inset-0 -z-10">
+      <div className="absolute inset-0 z-20">
         <div className="max-w-[600px] w-full h-60 overflow-hidden absolute top-20 left-1/2 -translate-x-1/2">
           <div className="stars"></div>
           <div className="stars2"></div>
@@ -47,10 +47,10 @@ const VisualEffect = () => {
       </div>
 
       {/* Giant planet circle - positioned at bottom */}
-      <div className="absolute left-1/2 -translate-x-1/2 bottom-0 md:bottom-[100px] lg:bottom-[200px] w-[900px] h-[450px] md:w-[1200px] md:h-[600px] lg:w-[1600px] lg:h-[800px] rounded-[50%] bg-dark pricing-circle"></div>
+      <div className="absolute left-1/2 -translate-x-1/2 bottom-[200px] md:bottom-[300px] lg:bottom-[500px] w-[900px] h-[450px] md:w-[1200px] md:h-[600px] lg:w-[1600px] lg:h-[800px] rounded-[50%] bg-dark pricing-circle"></div>
       
       {/* Sunrise effect - VERY rapid fade from bright center to dark */}
-      <div className="absolute inset-x-0 bottom-0 h-[1000px] bg-gradient-to-b from-transparent from-0% via-transparent via-20% via-[#030014]/70 via-30% via-[#030014]/95 via-40% to-[#030014] to-45% pointer-events-none"></div>
+      <div className="absolute inset-x-0 -bottom-[200px] h-[1000px] bg-gradient-to-b from-transparent from-0% via-transparent via-20% via-[#030014]/70 via-30% via-[#030014]/95 via-40% to-[#030014] to-45% pointer-events-none"></div>
 
       {/* Content on top of planet */}
       <div className="max-w-[1200px] mx-auto px-4 sm:px-8 xl:px-0 relative z-10 w-full pb-48 lg:pb-64 xl:pb-80">
