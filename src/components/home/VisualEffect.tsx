@@ -11,21 +11,26 @@ const VisualEffect = () => {
         </div>
       </div>
 
-      {/* Blur effects - intensified sunrise effect */}
+      {/* Blur effects - concentrated in center */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
+        {/* Center concentrated light */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/4">
-          <img src="/images/blur/blur-13.svg" alt="blur" className="max-w-none scale-[2.5] opacity-90" />
+          <div className="relative">
+            <img src="/images/blur/blur-13.svg" alt="blur" className="max-w-none scale-[2] opacity-90" />
+          </div>
         </div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/4">
-          <img src="/images/blur/blur-14.svg" alt="blur" className="max-w-none scale-[2.2] opacity-95" />
+          <img src="/images/blur/blur-14.svg" alt="blur" className="max-w-none scale-[1.8] opacity-95" />
         </div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/4">
-          <img src="/images/blur/blur-15.svg" alt="blur" className="max-w-none scale-[1.8] opacity-80" />
+          <img src="/images/blur/blur-15.svg" alt="blur" className="max-w-none scale-[1.5] opacity-80" />
         </div>
-        {/* Extra glow layer */}
+        {/* Extra center glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/4">
-          <img src="/images/blur/blur-14.svg" alt="blur" className="max-w-none scale-[3] opacity-60" />
+          <img src="/images/blur/blur-14.svg" alt="blur" className="max-w-none scale-[2.5] opacity-50" />
         </div>
+        {/* Radial fade overlay */}
+        <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-[#0f172a]"></div>
       </div>
 
       {/* Giant planet circle - positioned at bottom */}
