@@ -19,7 +19,7 @@ const CheckEmailPage = () => {
           </p>
           
           <a
-            href="/signin"
+            href="/login"
             className="inline-flex py-3 px-8 font-medium text-white duration-300 ease-in rounded-lg hero-button-gradient hover:opacity-80"
           >
             Back to Sign In

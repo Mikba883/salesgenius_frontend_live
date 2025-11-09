@@ -77,7 +77,7 @@ const Header = () => {
           }`}
         >
           <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 w-full md:w-auto">
-            <Link to="/signin" className="text-white text-sm hover:text-opacity-75 w-full md:w-auto text-center py-2">
+            <Link to="/login" className="text-white text-sm hover:text-opacity-75 w-full md:w-auto text-center py-2">
               Sign in
             </Link>
 

@@ -14,7 +14,7 @@ const DashboardPage = () => {
       const { data: { session } } = await supabase.auth.getSession();
       
       if (!session) {
-        navigate('/signin');
+        navigate('/login');
       } else {
         setUser(session.user);
         // Sincronizza sessione esistente all'avvio
@@ -28,7 +28,7 @@ const DashboardPage = () => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
         if (!session) {
-          navigate('/signin');
+          navigate('/login');
         } else {
           setUser(session.user);
           // Sincronizza quando la sessione viene aggiornata
