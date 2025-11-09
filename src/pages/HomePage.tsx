@@ -8,6 +8,7 @@ import Clients from '@/components/home/Clients';
 import Contact from '@/components/home/Contact';
 import Blog from '@/components/home/Blog';
 import CTA from '@/components/home/CTA';
+import VisualEffect from '@/components/home/VisualEffect';
 
 const HomePage = () => {
   return (
@@ -60,6 +61,7 @@ const HomePage = () => {
       <Clients />
       <Contact />
       <Blog />
+      <VisualEffect />
       <CTA />
     </Layout>
   );
