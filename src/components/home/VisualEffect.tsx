@@ -3,21 +3,21 @@ import React from 'react';
 const VisualEffect = () => {
   return (
     <section className="relative py-20 lg:py-32 overflow-hidden min-h-screen bg-[#030014]">
-      {/* Purple glow effects - under everything */}
+      {/* Purple glow effects - under everything, starting below the circle like a sunrise */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-        <div className="absolute top-[200px] left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <img src="/images/blur/blur-15.svg" alt="blur" className="max-w-none scale-[1.5] opacity-40" />
+        <div className="absolute top-[450px] left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <img src="/images/blur/blur-15.svg" alt="blur" className="max-w-none scale-[1.2] opacity-70" />
         </div>
-        <div className="absolute top-[200px] left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <img src="/images/blur/blur-14.svg" alt="blur" className="max-w-none scale-[2] opacity-30" />
+        <div className="absolute top-[500px] left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <img src="/images/blur/blur-14.svg" alt="blur" className="max-w-none scale-[1.8] opacity-40" />
         </div>
-        <div className="absolute top-[200px] left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <img src="/images/blur/blur-13.svg" alt="blur" className="max-w-none scale-[2.5] opacity-20" />
+        <div className="absolute top-[550px] left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <img src="/images/blur/blur-13.svg" alt="blur" className="max-w-none scale-[2.5] opacity-15" />
         </div>
       </div>
 
-      {/* Giant black circle - positioned between title and table, flatter curve */}
-      <div className="absolute left-1/2 -translate-x-1/2 top-[350px] w-[1800px] h-[1200px] rounded-[50%] bg-[#0a0118] z-5 overflow-hidden">
+      {/* Giant black circle - positioned between title and table, much flatter curve */}
+      <div className="absolute left-1/2 -translate-x-1/2 top-[350px] w-[2400px] h-[1400px] rounded-[50%] bg-[#0a0118] z-5 overflow-hidden">
       </div>
 
       {/* Background stars - above purple glow */}
