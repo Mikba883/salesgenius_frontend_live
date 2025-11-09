@@ -6,13 +6,13 @@ const VisualEffect = () => {
       {/* Purple glow effects - under everything, starting below the circle like a sunrise */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         <div className="absolute top-[450px] left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <img src="/images/blur/blur-15.svg" alt="blur" className="max-w-none scale-[1.2] opacity-70" />
+          <img src="/images/blur/blur-15.svg" alt="blur" className="max-w-none scale-[1.2] opacity-90" />
         </div>
         <div className="absolute top-[500px] left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <img src="/images/blur/blur-14.svg" alt="blur" className="max-w-none scale-[1.8] opacity-40" />
+          <img src="/images/blur/blur-14.svg" alt="blur" className="max-w-none scale-[1.8] opacity-30" />
         </div>
         <div className="absolute top-[550px] left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <img src="/images/blur/blur-13.svg" alt="blur" className="max-w-none scale-[2.5] opacity-15" />
+          <img src="/images/blur/blur-13.svg" alt="blur" className="max-w-none scale-[2.5] opacity-8" />
         </div>
       </div>
 
@@ -38,8 +38,8 @@ const VisualEffect = () => {
             </h2>
           </div>
           
-          {/* Comparison Table - raised up */}
-          <div className="w-full max-w-[1100px] mt-16">
+          {/* Comparison Table - raised up on desktop, more space on mobile/tablet */}
+          <div className="w-full max-w-[1100px] mt-32 lg:mt-16">
             {/* Desktop Table View */}
             <div className="hidden lg:block">
               <div className="rounded-2xl border border-white/10 bg-dark/40 backdrop-blur-sm overflow-hidden">
