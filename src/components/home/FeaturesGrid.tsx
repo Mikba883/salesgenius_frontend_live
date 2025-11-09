@@ -117,14 +117,14 @@ const FeaturesGrid = () => {
 
             {/* Middle Left - Tone Analysis */}
             <div className="absolute left-[5%] top-1/2 -translate-y-1/2 flex flex-col items-center gap-0">
-              <Circle ref={node3Ref} className="size-24 border-slate-700 z-10">
+              <Circle ref={node3Ref} className="size-24 border-slate-700 z-[15]">
                 <img src="/images/features/node-tone.svg" alt="Tone Analysis" className="size-20" />
               </Circle>
             </div>
 
             {/* Middle Right - Win Rate */}
             <div className="absolute right-[5%] top-1/2 -translate-y-1/2 flex flex-col items-center gap-0">
-              <Circle ref={node4Ref} className="size-24 border-slate-700 z-10">
+              <Circle ref={node4Ref} className="size-24 border-slate-700 z-[15]">
                 <img src="/images/features/node-tracking.svg" alt="Win Rate" className="size-20" />
               </Circle>
             </div>
@@ -159,6 +159,7 @@ const FeaturesGrid = () => {
               containerRef={containerRef}
               fromRef={node2Ref}
               toRef={aiRef}
+              reverse={true}
               className="z-[5]"
               pathColor="transparent"
               pathWidth={2}
@@ -183,6 +184,7 @@ const FeaturesGrid = () => {
               containerRef={containerRef}
               fromRef={node4Ref}
               toRef={aiRef}
+              reverse={true}
               className="z-[5]"
               pathColor="transparent"
               pathWidth={2}
@@ -207,6 +209,7 @@ const FeaturesGrid = () => {
               containerRef={containerRef}
               fromRef={node6Ref}
               toRef={aiRef}
+              reverse={true}
               className="z-[5]"
               pathColor="transparent"
               pathWidth={2}

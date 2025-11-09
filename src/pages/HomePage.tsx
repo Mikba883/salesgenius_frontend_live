@@ -55,13 +55,13 @@ const HomePage = () => {
 
       {/* All Other Sections */}
       <FeaturesGrid />
+      <VisualEffect />
       <FeaturesList />
       <Pricing />
       <Testimonials />
       <Clients />
       <Contact />
       <Blog />
-      <VisualEffect />
       <CTA />
     </Layout>
   );
