@@ -11,8 +11,8 @@ const VisualEffect = () => {
         </div>
       </div>
 
-      {/* Purple glow effects - centered, more luminous */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
+      {/* Purple glow effects - under everything */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none -z-20">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <img src="/images/blur/blur-15.svg" alt="blur" className="max-w-none scale-[1.5] opacity-100" />
         </div>
@@ -24,8 +24,8 @@ const VisualEffect = () => {
         </div>
       </div>
 
-      {/* Giant black circle with white border - positioned below title, above table - same position for all devices */}
-      <div className="absolute left-1/2 -translate-x-1/2 top-[400px] w-[900px] h-[450px] md:w-[1200px] md:h-[600px] lg:w-[1800px] lg:h-[900px] rounded-[50%] bg-[#0a0118] border-2 border-white/20 z-0"></div>
+      {/* Giant black circle - only top half visible, with radial gradient from white center to edges */}
+      <div className="absolute left-1/2 -translate-x-1/2 top-[600px] w-[900px] h-[450px] md:w-[1200px] md:h-[600px] lg:w-[1800px] lg:h-[900px] rounded-[50%] bg-gradient-radial from-white/10 via-[#0a0118] via-30% to-[#030014] z-0"></div>
 
       {/* Content on top */}
       <div className="max-w-[1200px] mx-auto px-4 sm:px-8 xl:px-0 relative z-10 pt-16 lg:pt-20">
