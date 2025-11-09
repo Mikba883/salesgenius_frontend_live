@@ -103,42 +103,42 @@ const FeaturesGrid = () => {
 
             {/* Top Left - Audio Input */}
             <div className="absolute left-[10%] top-[10%] flex flex-col items-center gap-0">
-              <Circle ref={node1Ref} className="size-24 border-transparent z-10">
+              <Circle ref={node1Ref} className="size-24 border-slate-700 z-10">
                 <img src="/images/features/node-audio.svg" alt="Audio Input" className="size-20" />
               </Circle>
             </div>
 
             {/* Top Right - Suggestions */}
             <div className="absolute right-[10%] top-[10%] flex flex-col items-center gap-0">
-              <Circle ref={node2Ref} className="size-24 border-transparent z-10">
+              <Circle ref={node2Ref} className="size-24 border-slate-700 z-10">
                 <img src="/images/features/node-suggestions.svg" alt="Suggestions" className="size-20" />
               </Circle>
             </div>
 
             {/* Middle Left - Tone Analysis */}
             <div className="absolute left-[5%] top-1/2 -translate-y-1/2 flex flex-col items-center gap-0">
-              <Circle ref={node3Ref} className="size-24 border-transparent z-[15]">
+              <Circle ref={node3Ref} className="size-24 border-slate-700 z-10">
                 <img src="/images/features/node-tone.svg" alt="Tone Analysis" className="size-20" />
               </Circle>
             </div>
 
             {/* Middle Right - Win Rate */}
             <div className="absolute right-[5%] top-1/2 -translate-y-1/2 flex flex-col items-center gap-0">
-              <Circle ref={node4Ref} className="size-24 border-transparent z-[15]">
+              <Circle ref={node4Ref} className="size-24 border-slate-700 z-10">
                 <img src="/images/features/node-tracking.svg" alt="Win Rate" className="size-20" />
               </Circle>
             </div>
 
             {/* Bottom Left - Real-time */}
             <div className="absolute left-[10%] bottom-[10%] flex flex-col items-center gap-0">
-              <Circle ref={node5Ref} className="size-24 border-transparent z-10">
+              <Circle ref={node5Ref} className="size-24 border-slate-700 z-10">
                 <img src="/images/features/node-insights.svg" alt="Real-time" className="size-20" />
               </Circle>
             </div>
 
             {/* Bottom Right - AI Analysis */}
             <div className="absolute right-[10%] bottom-[10%] flex flex-col items-center gap-0">
-              <Circle ref={node6Ref} className="size-24 border-transparent z-10">
+              <Circle ref={node6Ref} className="size-24 border-slate-700 z-10">
                 <img src="/images/features/node-analysis.svg" alt="AI Analysis" className="size-16" />
               </Circle>
             </div>
