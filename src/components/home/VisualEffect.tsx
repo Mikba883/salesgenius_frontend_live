@@ -30,7 +30,7 @@ const VisualEffect = () => {
       </div>
 
       {/* Content on top */}
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-8 xl:px-0 relative z-10 pt-16 lg:pt-20">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-8 xl:px-0 relative z-10 pt-8 lg:pt-12">
         <div className="flex flex-col items-center gap-16 text-center">
           {/* Title - moved higher */}
           <div className="space-y-6">
@@ -39,8 +39,8 @@ const VisualEffect = () => {
             </h2>
           </div>
           
-          {/* Comparison Table - pushed down much more */}
-          <div className="w-full max-w-[1100px] mt-24">
+          {/* Comparison Table - raised up */}
+          <div className="w-full max-w-[1100px] mt-16">
             {/* Desktop Table View */}
             <div className="hidden lg:block">
               <div className="rounded-2xl border border-white/10 bg-dark/40 backdrop-blur-sm overflow-hidden">
