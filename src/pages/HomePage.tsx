@@ -2,14 +2,13 @@ import React from 'react';
 import Layout from '@/components/layout/Layout';
 import FeaturesGrid from '@/components/home/FeaturesGrid';
 import FeaturesList from '@/components/home/FeaturesList';
-import Pricing from '@/components/home/Pricing';
 import Testimonials from '@/components/home/Testimonials';
 import Clients from '@/components/home/Clients';
 import Contact from '@/components/home/Contact';
 import Blog from '@/components/home/Blog';
 import CTA from '@/components/home/CTA';
 import VisualEffect from '@/components/home/VisualEffect';
-import PlanetSection from '@/components/home/PlanetSection';
+import PricingVisualEffect from '@/components/home/PricingVisualEffect';
 
 const HomePage = () => {
   return (
@@ -62,8 +61,7 @@ const HomePage = () => {
       <Clients />
       <Contact />
       <Blog />
-      <Pricing />
-      <PlanetSection />
+      <PricingVisualEffect />
       <CTA />
     </Layout>
   );
