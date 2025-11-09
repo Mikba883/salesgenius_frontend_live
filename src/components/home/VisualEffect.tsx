@@ -11,21 +11,21 @@ const VisualEffect = () => {
         </div>
       </div>
 
-      {/* Purple glow effects - centered */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* Purple glow effects - centered, more luminous */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <img src="/images/blur/blur-15.svg" alt="blur" className="max-w-none scale-[1.5] opacity-80" />
+          <img src="/images/blur/blur-15.svg" alt="blur" className="max-w-none scale-[1.5] opacity-100" />
         </div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <img src="/images/blur/blur-14.svg" alt="blur" className="max-w-none scale-[2] opacity-60" />
+          <img src="/images/blur/blur-14.svg" alt="blur" className="max-w-none scale-[2] opacity-90" />
         </div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <img src="/images/blur/blur-13.svg" alt="blur" className="max-w-none scale-[2.5] opacity-50" />
+          <img src="/images/blur/blur-13.svg" alt="blur" className="max-w-none scale-[2.5] opacity-80" />
         </div>
       </div>
 
-      {/* Giant black circle - positioned below title, above table */}
-      <div className="absolute left-1/2 -translate-x-1/2 top-[350px] md:top-[400px] lg:top-[450px] w-[900px] h-[450px] md:w-[1200px] md:h-[600px] lg:w-[1800px] lg:h-[900px] rounded-[50%] bg-[#0a0118] z-0"></div>
+      {/* Giant black circle with white border - positioned below title, above table - same position for all devices */}
+      <div className="absolute left-1/2 -translate-x-1/2 top-[400px] w-[900px] h-[450px] md:w-[1200px] md:h-[600px] lg:w-[1800px] lg:h-[900px] rounded-[50%] bg-[#0a0118] border-2 border-white/20 z-0"></div>
 
       {/* Content on top */}
       <div className="max-w-[1200px] mx-auto px-4 sm:px-8 xl:px-0 relative z-10 pt-16 lg:pt-20">
@@ -37,8 +37,8 @@ const VisualEffect = () => {
             </h2>
           </div>
           
-          {/* Comparison Table - pushed down more */}
-          <div className="w-full max-w-[1100px] mt-12">
+          {/* Comparison Table - pushed down much more */}
+          <div className="w-full max-w-[1100px] mt-24">
             {/* Desktop Table View */}
             <div className="hidden lg:block">
               <div className="rounded-2xl border border-white/10 bg-dark/40 backdrop-blur-sm overflow-hidden">
