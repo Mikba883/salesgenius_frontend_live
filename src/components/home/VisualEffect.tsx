@@ -30,16 +30,16 @@ const VisualEffect = () => {
           <img src="/images/blur/blur-14.svg" alt="blur" className="max-w-none scale-[2.5] opacity-50" />
         </div>
         {/* Radial fade overlay */}
-        <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-[#0f172a]"></div>
+        <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-[#030014]"></div>
       </div>
 
       {/* Giant planet circle - positioned at bottom */}
       <div className="absolute left-1/2 -translate-x-1/2 bottom-0 translate-y-1/2 w-[1400px] h-[1400px] rounded-full bg-dark pricing-circle"></div>
       
       {/* Extended seamless gradient overlay to blend with next section */}
-      <div className="absolute inset-x-0 bottom-0 h-[1000px] bg-gradient-to-b from-transparent from-0% via-[#0f172a]/20 via-15% via-[#0f172a]/40 via-25% via-[#0f172a]/60 via-35% via-[#0f172a]/80 via-45% via-[#0f172a]/95 via-60% to-[#0f172a] to-75% pointer-events-none"></div>
+      <div className="absolute inset-x-0 bottom-0 h-[1000px] bg-gradient-to-b from-transparent from-0% via-[#030014]/20 via-15% via-[#030014]/40 via-25% via-[#030014]/60 via-35% via-[#030014]/80 via-45% via-[#030014]/95 via-60% to-[#030014] to-75% pointer-events-none"></div>
       {/* Second overlay layer for extra coverage */}
-      <div className="absolute inset-x-0 bottom-0 h-[600px] bg-gradient-to-b from-transparent via-[#0f172a]/50 via-40% to-[#0f172a] pointer-events-none"></div>
+      <div className="absolute inset-x-0 bottom-0 h-[600px] bg-gradient-to-b from-transparent via-[#030014]/50 via-40% to-[#030014] pointer-events-none"></div>
 
       {/* Content on top of planet */}
       <div className="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0 relative z-10 w-full">
