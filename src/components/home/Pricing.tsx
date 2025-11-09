@@ -46,15 +46,66 @@ const Pricing = () => {
   return (
     <section
       id="pricing"
-      className="relative z-20 overflow-hidden pt-22.5 lg:pt-27.5 xl:pt-32.5 scroll-mt-17"
+      className="relative py-32 lg:py-40 xl:py-48 overflow-hidden min-h-[1200px] flex items-center scroll-mt-17"
     >
-      <div className="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0">
-        {/* grid row */}
-        <div className="flex justify-center gap-7.5 relative -z-1">
-          {[...Array(8)].map((_, i) => (
-            <div key={i} className="max-w-[50px] w-full h-[250px] relative pricing-grid pricing-grid-border"></div>
-          ))}
+      {/* Background stars */}
+      <div className="absolute inset-0 -z-10">
+        <div className="max-w-[600px] w-full h-60 overflow-hidden absolute top-20 left-1/2 -translate-x-1/2">
+          <div className="stars"></div>
+          <div className="stars2"></div>
         </div>
+      </div>
+
+      {/* Blur effects - Layer 1 (base) */}
+      <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 pointer-events-none">
+        <img src="/images/blur/blur-13.svg" alt="blur" className="max-w-none opacity-90" style={{ transform: 'scale(1)' }} />
+      </div>
+      
+      {/* Blur effects - Layer 2 */}
+      <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 pointer-events-none">
+        <img src="/images/blur/blur-14.svg" alt="blur" className="max-w-none opacity-95" style={{ transform: 'scale(1.2)' }} />
+      </div>
+      
+      {/* Blur effects - Layer 3 */}
+      <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 pointer-events-none">
+        <img src="/images/blur/blur-15.svg" alt="blur" className="max-w-none opacity-100" style={{ transform: 'scale(1.5)' }} />
+      </div>
+      
+      {/* Blur effects - Layer 4 */}
+      <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 pointer-events-none">
+        <img src="/images/blur/blur-13.svg" alt="blur" className="max-w-none opacity-95" style={{ transform: 'scale(1.8)' }} />
+      </div>
+      
+      {/* Blur effects - Layer 5 */}
+      <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 pointer-events-none">
+        <img src="/images/blur/blur-14.svg" alt="blur" className="max-w-none opacity-100" style={{ transform: 'scale(2)' }} />
+      </div>
+      
+      {/* Blur effects - Layer 6 */}
+      <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 pointer-events-none">
+        <img src="/images/blur/blur-15.svg" alt="blur" className="max-w-none opacity-100" style={{ transform: 'scale(2.2)' }} />
+      </div>
+      
+      {/* Blur effects - Layer 7 */}
+      <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 pointer-events-none">
+        <img src="/images/blur/blur-13.svg" alt="blur" className="max-w-none opacity-100" style={{ transform: 'scale(2.5)' }} />
+      </div>
+      
+      {/* Blur effects - Layer 8 (most intense) */}
+      <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 pointer-events-none">
+        <img src="/images/blur/blur-14.svg" alt="blur" className="max-w-none opacity-100" style={{ transform: 'scale(3)' }} />
+      </div>
+
+      {/* Radial gradient overlay */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,transparent_20%,#030014_80%)] pointer-events-none"></div>
+
+      {/* Giant planet circle */}
+      <div className="absolute left-1/2 -translate-x-1/2 bottom-0 translate-y-1/2 w-[1400px] h-[1400px] rounded-full bg-dark pricing-circle"></div>
+
+      {/* Sunrise gradient */}
+      <div className="absolute inset-x-0 bottom-0 h-[1000px] bg-gradient-to-b from-transparent from-0% via-transparent via-20% via-[#030014]/70 via-30% via-[#030014]/95 via-40% to-[#030014] to-45% pointer-events-none"></div>
+
+      <div className="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0 relative z-10 w-full">
 
         {/* section title */}
         <div className="mb-17.5 -mt-24 text-center z-10 relative">

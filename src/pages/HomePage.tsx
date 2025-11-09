@@ -9,7 +9,6 @@ import Contact from '@/components/home/Contact';
 import Blog from '@/components/home/Blog';
 import CTA from '@/components/home/CTA';
 import VisualEffect from '@/components/home/VisualEffect';
-import PricingWithPlanet from '@/components/home/PricingWithPlanet';
 
 const HomePage = () => {
   return (
@@ -56,7 +55,7 @@ const HomePage = () => {
 
       {/* All Other Sections */}
       <FeaturesGrid />
-      <PricingWithPlanet />
+      <Pricing />
       <VisualEffect />
       <FeaturesList />
       <Testimonials />
