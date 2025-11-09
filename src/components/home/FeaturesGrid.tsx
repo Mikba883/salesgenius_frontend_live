@@ -96,9 +96,9 @@ const FeaturesGrid = () => {
 
             {/* Center - AI Brain (z-20 per stare sopra tutto) */}
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-3 z-20">
-              <Circle ref={aiRef} className="size-32 sm:size-36 md:size-40 lg:size-44 border-primary/50">
-                <img src="/images/features/ai-brain.svg" alt="AI Brain" className="size-48" />
-              </Circle>
+              <div ref={aiRef} className="z-20">
+                <img src="/images/features/ai-brain.svg" alt="AI Brain" className="size-32 sm:size-36 md:size-40 lg:size-44" />
+              </div>
             </div>
 
             {/* Top Left - Audio Input */}
