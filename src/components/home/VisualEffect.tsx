@@ -2,7 +2,7 @@ import React from 'react';
 
 const VisualEffect = () => {
   return (
-    <section className="relative py-32 lg:py-40 xl:py-48 overflow-hidden min-h-[900px] lg:min-h-[1000px] flex items-end -mt-32 lg:-mt-40">
+    <section className="relative py-20 lg:py-32 overflow-hidden min-h-screen bg-[#030014]">
       {/* Background stars */}
       <div className="absolute inset-0 z-20">
         <div className="max-w-[600px] w-full h-60 overflow-hidden absolute top-20 left-1/2 -translate-x-1/2">
@@ -11,57 +11,28 @@ const VisualEffect = () => {
         </div>
       </div>
 
-      {/* Blur effects - concentrated in center */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
-        {/* Center concentrated light - MAXIMUM BRIGHTNESS */}
-        {/* Multiple layers for extreme intensity */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/4">
-          <img src="/images/blur/blur-15.svg" alt="blur" className="max-w-none scale-[1] opacity-100" />
+      {/* Subtle purple glow at bottom only */}
+      <div className="absolute bottom-0 left-0 right-0 h-[400px] pointer-events-none">
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[1200px] h-[300px]">
+          <img src="/images/blur/blur-15.svg" alt="" className="w-full h-full opacity-20" />
         </div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/4">
-          <img src="/images/blur/blur-15.svg" alt="blur" className="max-w-none scale-[1.2] opacity-100" />
-        </div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/4">
-          <img src="/images/blur/blur-14.svg" alt="blur" className="max-w-none scale-[1.5] opacity-100" />
-        </div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/4">
-          <img src="/images/blur/blur-14.svg" alt="blur" className="max-w-none scale-[1.8] opacity-100" />
-        </div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/4">
-          <div className="relative">
-            <img src="/images/blur/blur-13.svg" alt="blur" className="max-w-none scale-[2] opacity-100" />
-          </div>
-        </div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/4">
-          <img src="/images/blur/blur-13.svg" alt="blur" className="max-w-none scale-[2.2] opacity-100" />
-        </div>
-        {/* Extra glow layers for powerful effect */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/4">
-          <img src="/images/blur/blur-14.svg" alt="blur" className="max-w-none scale-[2.5] opacity-95" />
-        </div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/4">
-          <img src="/images/blur/blur-13.svg" alt="blur" className="max-w-none scale-[3] opacity-90" />
-        </div>
-        {/* Radial fade overlay - molto più debole per lasciare passare la luce */}
-        <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent via-[#030014]/10 to-[#030014]/80"></div>
       </div>
 
-      {/* Giant planet circle - positioned at bottom */}
-      <div className="absolute left-1/2 -translate-x-1/2 bottom-[200px] md:bottom-[300px] lg:bottom-[500px] w-[900px] h-[450px] md:w-[1200px] md:h-[600px] lg:w-[1600px] lg:h-[800px] rounded-[50%] bg-dark pricing-circle"></div>
-      
-      {/* Sunrise effect - VERY rapid fade from bright center to dark */}
-      <div className="absolute inset-x-0 -bottom-[200px] h-[1000px] bg-gradient-to-b from-transparent from-0% via-transparent via-20% via-[#030014]/70 via-30% via-[#030014]/95 via-40% to-[#030014] to-45% pointer-events-none"></div>
+      {/* Giant black circle - positioned from top */}
+      <div className="absolute left-1/2 -translate-x-1/2 top-[200px] w-[900px] h-[450px] md:w-[1200px] md:h-[600px] lg:w-[1800px] lg:h-[900px] rounded-[50%] bg-[#0a0118]"></div>
 
-      {/* Content on top of planet */}
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-8 xl:px-0 relative z-10 w-full pb-48 lg:pb-64 xl:pb-80">
-        <div className="flex flex-col items-center gap-12 text-center">
-          {/* Title */}
-          <h2 className="text-white font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl max-w-[1000px]">
-            Why SalesGenius Beats Generic AI
-          </h2>
+      {/* Content on top */}
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-8 xl:px-0 relative z-10 pt-32 lg:pt-40">
+        <div className="flex flex-col items-center gap-16 text-center">
+          {/* Title with more breathing room */}
+          <div className="space-y-6">
+            <h2 className="text-white font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl max-w-[1000px]">
+              Why SalesGenius Beats Generic AI
+            </h2>
+          </div>
           
-          {/* Comparison Table */}
-          <div className="w-full max-w-[1100px] mt-8">
+          {/* Comparison Table - pushed down more */}
+          <div className="w-full max-w-[1100px] mt-12">
             {/* Desktop Table View */}
             <div className="hidden lg:block">
               <div className="rounded-2xl border border-white/10 bg-dark/40 backdrop-blur-sm overflow-hidden">
