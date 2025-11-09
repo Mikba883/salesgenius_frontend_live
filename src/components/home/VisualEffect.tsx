@@ -53,7 +53,7 @@ const VisualEffect = () => {
       <div className="absolute inset-x-0 bottom-0 h-[1000px] bg-gradient-to-b from-transparent from-0% via-transparent via-20% via-[#030014]/70 via-30% via-[#030014]/95 via-40% to-[#030014] to-45% pointer-events-none"></div>
 
       {/* Content on top of planet */}
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-8 xl:px-0 relative z-10 w-full pb-20 lg:pb-32">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-8 xl:px-0 relative z-10 w-full pb-32 lg:pb-48 xl:pb-64">
         <div className="flex flex-col items-center gap-12 text-center">
           {/* Title */}
           <h2 className="text-white font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl max-w-[1000px]">
@@ -66,7 +66,7 @@ const VisualEffect = () => {
             <div className="hidden lg:block">
               <div className="rounded-2xl border border-white/10 bg-dark/40 backdrop-blur-sm overflow-hidden">
                 {/* Table Header */}
-                <div className="grid grid-cols-3 gap-px bg-white/5">
+                <div className="grid grid-cols-3">
                   <div className="bg-dark/60 px-6 py-5">
                     <h3 className="text-white/60 font-semibold text-sm uppercase tracking-wider">Feature</h3>
                   </div>
@@ -82,7 +82,7 @@ const VisualEffect = () => {
                 {/* Table Rows */}
                 <div className="divide-y divide-white/5">
                   {/* Row 1 */}
-                  <div className="grid grid-cols-3 gap-px bg-white/5 hover:bg-white/10 transition-colors">
+                  <div className="grid grid-cols-3 hover:bg-white/5 transition-colors">
                     <div className="bg-dark/40 px-6 py-5">
                       <p className="text-white font-semibold">Built for Sales Calls</p>
                     </div>
@@ -96,7 +96,7 @@ const VisualEffect = () => {
                   </div>
 
                   {/* Row 2 */}
-                  <div className="grid grid-cols-3 gap-px bg-white/5 hover:bg-white/10 transition-colors">
+                  <div className="grid grid-cols-3 hover:bg-white/5 transition-colors">
                     <div className="bg-dark/40 px-6 py-5">
                       <p className="text-white font-semibold">Live Coaching While You Speak</p>
                     </div>
@@ -110,7 +110,7 @@ const VisualEffect = () => {
                   </div>
 
                   {/* Row 3 */}
-                  <div className="grid grid-cols-3 gap-px bg-white/5 hover:bg-white/10 transition-colors">
+                  <div className="grid grid-cols-3 hover:bg-white/5 transition-colors">
                     <div className="bg-dark/40 px-6 py-5">
                       <p className="text-white font-semibold">Understands the Whole Conversation</p>
                     </div>
@@ -124,7 +124,7 @@ const VisualEffect = () => {
                   </div>
 
                   {/* Row 4 */}
-                  <div className="grid grid-cols-3 gap-px bg-white/5 hover:bg-white/10 transition-colors">
+                  <div className="grid grid-cols-3 hover:bg-white/5 transition-colors">
                     <div className="bg-dark/40 px-6 py-5">
                       <p className="text-white font-semibold">Privacy First</p>
                     </div>
@@ -138,7 +138,7 @@ const VisualEffect = () => {
                   </div>
 
                   {/* Row 5 */}
-                  <div className="grid grid-cols-3 gap-px bg-white/5 hover:bg-white/10 transition-colors">
+                  <div className="grid grid-cols-3 hover:bg-white/5 transition-colors">
                     <div className="bg-dark/40 px-6 py-5">
                       <p className="text-white font-semibold">Works Seamlessly Anywhere</p>
                     </div>
@@ -152,7 +152,7 @@ const VisualEffect = () => {
                   </div>
 
                   {/* Row 6 */}
-                  <div className="grid grid-cols-3 gap-px bg-white/5 hover:bg-white/10 transition-colors">
+                  <div className="grid grid-cols-3 hover:bg-white/5 transition-colors">
                     <div className="bg-dark/40 px-6 py-5">
                       <p className="text-white font-semibold">Built by Sales Pros</p>
                     </div>
