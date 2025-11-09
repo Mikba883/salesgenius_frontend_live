@@ -7,6 +7,13 @@ const VisualEffect = () => {
         <div className="flex flex-col items-center gap-8">
           {/* Visual Effect copiato dal Pricing */}
           <div className="relative w-full max-w-[900px] h-[400px] md:h-[500px]">
+            {/* grid row - linee verticali luminose */}
+            <div className="flex justify-center gap-7.5 relative -z-1">
+              {[...Array(8)].map((_, i) => (
+                <div key={i} className="max-w-[50px] w-full h-[250px] relative pricing-grid pricing-grid-border"></div>
+              ))}
+            </div>
+            
             {/* bg circles - effetto originale */}
             <div className="relative top-18">
               <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10 -my-55">
