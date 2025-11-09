@@ -6,19 +6,18 @@ const VisualEffect = () => {
       {/* Purple glow effects - under everything */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         <div className="absolute top-[200px] left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <img src="/images/blur/blur-15.svg" alt="blur" className="max-w-none scale-[1.5] opacity-100" />
+          <img src="/images/blur/blur-15.svg" alt="blur" className="max-w-none scale-[1.5] opacity-40" />
         </div>
         <div className="absolute top-[200px] left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <img src="/images/blur/blur-14.svg" alt="blur" className="max-w-none scale-[2] opacity-90" />
+          <img src="/images/blur/blur-14.svg" alt="blur" className="max-w-none scale-[2] opacity-30" />
         </div>
         <div className="absolute top-[200px] left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <img src="/images/blur/blur-13.svg" alt="blur" className="max-w-none scale-[2.5] opacity-80" />
+          <img src="/images/blur/blur-13.svg" alt="blur" className="max-w-none scale-[2.5] opacity-20" />
         </div>
       </div>
 
-      {/* Giant black circle - positioned between title and table, only top half visible */}
-      <div className="absolute left-1/2 -translate-x-1/2 top-[350px] w-[1200px] h-[600px] rounded-[50%] bg-[#0a0118] z-5 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center_top,rgba(255,255,255,0.15)_0%,rgba(10,1,24,0.8)_30%,rgba(3,0,20,1)_60%)]"></div>
+      {/* Giant black circle - positioned between title and table, flatter curve */}
+      <div className="absolute left-1/2 -translate-x-1/2 top-[350px] w-[1800px] h-[1200px] rounded-[50%] bg-[#0a0118] z-5 overflow-hidden">
       </div>
 
       {/* Background stars - above purple glow */}
