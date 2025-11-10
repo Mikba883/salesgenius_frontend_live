@@ -33,11 +33,18 @@ export const syncSessionWithExtension = async (session: Session | null): Promise
     // 3. Chiama l'Edge Function per generare il JWT custom con claim is_premium
     console.log('[Extension Sync] 📡 Chiamata Edge Function per generare JWT...');
     
-    const { data, error } = await supabase.functions.invoke('generate-jwt', {
+    // Aggiungi un timeout di 10 secondi
+    const timeoutPromise = new Promise((_, reject) => 
+      setTimeout(() => reject(new Error('Timeout dopo 10 secondi')), 10000)
+    );
+    
+    const invokePromise = supabase.functions.invoke('generate-jwt', {
       headers: {
         Authorization: `Bearer ${session.access_token}`,
       },
     });
+    
+    const { data, error } = await Promise.race([invokePromise, timeoutPromise]) as any;
 
     if (error) {
       console.error('[Extension Sync] ❌ Errore generazione JWT:', error);

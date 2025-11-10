@@ -15,25 +15,14 @@ const SignInPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // 1. Prima controlla se c'è già una sessione
-    const checkUser = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      
-      if (session) {
-        // Utente già loggato: sincronizza e reindirizza
-        await syncSessionWithExtension(session);
-        navigate('/dashboard');
-      }
-    };
-
-    checkUser();
-
-    // 2. Poi imposta il listener per i cambiamenti futuri
+    // Setup del listener per i cambiamenti di autenticazione
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
+        console.log('[SignInPage] Auth event:', event, 'Has session:', !!session);
+        
         if (session?.user) {
-          // Sincronizza per login e refresh token
-          if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
+          // Sincronizza SOLO per eventi di login e sessione iniziale
+          if (event === 'SIGNED_IN' || event === 'INITIAL_SESSION') {
             await syncSessionWithExtension(session);
           }
           navigate('/dashboard');
@@ -77,19 +66,16 @@ const SignInPage = () => {
     setLoading(true);
     setMessage('');
 
-    const { data, error } = await supabase.auth.signInWithPassword({
+    const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
 
     if (error) {
       setMessage(error.message);
-    } else {
-      // Sincronizza sessione con estensione DOPO login successful
-      await syncSessionWithExtension(data.session);
-      navigate('/dashboard');
+      setLoading(false);
     }
-    setLoading(false);
+    // ✅ Lascia che onAuthStateChange gestisca la sincronizzazione e il redirect
   };
 
   return (
