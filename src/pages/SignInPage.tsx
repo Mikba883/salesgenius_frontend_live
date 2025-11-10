@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import AuthLayout from '@/components/layout/AuthLayout';
 import { supabase } from '@/integrations/supabase/client';
 import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
-import { syncSessionWithExtension } from '@/utils/extensionSync';
 
 const SignInPage = () => {
   const [email, setEmail] = useState('');
@@ -17,18 +16,12 @@ const SignInPage = () => {
   useEffect(() => {
     // Setup del listener per i cambiamenti di autenticazione
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
+      (event, session) => {
         console.log('[SignInPage] Auth event:', event, 'Has session:', !!session);
         
         if (session?.user) {
-          // Sincronizza in background SENZA bloccare il login
-          if (event === 'SIGNED_IN' || event === 'INITIAL_SESSION') {
-            // NON usare await - lascia che vada in background
-            syncSessionWithExtension(session).catch(err => {
-              console.warn('[SignInPage] ⚠️ Sync estensione fallita (login OK):', err);
-            });
-          }
-          // Redirect IMMEDIATO senza aspettare la sync
+          // Redirect IMMEDIATO - la sincronizzazione avverrà nel Dashboard
+          console.log('[SignInPage] ✅ Login completato, redirect a dashboard');
           navigate('/dashboard');
         }
       }

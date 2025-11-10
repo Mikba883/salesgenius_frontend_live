@@ -17,23 +17,29 @@ const DashboardPage = () => {
         navigate('/login');
       } else {
         setUser(session.user);
-        // Sincronizza sessione esistente all'avvio
-        await syncSessionWithExtension(session);
+        setLoading(false);
+        
+        // Sincronizza in background DOPO che il dashboard è caricato
+        syncSessionWithExtension(session).catch(err => {
+          console.info('[Dashboard] ℹ️ Sync estensione fallita (tutto OK):', err);
+        });
       }
-      setLoading(false);
     };
 
     checkUser();
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
+      (event, session) => {
         if (!session) {
           navigate('/login');
         } else {
           setUser(session.user);
-          // Sincronizza quando la sessione viene aggiornata
-          if (event === 'TOKEN_REFRESHED') {
-            await syncSessionWithExtension(session);
+          
+          // Sincronizza in background quando la sessione viene aggiornata
+          if (event === 'TOKEN_REFRESHED' || event === 'SIGNED_IN') {
+            syncSessionWithExtension(session).catch(err => {
+              console.info('[Dashboard] ℹ️ Sync estensione fallita (tutto OK):', err);
+            });
           }
         }
       }

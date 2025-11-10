@@ -10,35 +10,24 @@ const EXTENSION_ID = 'cbhfaanckjinaephabmpojmlfbgohkoml';
  * @returns Promise che si risolve se l'invio ha successo
  */
 export const syncSessionWithExtension = async (session: Session | null): Promise<void> => {
-  console.log('[Extension Sync] 🔄 Avvio sincronizzazione con JWT custom...', {
-    hasSession: !!session,
-    timestamp: new Date().toISOString(),
-  });
-
-  // 1. Verifica che ci sia una sessione valida
+  // Verifica rapida se ha senso procedere
   if (!session || !session.access_token) {
-    console.warn('[Extension Sync] ❌ No session to sync');
-    return;
+    return; // Exit silenziosamente
   }
 
-  // 2. Verifica che siamo in un ambiente Chrome
   if (typeof chrome === 'undefined' || !chrome.runtime) {
-    console.log('[Extension Sync] ℹ️ Not in Chrome environment, skipping sync');
-    return;
+    return; // Exit silenziosamente
   }
 
-  console.log('[Extension Sync] ✅ Chrome environment detected, Extension ID:', EXTENSION_ID);
+  console.log('[Extension Sync] 🔄 Avvio sincronizzazione in background...');
 
   try {
-    // 3. Chiama l'Edge Function per generare il JWT custom con claim is_premium
-    console.log('[Extension Sync] 📡 Chiamata Edge Function per generare JWT...');
-    
-    // Timeout ridotto a 5 secondi
+    // Timeout ridotto a 3 secondi per essere più veloce
     const timeoutPromise = new Promise<{ data: null; error: { message: string } }>((resolve) => 
       setTimeout(() => resolve({ 
         data: null, 
-        error: { message: 'Timeout: Edge Function non risponde dopo 5 secondi' }
-      }), 5000)
+        error: { message: 'Timeout dopo 3 secondi' }
+      }), 3000)
     );
     
     const invokePromise = supabase.functions.invoke('generate-jwt', {
@@ -50,18 +39,9 @@ export const syncSessionWithExtension = async (session: Session | null): Promise
     const result = await Promise.race([invokePromise, timeoutPromise]);
     const { data, error } = result as any;
 
-    if (error) {
-      console.error('[Extension Sync] ❌ Errore generazione JWT:', error);
-      throw new Error(error.message || 'Edge Function error');
-    }
-    
-    if (!data || !data.token) {
-      console.error('[Extension Sync] ❌ JWT non ricevuto dal backend');
-      throw new Error('No JWT token received');
-    }
-
-    if (!data || !data.token) {
-      console.error('[Extension Sync] ❌ JWT non ricevuto dal backend');
+    if (error || !data?.token) {
+      // Log solo come info, non come errore
+      console.info('[Extension Sync] ℹ️ Sync non disponibile:', error?.message || 'No token');
       return;
     }
 
@@ -127,7 +107,8 @@ export const syncSessionWithExtension = async (session: Session | null): Promise
     sendMessageWithRetry();
 
   } catch (error) {
-    console.error('[Extension Sync] ❌ Errore durante la sincronizzazione:', error);
+    // Gestisci silenziosamente
+    console.info('[Extension Sync] ℹ️ Sync skipped:', error);
   }
 };
 
