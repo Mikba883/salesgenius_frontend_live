@@ -15,10 +15,24 @@ const SignInPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // 1. Prima controlla se c'è già una sessione
+    const checkUser = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      
+      if (session) {
+        // Utente già loggato: sincronizza e reindirizza
+        await syncSessionWithExtension(session);
+        navigate('/dashboard');
+      }
+    };
+
+    checkUser();
+
+    // 2. Poi imposta il listener per i cambiamenti futuri
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
         if (session?.user) {
-          // Sincronizza anche per OAuth redirect e sessioni esistenti
+          // Sincronizza per login e refresh token
           if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
             await syncSessionWithExtension(session);
           }
@@ -26,6 +40,7 @@ const SignInPage = () => {
         }
       }
     );
+    
     return () => subscription.unsubscribe();
   }, [navigate]);
 
