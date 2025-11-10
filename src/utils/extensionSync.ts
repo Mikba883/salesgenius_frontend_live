@@ -4,15 +4,6 @@ import { supabase } from '@/integrations/supabase/client';
 // ⚠️ ID ESTENSIONE CHROME
 const EXTENSION_ID = 'cbhfaanckjinaephabmpojmlfbgohkoml';
 
-interface ExtensionMessage {
-  type: 'setToken';
-  token: string;
-  user_id: string;
-  email: string;
-  is_premium: boolean;
-  expires_at: number;
-}
-
 /**
  * Sincronizza la sessione Supabase con l'estensione Chrome generando un JWT custom
  * @param session - La sessione Supabase completa
@@ -66,20 +57,16 @@ export const syncSessionWithExtension = async (session: Session | null): Promise
       expiresAt: new Date(data.expires_at * 1000).toISOString(),
     });
 
-    // 4. Prepara il messaggio per l'estensione
-    const message: ExtensionMessage = {
+    // 4. Prepara il messaggio per l'estensione (FORMATO SEMPLIFICATO)
+    // Il JWT contiene già tutti i claim (user_id, email, is_premium) al suo interno
+    const message = {
       type: 'setToken',
       token: data.token,
-      user_id: data.user_id,
-      email: data.email,
-      is_premium: data.is_premium,
-      expires_at: data.expires_at,
     };
 
     console.log('[Extension Sync] 📦 Messaggio preparato per estensione:', {
       type: message.type,
-      userId: message.user_id,
-      isPremium: message.is_premium,
+      tokenLength: message.token.length,
     });
 
     // 5. Funzione per inviare il messaggio con retry
