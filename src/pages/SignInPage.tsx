@@ -21,10 +21,14 @@ const SignInPage = () => {
         console.log('[SignInPage] Auth event:', event, 'Has session:', !!session);
         
         if (session?.user) {
-          // Sincronizza SOLO per eventi di login e sessione iniziale
+          // Sincronizza in background SENZA bloccare il login
           if (event === 'SIGNED_IN' || event === 'INITIAL_SESSION') {
-            await syncSessionWithExtension(session);
+            // NON usare await - lascia che vada in background
+            syncSessionWithExtension(session).catch(err => {
+              console.warn('[SignInPage] ⚠️ Sync estensione fallita (login OK):', err);
+            });
           }
+          // Redirect IMMEDIATO senza aspettare la sync
           navigate('/dashboard');
         }
       }
