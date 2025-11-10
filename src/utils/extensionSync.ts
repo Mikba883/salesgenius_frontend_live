@@ -1,7 +1,7 @@
 import type { Session } from '@supabase/supabase-js';
 
 // ⚠️ SOSTITUISCI CON IL TUO EXTENSION ID
-const EXTENSION_ID = 'bklolgkgdoinhopngjifdobkegnidilj';
+const EXTENSION_ID = 'cbhfaanckjinaephabmpojmlfbghkoml';
 
 interface ExtensionMessage {
   type: 'save_session';
