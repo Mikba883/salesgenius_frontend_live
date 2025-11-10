@@ -1,8 +1,8 @@
 import type { Session } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
 
-// ⚠️ ID ESTENSIONE CHROME
-const EXTENSION_ID = 'cbhfaanckjinaephabmpojmlfbgohkoml';
+// ⚠️ ID ESTENSIONE CHROME (da variabile d'ambiente)
+const EXTENSION_ID = import.meta.env.VITE_CHROME_EXTENSION_ID;
 
 /**
  * Sincronizza la sessione Supabase con l'estensione Chrome generando un JWT custom
@@ -10,19 +10,28 @@ const EXTENSION_ID = 'cbhfaanckjinaephabmpojmlfbgohkoml';
  * @returns Promise che si risolve se l'invio ha successo
  */
 export const syncSessionWithExtension = async (session: Session | null): Promise<void> => {
-  // Verifica rapida se ha senso procedere
-  if (!session || !session.access_token) {
-    return; // Exit silenziosamente
+  // 1. Verifica ID configurato
+  if (!EXTENSION_ID) {
+    console.warn('[Extension Sync] ⚠️ VITE_CHROME_EXTENSION_ID non configurato nel file .env');
+    return;
   }
 
-  if (typeof chrome === 'undefined' || !chrome.runtime) {
-    return; // Exit silenziosamente
+  // 2. Verifica sessione valida
+  if (!session || !session.access_token) {
+    console.info('[Extension Sync] ℹ️ Nessuna sessione attiva');
+    return;
+  }
+
+  // 3. Verifica ambiente Chrome disponibile
+  if (typeof chrome === 'undefined' || !chrome.runtime || !chrome.runtime.sendMessage) {
+    console.info('[Extension Sync] ℹ️ Ambiente Chrome non disponibile (estensione non installata?)');
+    return;
   }
 
   console.log('[Extension Sync] 🔄 Avvio sincronizzazione in background...');
 
   try {
-    // Timeout ridotto a 3 secondi per essere più veloce
+    // 4. Genera il JWT con timeout di 3 secondi
     const timeoutPromise = new Promise<{ data: null; error: { message: string } }>((resolve) => 
       setTimeout(() => resolve({ 
         data: null, 
@@ -40,8 +49,7 @@ export const syncSessionWithExtension = async (session: Session | null): Promise
     const { data, error } = result as any;
 
     if (error || !data?.token) {
-      // Log solo come info, non come errore
-      console.info('[Extension Sync] ℹ️ Sync non disponibile:', error?.message || 'No token');
+      console.info('[Extension Sync] ℹ️ JWT non disponibile:', error?.message || 'No token');
       return;
     }
 
@@ -53,62 +61,79 @@ export const syncSessionWithExtension = async (session: Session | null): Promise
       expiresAt: new Date(data.expires_at * 1000).toISOString(),
     });
 
-    // 4. Prepara il messaggio per l'estensione (FORMATO SEMPLIFICATO)
-    // Il JWT contiene già tutti i claim (user_id, email, is_premium) al suo interno
+    // 5. Prepara il messaggio per l'estensione
     const message = {
       type: 'setToken',
       token: data.token,
     };
 
-    console.log('[Extension Sync] 📦 Messaggio preparato per estensione:', {
+    console.log('[Extension Sync] 📦 Messaggio preparato:', {
       type: message.type,
       tokenLength: message.token.length,
+      targetExtensionId: EXTENSION_ID,
     });
 
-    // 5. Funzione per inviare il messaggio con retry
+    // 6. Funzione di invio ROBUSTA con retry
     const sendMessageWithRetry = (retryCount = 0): void => {
       try {
-        console.log(`[Extension Sync] 📤 Invio JWT all'estensione (tentativo ${retryCount + 1})...`);
+        console.log(`[Extension Sync] 📤 Tentativo ${retryCount + 1}/2 - Invio a ID: ${EXTENSION_ID}`);
         
         chrome.runtime.sendMessage(EXTENSION_ID, message, (response) => {
+          // Gestione errore Chrome runtime
           if (chrome.runtime.lastError) {
-            console.warn(
-              `[Extension Sync] ⚠️ Errore durante l'invio (tentativo ${retryCount + 1}):`,
-              chrome.runtime.lastError.message
-            );
-
-            // Retry dopo 500ms se è il primo tentativo
-            if (retryCount === 0) {
-              console.log('[Extension Sync] 🔄 Riprovo tra 500ms...');
-              setTimeout(() => sendMessageWithRetry(1), 500);
+            const errorMsg = chrome.runtime.lastError.message;
+            
+            // Errore specifico: ID invalido o estensione non trovata
+            if (errorMsg.includes('Invalid extension id') || errorMsg.includes('Could not establish connection')) {
+              console.warn(
+                `[Extension Sync] ⚠️ Estensione non trovata (tentativo ${retryCount + 1}/2)`,
+                `\n→ ID cercato: ${EXTENSION_ID}`,
+                `\n→ Errore: ${errorMsg}`,
+                `\n→ Verifica che l'estensione sia installata e attiva su chrome://extensions/`
+              );
             } else {
-              console.error('[Extension Sync] ❌ Fallito dopo 2 tentativi. Estensione non disponibile.');
+              console.warn(`[Extension Sync] ⚠️ Errore generico (tentativo ${retryCount + 1}/2):`, errorMsg);
+            }
+
+            // Retry dopo 1000ms (aumentato per dare più tempo all'estensione)
+            if (retryCount === 0) {
+              console.log('[Extension Sync] 🔄 Riprovo tra 1 secondo...');
+              setTimeout(() => sendMessageWithRetry(1), 1000);
+            } else {
+              console.info(
+                '[Extension Sync] ℹ️ Estensione non raggiungibile dopo 2 tentativi.',
+                '\nQuesto è normale se l\'estensione non è installata o è disabilitata.'
+              );
             }
             return;
           }
 
+          // SUCCESSO!
           console.log('[Extension Sync] ✅ Token JWT inviato con successo all\'estensione!', {
             response,
             timestamp: new Date().toISOString(),
           });
         });
-      } catch (error) {
-        console.error('[Extension Sync] ❌ Eccezione durante l\'invio:', error);
+      } catch (error: any) {
+        // Gestione eccezioni (es. estensione ricaricata durante l'invio)
+        console.warn('[Extension Sync] ⚠️ Eccezione durante l\'invio:', error.message || error);
         
-        // Retry dopo 500ms se è il primo tentativo
+        // Retry dopo 1000ms se è il primo tentativo
         if (retryCount === 0) {
-          console.log('[Extension Sync] 🔄 Riprovo tra 500ms dopo eccezione...');
-          setTimeout(() => sendMessageWithRetry(1), 500);
+          console.log('[Extension Sync] 🔄 Riprovo tra 1 secondo dopo eccezione...');
+          setTimeout(() => sendMessageWithRetry(1), 1000);
+        } else {
+          console.info('[Extension Sync] ℹ️ Impossibile connettersi all\'estensione dopo 2 tentativi.');
         }
       }
     };
 
-    // 6. Avvia l'invio con possibilità di retry
+    // 7. Avvia l'invio con retry automatico
     sendMessageWithRetry();
 
   } catch (error) {
-    // Gestisci silenziosamente
-    console.info('[Extension Sync] ℹ️ Sync skipped:', error);
+    // Gestione errori globali (es. Edge Function non disponibile)
+    console.info('[Extension Sync] ℹ️ Sync non disponibile:', error);
   }
 };
 
