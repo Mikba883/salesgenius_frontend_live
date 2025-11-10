@@ -14,24 +14,23 @@ serve(async (req) => {
   }
 
   try {
-    // 1. Verifica autenticazione
+    // 1. Verifica autenticazione (già gestita da Supabase con verify_jwt = true)
     const authHeader = req.headers.get('Authorization');
     if (!authHeader) {
       throw new Error('Missing authorization header');
     }
 
+    // Estrai il token dall'header
+    const token = authHeader.replace('Bearer ', '');
+
+    // 2. Crea il client Supabase con SERVICE_ROLE_KEY per poter leggere user_profiles
     const supabase = createClient(
       Deno.env.get('SUPABASE_URL') ?? '',
-      Deno.env.get('SUPABASE_ANON_KEY') ?? '',
-      {
-        global: {
-          headers: { Authorization: authHeader },
-        },
-      }
+      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
     );
 
-    // 2. Ottieni l'utente corrente
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
+    // 3. Ottieni l'utente dal token JWT
+    const { data: { user }, error: authError } = await supabase.auth.getUser(token);
     
     if (authError || !user) {
       console.error('[Generate JWT] Auth error:', authError);
