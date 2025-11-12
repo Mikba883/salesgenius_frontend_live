@@ -5,8 +5,9 @@ import { supabase } from '@/integrations/supabase/client';
 const EXTENSION_ID = import.meta.env.VITE_CHROME_EXTENSION_ID;
 
 /**
- * Sincronizza la sessione Supabase con l'estensione Chrome inviando il session.access_token
- * @param session - La sessione Supabase completa
+ * Sincronizza la sessione Supabase con l'estensione Chrome inviando access_token, refresh_token e expires_at
+ * per permettere all'estensione di ottenere nuovi token quando necessario
+ * @param session - La sessione Supabase completa (deve contenere access_token e refresh_token)
  * @returns Promise che si risolve se l'invio ha successo
  */
 export const syncSessionWithExtension = async (session: Session | null): Promise<void> => {
@@ -17,8 +18,8 @@ export const syncSessionWithExtension = async (session: Session | null): Promise
   }
 
   // 2. Verifica sessione valida
-  if (!session || !session.access_token) {
-    console.info('[Extension Sync] ℹ️ Nessuna sessione attiva');
+  if (!session || !session.access_token || !session.refresh_token) {
+    console.error('[Extension Sync] ❌ Sessione incompleta - manca access_token o refresh_token');
     return;
   }
 
@@ -58,22 +59,34 @@ export const syncSessionWithExtension = async (session: Session | null): Promise
       }
     }
 
-    console.log('[Extension Sync] ✅ Token Supabase ottenuto:', {
+    console.log('[Extension Sync] ✅ Sessione Supabase ottenuta:', {
       userId: session.user.id,
       email: session.user.email,
-      tokenPreview: supabaseToken.substring(0, 30) + '...',
+      accessTokenPreview: supabaseToken.substring(0, 30) + '...',
+      hasRefreshToken: !!session.refresh_token,
       expiresAt: session.expires_at ? new Date(session.expires_at * 1000).toISOString() : 'unknown',
+      expiresIn: session.expires_at ? `${Math.round((session.expires_at * 1000 - Date.now()) / 1000 / 60)} minuti` : 'unknown',
     });
 
-    // 5. Prepara il messaggio per l'estensione
+    // 5. Prepara il messaggio completo per l'estensione
     const message = {
-      type: 'setToken',
-      token: supabaseToken, // ✅ Token Supabase reale
+      type: 'setSession',  // ✅ Nuovo tipo di messaggio con sessione completa
+      session: {
+        access_token: session.access_token,
+        refresh_token: session.refresh_token,  // ✅ CRITICO: necessario per il refresh
+        expires_at: session.expires_at,        // ✅ Timestamp di scadenza
+        user: {
+          id: session.user.id,
+          email: session.user.email,
+        }
+      }
     };
 
-    console.log('[Extension Sync] 📦 Messaggio preparato:', {
+    console.log('[Extension Sync] 📦 Messaggio sessione preparato:', {
       type: message.type,
-      tokenLength: message.token.length,
+      hasAccessToken: !!message.session.access_token,
+      hasRefreshToken: !!message.session.refresh_token,
+      expiresAt: message.session.expires_at ? new Date(message.session.expires_at * 1000).toISOString() : 'unknown',
       targetExtensionId: EXTENSION_ID,
     });
 
@@ -113,7 +126,7 @@ export const syncSessionWithExtension = async (session: Session | null): Promise
           }
 
           // SUCCESSO!
-          console.log('[Extension Sync] ✅ Token JWT inviato con successo all\'estensione!', {
+          console.log('[Extension Sync] ✅ Sessione completa inviata con successo all\'estensione!', {
             response,
             timestamp: new Date().toISOString(),
           });
