@@ -31,40 +31,20 @@ export const syncSessionWithExtension = async (session: Session | null): Promise
   console.log('[Extension Sync] 🔄 Avvio sincronizzazione in background...');
 
   try {
-    // 4. Genera il JWT con timeout di 3 secondi
-    const timeoutPromise = new Promise<{ data: null; error: { message: string } }>((resolve) => 
-      setTimeout(() => resolve({ 
-        data: null, 
-        error: { message: 'Timeout dopo 3 secondi' }
-      }), 3000)
-    );
-    
-    const invokePromise = supabase.functions.invoke('generate-jwt', {
-      headers: {
-        Authorization: `Bearer ${session.access_token}`,
-      },
-    });
-    
-    const result = await Promise.race([invokePromise, timeoutPromise]);
-    const { data, error } = result as any;
+    // 4. Usa direttamente il token Supabase (NON creare JWT custom)
+    const supabaseToken = session.access_token;
 
-    if (error || !data?.token) {
-      console.info('[Extension Sync] ℹ️ JWT non disponibile:', error?.message || 'No token');
-      return;
-    }
-
-    console.log('[Extension Sync] ✅ JWT generato con successo:', {
-      userId: data.user_id,
-      email: data.email,
-      isPremium: data.is_premium,
-      tokenPreview: data.token.substring(0, 30) + '...',
-      expiresAt: new Date(data.expires_at * 1000).toISOString(),
+    console.log('[Extension Sync] ✅ Token Supabase ottenuto:', {
+      userId: session.user.id,
+      email: session.user.email,
+      tokenPreview: supabaseToken.substring(0, 30) + '...',
+      expiresAt: session.expires_at ? new Date(session.expires_at * 1000).toISOString() : 'unknown',
     });
 
     // 5. Prepara il messaggio per l'estensione
     const message = {
       type: 'setToken',
-      token: data.token,
+      token: supabaseToken, // ✅ Token Supabase reale
     };
 
     console.log('[Extension Sync] 📦 Messaggio preparato:', {
