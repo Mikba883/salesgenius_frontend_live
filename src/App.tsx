@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { supabase } from '@/integrations/supabase/client';
+import { syncSessionWithExtension } from '@/utils/extensionSync';
 import HomePage from './pages/HomePage';
 import SignInPage from './pages/SignInPage';
 import SignUpPage from './pages/SignUpPage';
@@ -8,6 +10,36 @@ import CheckEmailPage from './pages/CheckEmailPage';
 import DashboardPage from './pages/DashboardPage';
 
 function App() {
+  // 🔄 LISTENER GLOBALE per sincronizzazione token con estensione Chrome
+  useEffect(() => {
+    console.log('[App] 🎯 Inizializzazione listener globale TOKEN_REFRESHED');
+    
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        // Sincronizza solo quando il token viene rinfrescato
+        if (event === 'TOKEN_REFRESHED' && session) {
+          console.log('[App] 🔄 TOKEN_REFRESHED rilevato - Sincronizzazione con estensione Chrome');
+          
+          // Sincronizza in background senza bloccare l'app
+          syncSessionWithExtension(session).catch(err => {
+            console.info('[App] ℹ️ Sync estensione fallita (normale se estensione non installata):', err);
+          });
+        }
+        
+        // Log degli altri eventi per debug
+        if (event !== 'TOKEN_REFRESHED') {
+          console.log(`[App] Auth event: ${event}`);
+        }
+      }
+    );
+
+    // Cleanup al dismount dell'app
+    return () => {
+      console.log('[App] 🧹 Pulizia listener globale TOKEN_REFRESHED');
+      subscription.unsubscribe();
+    };
+  }, []); // Array vuoto = esegue solo al mount
+
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
