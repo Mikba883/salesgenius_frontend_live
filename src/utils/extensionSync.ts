@@ -5,7 +5,7 @@ import { supabase } from '@/integrations/supabase/client';
 const EXTENSION_ID = import.meta.env.VITE_CHROME_EXTENSION_ID;
 
 /**
- * Sincronizza la sessione Supabase con l'estensione Chrome generando un JWT custom
+ * Sincronizza la sessione Supabase con l'estensione Chrome inviando il session.access_token
  * @param session - La sessione Supabase completa
  * @returns Promise che si risolve se l'invio ha successo
  */
@@ -33,6 +33,30 @@ export const syncSessionWithExtension = async (session: Session | null): Promise
   try {
     // 4. Usa direttamente il token Supabase (NON creare JWT custom)
     const supabaseToken = session.access_token;
+
+    // Verifica che sia un token Supabase valido (solo in development)
+    if (import.meta.env.DEV) {
+      try {
+        const parts = supabaseToken.split('.');
+        if (parts.length === 3) {
+          const payload = JSON.parse(atob(parts[1]));
+          
+          if (payload.role !== 'authenticated') {
+            console.error('[Extension Sync] ❌ WRONG TOKEN TYPE! Expected Supabase token with role="authenticated"', payload);
+            return;
+          }
+          
+          console.log('[Extension Sync] ✅ Token verificato come token Supabase valido', {
+            role: payload.role,
+            aud: payload.aud,
+            hasEmail: !!payload.email,
+          });
+        }
+      } catch (e) {
+        console.error('[Extension Sync] ❌ Errore decodifica token:', e);
+        return;
+      }
+    }
 
     console.log('[Extension Sync] ✅ Token Supabase ottenuto:', {
       userId: session.user.id,
