@@ -68,25 +68,21 @@ export const syncSessionWithExtension = async (session: Session | null): Promise
       expiresIn: session.expires_at ? `${Math.round((session.expires_at * 1000 - Date.now()) / 1000 / 60)} minuti` : 'unknown',
     });
 
-    // 5. Prepara il messaggio completo per l'estensione
+    // 5. Prepara il messaggio nel formato che l'estensione si aspetta (type: 'setTokens')
     const message = {
-      type: 'setSession',  // ✅ Nuovo tipo di messaggio con sessione completa
-      session: {
-        access_token: session.access_token,
-        refresh_token: session.refresh_token,  // ✅ CRITICO: necessario per il refresh
-        expires_at: session.expires_at,        // ✅ Timestamp di scadenza
-        user: {
-          id: session.user.id,
-          email: session.user.email,
-        }
-      }
+      type: 'setTokens',              // ✅ Tipo corretto per l'estensione
+      accessToken: session.access_token,
+      refreshToken: session.refresh_token,  // ✅ CRITICO: necessario per il refresh
+      expiresAt: session.expires_at,        // ✅ Timestamp di scadenza
+      userId: session.user.id,
+      userEmail: session.user.email
     };
 
     console.log('[Extension Sync] 📦 Messaggio sessione preparato:', {
       type: message.type,
-      hasAccessToken: !!message.session.access_token,
-      hasRefreshToken: !!message.session.refresh_token,
-      expiresAt: message.session.expires_at ? new Date(message.session.expires_at * 1000).toISOString() : 'unknown',
+      hasAccessToken: !!message.accessToken,
+      hasRefreshToken: !!message.refreshToken,
+      expiresAt: message.expiresAt ? new Date(message.expiresAt * 1000).toISOString() : 'unknown',
       targetExtensionId: EXTENSION_ID,
     });
 
