@@ -40,6 +40,25 @@ function App() {
     };
   }, []); // Array vuoto = esegue solo al mount
 
+  // ✨ SINCRONIZZAZIONE PROATTIVA al caricamento della pagina
+  useEffect(() => {
+    console.log('[App] 🔍 Controllo sessione esistente al caricamento...');
+    
+    // Controlla se c'è una sessione attiva
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session) {
+        console.log('[App] ✅ Sessione trovata - Tentativo sincronizzazione proattiva con estensione');
+        
+        // Sincronizza in background senza bloccare l'app
+        syncSessionWithExtension(session).catch(err => {
+          console.info('[App] ℹ️ Sync proattiva estensione fallita (normale se estensione non installata):', err);
+        });
+      } else {
+        console.log('[App] ℹ️ Nessuna sessione attiva al caricamento');
+      }
+    });
+  }, []); // Esegue solo al mount dell'app
+
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
