@@ -20,11 +20,7 @@ const DashboardPage = () => {
       } else {
         setUser(session.user);
         setLoading(false);
-        
-        // Sincronizza in background DOPO che il dashboard è caricato
-        syncSessionWithExtension(session).catch(err => {
-          console.info('[Dashboard] ℹ️ Sync estensione fallita (tutto OK):', err);
-        });
+        // Sincronizzazione gestita globalmente in App.tsx
       }
     };
 
@@ -37,8 +33,9 @@ const DashboardPage = () => {
         } else {
           setUser(session.user);
           
-          // Sincronizza in background quando la sessione viene aggiornata
-          if (event === 'TOKEN_REFRESHED' || event === 'SIGNED_IN') {
+          // TOKEN_REFRESHED è gestito dal listener globale in App.tsx
+          // Gestiamo solo SIGNED_IN per il login dalla dashboard
+          if (event === 'SIGNED_IN') {
             syncSessionWithExtension(session).catch(err => {
               console.info('[Dashboard] ℹ️ Sync estensione fallita (tutto OK):', err);
             });
