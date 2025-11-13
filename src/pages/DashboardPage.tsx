@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import Layout from '@/components/layout/Layout';
-import { syncSessionWithExtension } from '@/utils/extensionSync';
+import { syncSessionWithExtension, notifyExtensionLogout } from '@/utils/extensionSync';
 
 const DashboardPage = () => {
   const [user, setUser] = useState<any>(null);
@@ -51,7 +51,16 @@ const DashboardPage = () => {
   }, [navigate]);
 
   const handleSignOut = async () => {
+    // 1. Notifica l'estensione Chrome PRIMA di fare logout
+    //    (così l'estensione può cancellare i token mentre la sessione è ancora valida)
+    notifyExtensionLogout().catch(err => {
+      console.info('[Dashboard] ℹ️ Notifica logout estensione fallita (normale se non installata):', err);
+    });
+    
+    // 2. Esegui logout da Supabase
     await supabase.auth.signOut();
+    
+    // 3. Redirect alla homepage
     navigate('/');
   };
 

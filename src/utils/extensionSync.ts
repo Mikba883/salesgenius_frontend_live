@@ -151,6 +151,55 @@ export const syncSessionWithExtension = async (session: Session | null): Promise
 };
 
 /**
+ * Notifica l'estensione Chrome che l'utente ha fatto logout
+ * L'estensione cancellerà tutti i token salvati in chrome.storage.local
+ * @returns Promise che si risolve se l'invio ha successo
+ */
+export const notifyExtensionLogout = async (): Promise<void> => {
+  // 1. Verifica ID configurato
+  if (!EXTENSION_ID) {
+    console.warn('[Extension Logout] ⚠️ VITE_CHROME_EXTENSION_ID non configurato nel file .env');
+    return;
+  }
+
+  // 2. Verifica ambiente Chrome disponibile
+  if (typeof chrome === 'undefined' || !chrome.runtime || !chrome.runtime.sendMessage) {
+    console.info('[Extension Logout] ℹ️ Ambiente Chrome non disponibile (estensione non installata?)');
+    return;
+  }
+
+  // 3. Prepara messaggio di logout
+  const message = {
+    type: 'logout'
+  };
+
+  console.log('[Extension Logout] 📤 Invio notifica di logout all\'estensione...');
+
+  // 4. Invia messaggio all'estensione
+  return new Promise((resolve, reject) => {
+    try {
+      chrome.runtime.sendMessage(
+        EXTENSION_ID,
+        message,
+        (response) => {
+          if (chrome.runtime.lastError) {
+            // Errore comune: estensione non installata o disabilitata
+            console.info('[Extension Logout] ℹ️ Impossibile contattare l\'estensione:', chrome.runtime.lastError.message);
+            resolve(); // Non blocchiamo il logout se l'estensione non risponde
+          } else {
+            console.log('[Extension Logout] ✅ Estensione notificata del logout:', response);
+            resolve();
+          }
+        }
+      );
+    } catch (error) {
+      console.warn('[Extension Logout] ⚠️ Errore durante invio messaggio:', error);
+      resolve(); // Non blocchiamo il logout in caso di errore
+    }
+  });
+};
+
+/**
  * Verifica se l'estensione è disponibile
  */
 export const isExtensionAvailable = (): boolean => {
