@@ -26,12 +26,15 @@ export type Database = {
           language: string | null
           latency_ms: number | null
           meeting_id: string | null
+          metadata: Json | null
           model: string | null
           organization_id: string | null
+          session_id: string | null
           suggestion: string | null
           timestamp: string
           tokens_used: number | null
           transcript: string | null
+          transcript_context: string | null
           used: boolean | null
           user_id: string | null
         }
@@ -46,12 +49,15 @@ export type Database = {
           language?: string | null
           latency_ms?: number | null
           meeting_id?: string | null
+          metadata?: Json | null
           model?: string | null
           organization_id?: string | null
+          session_id?: string | null
           suggestion?: string | null
           timestamp?: string
           tokens_used?: number | null
           transcript?: string | null
+          transcript_context?: string | null
           used?: boolean | null
           user_id?: string | null
         }
@@ -66,12 +72,15 @@ export type Database = {
           language?: string | null
           latency_ms?: number | null
           meeting_id?: string | null
+          metadata?: Json | null
           model?: string | null
           organization_id?: string | null
+          session_id?: string | null
           suggestion?: string | null
           timestamp?: string
           tokens_used?: number | null
           transcript?: string | null
+          transcript_context?: string | null
           used?: boolean | null
           user_id?: string | null
         }
