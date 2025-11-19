@@ -5,6 +5,17 @@ import type { Database } from './types';
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
 const SUPABASE_PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
+// Validate environment variables
+if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
+  console.error('❌ Missing Supabase environment variables!');
+  console.error('VITE_SUPABASE_URL:', SUPABASE_URL ? '✓ Set' : '✗ Missing');
+  console.error('VITE_SUPABASE_PUBLISHABLE_KEY:', SUPABASE_PUBLISHABLE_KEY ? '✓ Set' : '✗ Missing');
+  throw new Error(
+    'Supabase configuration error: Missing environment variables. ' +
+    'Please configure VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY in your deployment settings.'
+  );
+}
+
 // Import the supabase client like this:
 // import { supabase } from "@/integrations/supabase/client";
 
