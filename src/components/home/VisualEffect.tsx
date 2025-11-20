@@ -5,17 +5,17 @@ const VisualEffect = () => {
     <section className="relative py-40 lg:py-48 overflow-visible min-h-[140vh] bg-[#030014]">
       {/* Purple glow effects - centered below the black circle */}
       <div className="absolute inset-0 overflow-visible pointer-events-none z-0" style={{ top: '-200px', bottom: '-200px' }}>
-        <div className="absolute top-[550px] left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="absolute top-[800px] left-1/2 -translate-x-1/2 -translate-y-1/2">
           <img src="/images/blur/blur-15.svg" alt="blur" className="max-w-none scale-[2.0] opacity-100" />
         </div>
-        <div className="absolute top-[600px] left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="absolute top-[850px] left-1/2 -translate-x-1/2 -translate-y-1/2">
           <img src="/images/blur/blur-14.svg" alt="blur" className="max-w-none scale-[2.6] opacity-60" />
         </div>
-        <div className="absolute top-[650px] left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="absolute top-[900px] left-1/2 -translate-x-1/2 -translate-y-1/2">
           <img src="/images/blur/blur-13.svg" alt="blur" className="max-w-none scale-[3.5] opacity-20" />
         </div>
         {/* Additional glow layers for more intense sunrise effect */}
-        <div className="absolute top-[700px] left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="absolute top-[950px] left-1/2 -translate-x-1/2 -translate-y-1/2">
           <img src="/images/blur/blur-15.svg" alt="blur" className="max-w-none scale-[3.0] opacity-40" />
         </div>
       </div>
