@@ -26,8 +26,14 @@ const FeaturesList = () => {
                     </a>
                   </div>
 
-                  <div className="max-w-[428px] w-full hidden sm:block relative">
-                    <img src="/images/features/big-icon.svg" alt="icon" className="relative" />
+                  <div className="hidden sm:flex flex-1 items-center justify-end">
+                    <div className="relative w-[320px] h-[320px]">
+                      <img
+                        src="/images/features/big-icon.svg"
+                        alt="AI sales assistant icon"
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
                   </div>
                 </div>
 
