@@ -25,7 +25,7 @@ const VisualEffect = () => {
       </div>
 
       {/* Background stars - behind black circle, shorter effect ending mid-cards */}
-      <div className="absolute inset-0 z-1" style={{ top: '400px', height: '280px' }}>
+      <div className="absolute inset-0 z-1" style={{ top: '400px', height: '350px' }}>
         <div className="max-w-[1200px] w-full h-full overflow-visible absolute top-0 left-1/2 -translate-x-1/2">
           <div className="stars"></div>
           <div className="stars2"></div>
@@ -46,17 +46,17 @@ const VisualEffect = () => {
           <div className="w-full max-w-[1100px] mt-48 lg:mt-40">
             {/* Desktop Table View */}
             <div className="hidden lg:block">
-              <div className="rounded-2xl border border-white/10 bg-dark backdrop-blur-sm overflow-hidden">
+              <div className="rounded-2xl border border-white/10 bg-dark/95 backdrop-blur-sm overflow-hidden">
                 {/* Table Header */}
                 <div className="grid grid-cols-3">
-                  <div className="bg-dark px-6 py-5">
+                  <div className="bg-dark/60 px-6 py-5">
                     <h3 className="text-white/60 font-semibold text-sm uppercase tracking-wider">Feature</h3>
                   </div>
                   <div className="bg-gradient-to-br from-purple/20 to-pink/20 px-6 py-5 relative">
                     <div className="absolute inset-0 bg-gradient-to-r from-purple/10 to-pink/10 opacity-50"></div>
                     <h3 className="relative bg-gradient-to-r from-purple to-pink bg-clip-text text-transparent font-bold text-base uppercase tracking-wider">SalesGenius</h3>
                   </div>
-                  <div className="bg-dark px-6 py-5">
+                  <div className="bg-dark/60 px-6 py-5">
                     <h3 className="text-white/60 font-semibold text-sm uppercase tracking-wider">Generic AI Tools</h3>
                   </div>
                 </div>
@@ -65,166 +65,85 @@ const VisualEffect = () => {
                 <div className="space-y-0">
                   {/* Row 1 */}
                   <div className="grid grid-cols-3 hover:bg-white/5 transition-colors">
-                    <div className="bg-dark px-6 py-5">
+                    <div className="bg-dark/40 px-6 py-5">
                       <p className="text-white font-semibold">Built for Sales Calls</p>
                     </div>
-                    <div className="bg-dark px-6 py-5 relative overflow-hidden">
+                    <div className="bg-dark/40 px-6 py-5 relative overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-r from-purple/5 to-pink/5"></div>
-                      <div className="relative flex items-center justify-center">
-                        <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <circle cx="12" cy="12" r="10" fill="url(#gradient1)" />
-                          <path d="M8 12.5l2.5 2.5L16 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                          <defs>
-                            <linearGradient id="gradient1" x1="2" y1="2" x2="22" y2="22">
-                              <stop offset="0%" stopColor="#8B5CF6" />
-                              <stop offset="100%" stopColor="#EC4899" />
-                            </linearGradient>
-                          </defs>
-                        </svg>
-                      </div>
+                      <p className="relative text-white/90 leading-relaxed">Speaks the language of persuasion — trained on real negotiations and deal-closing moments.</p>
                     </div>
-                    <div className="bg-dark px-6 py-5 flex items-center justify-center">
-                      <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12" cy="12" r="10" fill="#4B5563" />
-                        <path d="M8 8l8 8M16 8l-8 8" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                      </svg>
+                    <div className="bg-dark/40 px-6 py-5">
+                      <p className="text-white/50 leading-relaxed">Generic assistant, not optimized for sales.</p>
                     </div>
                   </div>
 
                   {/* Row 2 */}
                   <div className="grid grid-cols-3 hover:bg-white/5 transition-colors">
-                    <div className="bg-dark px-6 py-5">
+                    <div className="bg-dark/40 px-6 py-5">
                       <p className="text-white font-semibold">Live Coaching While You Speak</p>
                     </div>
-                    <div className="bg-dark px-6 py-5 relative overflow-hidden">
+                    <div className="bg-dark/40 px-6 py-5 relative overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-r from-purple/5 to-pink/5"></div>
-                      <div className="relative flex items-center justify-center">
-                        <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <circle cx="12" cy="12" r="10" fill="url(#gradient2)" />
-                          <path d="M8 12.5l2.5 2.5L16 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                          <defs>
-                            <linearGradient id="gradient2" x1="2" y1="2" x2="22" y2="22">
-                              <stop offset="0%" stopColor="#8B5CF6" />
-                              <stop offset="100%" stopColor="#EC4899" />
-                            </linearGradient>
-                          </defs>
-                        </svg>
-                      </div>
+                      <p className="relative text-white/90 leading-relaxed">Listens to your pitch and gives instant cues to say the right line at the right time.</p>
                     </div>
-                    <div className="bg-dark px-6 py-5 flex items-center justify-center">
-                      <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12" cy="12" r="10" fill="#4B5563" />
-                        <path d="M8 8l8 8M16 8l-8 8" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                      </svg>
+                    <div className="bg-dark/40 px-6 py-5">
+                      <p className="text-white/50 leading-relaxed">You must type to get help — too slow for real calls.</p>
                     </div>
                   </div>
 
                   {/* Row 3 */}
                   <div className="grid grid-cols-3 hover:bg-white/5 transition-colors">
-                    <div className="bg-dark px-6 py-5">
+                    <div className="bg-dark/40 px-6 py-5">
                       <p className="text-white font-semibold">Understands the Whole Conversation</p>
                     </div>
-                    <div className="bg-dark px-6 py-5 relative overflow-hidden">
+                    <div className="bg-dark/40 px-6 py-5 relative overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-r from-purple/5 to-pink/5"></div>
-                      <div className="relative flex items-center justify-center">
-                        <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <circle cx="12" cy="12" r="10" fill="url(#gradient3)" />
-                          <path d="M8 12.5l2.5 2.5L16 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                          <defs>
-                            <linearGradient id="gradient3" x1="2" y1="2" x2="22" y2="22">
-                              <stop offset="0%" stopColor="#8B5CF6" />
-                              <stop offset="100%" stopColor="#EC4899" />
-                            </linearGradient>
-                          </defs>
-                        </svg>
-                      </div>
+                      <p className="relative text-white/90 leading-relaxed">Gets the full context — tone, client intent, and negotiation phase. Knows what's happening and what's next.</p>
                     </div>
-                    <div className="bg-dark px-6 py-5 flex items-center justify-center">
-                      <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12" cy="12" r="10" fill="#4B5563" />
-                        <path d="M8 8l8 8M16 8l-8 8" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                      </svg>
+                    <div className="bg-dark/40 px-6 py-5">
+                      <p className="text-white/50 leading-relaxed">Reacts only to isolated prompts, missing the flow of the meeting.</p>
                     </div>
                   </div>
 
                   {/* Row 4 */}
                   <div className="grid grid-cols-3 hover:bg-white/5 transition-colors">
-                    <div className="bg-dark px-6 py-5">
+                    <div className="bg-dark/40 px-6 py-5">
                       <p className="text-white font-semibold">Privacy First</p>
                     </div>
-                    <div className="bg-dark px-6 py-5 relative overflow-hidden">
+                    <div className="bg-dark/40 px-6 py-5 relative overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-r from-purple/5 to-pink/5"></div>
-                      <div className="relative flex items-center justify-center">
-                        <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <circle cx="12" cy="12" r="10" fill="url(#gradient4)" />
-                          <path d="M8 12.5l2.5 2.5L16 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                          <defs>
-                            <linearGradient id="gradient4" x1="2" y1="2" x2="22" y2="22">
-                              <stop offset="0%" stopColor="#8B5CF6" />
-                              <stop offset="100%" stopColor="#EC4899" />
-                            </linearGradient>
-                          </defs>
-                        </svg>
-                      </div>
+                      <p className="relative text-white/90 leading-relaxed">Audio stays on your device — nothing sent to the cloud, nothing recorded.</p>
                     </div>
-                    <div className="bg-dark px-6 py-5 flex items-center justify-center">
-                      <span className="text-gray-400 font-medium text-sm">Partial</span>
+                    <div className="bg-dark/40 px-6 py-5">
+                      <p className="text-white/50 leading-relaxed">Often processed externally with unclear data use.</p>
                     </div>
                   </div>
 
                   {/* Row 5 */}
                   <div className="grid grid-cols-3 hover:bg-white/5 transition-colors">
-                    <div className="bg-dark px-6 py-5">
+                    <div className="bg-dark/40 px-6 py-5">
                       <p className="text-white font-semibold">Works Seamlessly Anywhere</p>
                     </div>
-                    <div className="bg-dark px-6 py-5 relative overflow-hidden">
+                    <div className="bg-dark/40 px-6 py-5 relative overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-r from-purple/5 to-pink/5"></div>
-                      <div className="relative flex items-center justify-center">
-                        <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <circle cx="12" cy="12" r="10" fill="url(#gradient5)" />
-                          <path d="M8 12.5l2.5 2.5L16 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                          <defs>
-                            <linearGradient id="gradient5" x1="2" y1="2" x2="22" y2="22">
-                              <stop offset="0%" stopColor="#8B5CF6" />
-                              <stop offset="100%" stopColor="#EC4899" />
-                            </linearGradient>
-                          </defs>
-                        </svg>
-                      </div>
+                      <p className="relative text-white/90 leading-relaxed">Integrates instantly with Zoom, Meet, or Teams — no setup needed.</p>
                     </div>
-                    <div className="bg-dark px-6 py-5 flex items-center justify-center">
-                      <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12" cy="12" r="10" fill="#4B5563" />
-                        <path d="M8 8l8 8M16 8l-8 8" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                      </svg>
+                    <div className="bg-dark/40 px-6 py-5">
+                      <p className="text-white/50 leading-relaxed">Generic AI can't join your calls.</p>
                     </div>
                   </div>
 
                   {/* Row 6 */}
                   <div className="grid grid-cols-3 hover:bg-white/5 transition-colors">
-                    <div className="bg-dark px-6 py-5">
+                    <div className="bg-dark/40 px-6 py-5">
                       <p className="text-white font-semibold">Built by Sales Pros</p>
                     </div>
-                    <div className="bg-dark px-6 py-5 relative overflow-hidden">
+                    <div className="bg-dark/40 px-6 py-5 relative overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-r from-purple/5 to-pink/5"></div>
-                      <div className="relative flex items-center justify-center">
-                        <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <circle cx="12" cy="12" r="10" fill="url(#gradient6)" />
-                          <path d="M8 12.5l2.5 2.5L16 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                          <defs>
-                            <linearGradient id="gradient6" x1="2" y1="2" x2="22" y2="22">
-                              <stop offset="0%" stopColor="#8B5CF6" />
-                              <stop offset="100%" stopColor="#EC4899" />
-                            </linearGradient>
-                          </defs>
-                        </svg>
-                      </div>
+                      <p className="relative text-white/90 leading-relaxed">Created with top sales coaches and AI engineers for real-world performance.</p>
                     </div>
-                    <div className="bg-dark px-6 py-5 flex items-center justify-center">
-                      <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12" cy="12" r="10" fill="#4B5563" />
-                        <path d="M8 8l8 8M16 8l-8 8" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                      </svg>
+                    <div className="bg-dark/40 px-6 py-5">
+                      <p className="text-white/50 leading-relaxed">Designed for everyone, fine for no one.</p>
                     </div>
                   </div>
                 </div>
@@ -234,7 +153,7 @@ const VisualEffect = () => {
             {/* Mobile Card View */}
             <div className="lg:hidden space-y-6">
               {/* Feature 1 */}
-              <div className="rounded-xl border border-white/10 bg-dark backdrop-blur-sm overflow-hidden">
+              <div className="rounded-xl border border-white/10 bg-dark/95 backdrop-blur-sm overflow-hidden">
                 <div className="px-5 py-4 border-b border-white/10">
                   <h3 className="text-white font-bold text-lg">Built for Sales Calls</h3>
                 </div>
@@ -251,7 +170,7 @@ const VisualEffect = () => {
               </div>
 
               {/* Feature 2 */}
-              <div className="rounded-xl border border-white/10 bg-dark backdrop-blur-sm overflow-hidden">
+              <div className="rounded-xl border border-white/10 bg-dark/95 backdrop-blur-sm overflow-hidden">
                 <div className="px-5 py-4 border-b border-white/10">
                   <h3 className="text-white font-bold text-lg">Live Coaching While You Speak</h3>
                 </div>
@@ -268,7 +187,7 @@ const VisualEffect = () => {
               </div>
 
               {/* Feature 3 */}
-              <div className="rounded-xl border border-white/10 bg-dark backdrop-blur-sm overflow-hidden">
+              <div className="rounded-xl border border-white/10 bg-dark/95 backdrop-blur-sm overflow-hidden">
                 <div className="px-5 py-4 border-b border-white/10">
                   <h3 className="text-white font-bold text-lg">Understands the Whole Conversation</h3>
                 </div>
@@ -285,7 +204,7 @@ const VisualEffect = () => {
               </div>
 
               {/* Feature 4 */}
-              <div className="rounded-xl border border-white/10 bg-dark backdrop-blur-sm overflow-hidden">
+              <div className="rounded-xl border border-white/10 bg-dark/95 backdrop-blur-sm overflow-hidden">
                 <div className="px-5 py-4 border-b border-white/10">
                   <h3 className="text-white font-bold text-lg">Privacy First</h3>
                 </div>
@@ -302,7 +221,7 @@ const VisualEffect = () => {
               </div>
 
               {/* Feature 5 */}
-              <div className="rounded-xl border border-white/10 bg-dark backdrop-blur-sm overflow-hidden">
+              <div className="rounded-xl border border-white/10 bg-dark/95 backdrop-blur-sm overflow-hidden">
                 <div className="px-5 py-4 border-b border-white/10">
                   <h3 className="text-white font-bold text-lg">Works Seamlessly Anywhere</h3>
                 </div>
@@ -319,7 +238,7 @@ const VisualEffect = () => {
               </div>
 
               {/* Feature 6 */}
-              <div className="rounded-xl border border-white/10 bg-dark backdrop-blur-sm overflow-hidden">
+              <div className="rounded-xl border border-white/10 bg-dark/95 backdrop-blur-sm overflow-hidden">
                 <div className="px-5 py-4 border-b border-white/10">
                   <h3 className="text-white font-bold text-lg">Built by Sales Pros</h3>
                 </div>
