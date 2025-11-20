@@ -3,16 +3,20 @@ import React from 'react';
 const VisualEffect = () => {
   return (
     <section className="relative py-40 lg:py-48 overflow-visible min-h-[140vh] bg-[#030014]">
-      {/* Purple glow effects - extended upward to reach above section */}
-      <div className="absolute inset-0 overflow-visible pointer-events-none z-0" style={{ top: '-200px' }}>
+      {/* Purple glow effects - extended upward and downward for sunrise effect */}
+      <div className="absolute inset-0 overflow-visible pointer-events-none z-0" style={{ top: '-200px', bottom: '-200px' }}>
         <div className="absolute top-[250px] left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <img src="/images/blur/blur-15.svg" alt="blur" className="max-w-none scale-[1.6] opacity-100" />
+          <img src="/images/blur/blur-15.svg" alt="blur" className="max-w-none scale-[2.0] opacity-100" />
         </div>
         <div className="absolute top-[300px] left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <img src="/images/blur/blur-14.svg" alt="blur" className="max-w-none scale-[2.2] opacity-50" />
+          <img src="/images/blur/blur-14.svg" alt="blur" className="max-w-none scale-[2.6] opacity-60" />
         </div>
         <div className="absolute top-[350px] left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <img src="/images/blur/blur-13.svg" alt="blur" className="max-w-none scale-[3.0] opacity-15" />
+          <img src="/images/blur/blur-13.svg" alt="blur" className="max-w-none scale-[3.5] opacity-20" />
+        </div>
+        {/* Additional glow layers for more intense sunrise effect */}
+        <div className="absolute top-[400px] left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <img src="/images/blur/blur-15.svg" alt="blur" className="max-w-none scale-[3.0] opacity-40" />
         </div>
       </div>
 
@@ -20,9 +24,9 @@ const VisualEffect = () => {
       <div className="absolute left-1/2 -translate-x-1/2 top-[400px] w-[2400px] h-[1400px] rounded-[50%] bg-[#0a0118] z-5 overflow-hidden">
       </div>
 
-      {/* Background stars - above purple glow */}
-      <div className="absolute inset-0 z-30">
-        <div className="max-w-[600px] w-full h-60 overflow-hidden absolute top-20 left-1/2 -translate-x-1/2">
+      {/* Background stars - extended both above and below */}
+      <div className="absolute inset-0 z-30" style={{ top: '-100px', bottom: '-100px' }}>
+        <div className="max-w-[800px] w-full h-[800px] overflow-visible absolute top-20 left-1/2 -translate-x-1/2">
           <div className="stars"></div>
           <div className="stars2"></div>
         </div>
@@ -30,7 +34,7 @@ const VisualEffect = () => {
 
       {/* Content on top */}
       <div className="max-w-[1200px] mx-auto px-4 sm:px-8 xl:px-0 relative z-10 pt-0 lg:pt-0">
-        <div className="flex flex-col items-center gap-16 text-center">
+        <div className="flex flex-col items-center gap-8 text-center">
           {/* Title - moved higher */}
           <div className="space-y-6">
             <h2 className="text-white font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl max-w-[1000px]">
@@ -38,8 +42,8 @@ const VisualEffect = () => {
             </h2>
           </div>
           
-          {/* Comparison Table - raised up on desktop, more space on mobile/tablet */}
-          <div className="w-full max-w-[1100px] mt-32 lg:mt-16">
+          {/* Comparison Table - more space from title */}
+          <div className="w-full max-w-[1100px] mt-48 lg:mt-40">
             {/* Desktop Table View */}
             <div className="hidden lg:block">
               <div className="rounded-2xl border border-white/10 bg-dark/40 backdrop-blur-sm overflow-hidden">
