@@ -3,8 +3,8 @@ import React from 'react';
 const Contact = () => {
   return (
     <section id="support" className="pb-24 lg:pb-32 xl:pb-40 scroll-mt-17">
-      <div className="max-w-[1104px] mx-auto px-4 sm:px-8 xl:px-0">
-        <div className="relative z-10 overflow-hidden rounded-[30px] bg-dark pt-40 px-4 sm:px-20 lg:px-27.5">
+      <div className="w-full">
+        <div className="relative z-10 overflow-hidden bg-dark pt-40 px-4 sm:px-20 lg:px-27.5">
           {/* grid row */}
           <div className="flex justify-center gap-7.5 absolute left-1/2 -translate-x-1/2 -top-[16%] max-w-[690px] w-full -z-1 opacity-40">
             {[12, 7, 3, 0, 0, 0, 2, 5, 8].map((bottom, i) => (
@@ -81,7 +81,7 @@ const Contact = () => {
                     />
                   </div>
                 </div>
-                <div className="w-full px-4 xl:px-5">
+                <div className="w-full px-4 xl:px-5 mt-6">
                   <div className="mb-10">
                     <label htmlFor="message" className="text-white mb-2.5 block font-medium">
                       Message
