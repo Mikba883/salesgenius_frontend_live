@@ -24,9 +24,9 @@ const VisualEffect = () => {
       <div className="absolute left-1/2 -translate-x-1/2 top-[400px] w-[2400px] h-[1400px] rounded-[50%] bg-[#0a0118] z-5 overflow-hidden">
       </div>
 
-      {/* Background stars - behind black circle, shorter effect ending mid-cards */}
-      <div className="absolute inset-0 z-1" style={{ top: '400px', height: '350px' }}>
-        <div className="max-w-[1200px] w-full h-full overflow-visible absolute top-0 left-1/2 -translate-x-1/2">
+      {/* Background stars - above and around black circle */}
+      <div className="absolute inset-0 z-10 pointer-events-none" style={{ top: '0px', height: '600px' }}>
+        <div className="max-w-[1400px] w-full h-full overflow-visible absolute top-0 left-1/2 -translate-x-1/2">
           <div className="stars"></div>
           <div className="stars2"></div>
         </div>
