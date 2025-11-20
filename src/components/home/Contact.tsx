@@ -22,15 +22,15 @@ const Contact = () => {
           </div>
 
           {/* bg shapes */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
-            <span className="absolute top-0 left-0 -z-1">
-              <img src="/images/blur/blur-19.svg" alt="blur-sm" className="max-w-none" />
+          <div className="absolute inset-0 overflow-visible pointer-events-none -z-10">
+            <span className="absolute top-0 -left-40 -z-1">
+              <img src="/images/blur/blur-19.svg" alt="blur-sm" className="max-w-none w-[150%]" />
             </span>
             <span className="absolute top-0 -translate-x-1/2 left-1/2 -z-1">
-              <img src="/images/blur/blur-20.svg" alt="blur-sm" className="max-w-none" />
+              <img src="/images/blur/blur-20.svg" alt="blur-sm" className="max-w-none w-[150%]" />
             </span>
-            <span className="absolute top-0 right-0 -z-1">
-              <img src="/images/blur/blur-21.svg" alt="blur-sm" className="max-w-none" />
+            <span className="absolute top-0 -right-40 -z-1">
+              <img src="/images/blur/blur-21.svg" alt="blur-sm" className="max-w-none w-[150%]" />
             </span>
           </div>
 
