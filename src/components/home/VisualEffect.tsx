@@ -24,14 +24,6 @@ const VisualEffect = () => {
       <div className="absolute left-1/2 -translate-x-1/2 top-[400px] w-[2400px] h-[1400px] rounded-[50%] bg-[#0a0118] z-5 overflow-hidden">
       </div>
 
-      {/* Background stars - above and around black circle */}
-      <div className="absolute inset-0 z-10 pointer-events-none" style={{ top: '0px', height: '600px' }}>
-        <div className="max-w-[1400px] w-full h-full overflow-visible absolute top-0 left-1/2 -translate-x-1/2">
-          <div className="stars"></div>
-          <div className="stars2"></div>
-        </div>
-      </div>
-
       {/* Content on top */}
       <div className="max-w-[1200px] mx-auto px-4 sm:px-8 xl:px-0 relative z-10 pt-0 lg:pt-0">
         <div className="flex flex-col items-center gap-8 text-center">
