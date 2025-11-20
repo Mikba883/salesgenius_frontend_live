@@ -41,12 +41,12 @@ const KeyFeatures = () => {
 
   return (
     <section className="overflow-hidden py-20 lg:py-28 xl:py-32">
-      <div className="max-w-[1222px] mx-auto px-4 sm:px-8 xl:px-0">
+      <div className="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0">
         {/* Section Title */}
         <div className="text-center mb-16">
           <span className="hero-subtitle-gradient relative mb-4 font-medium text-sm inline-flex items-center gap-2 py-2 px-6 rounded-full">
             <img src="/images/hero/icon-title.svg" alt="icon" />
-            <span className="hero-subtitle-text">UNFAIR ADVANTAGE</span>
+            <span className="hero-subtitle-text">Unfair Advantage</span>
           </span>
           <h2 className="text-white mb-6 text-3xl font-extrabold sm:text-4xl xl:text-heading-2">
             Never Be Lost for Words Again
