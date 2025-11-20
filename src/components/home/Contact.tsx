@@ -6,7 +6,7 @@ const Contact = () => {
       <div className="w-full">
         <div className="relative z-10 overflow-hidden bg-dark pt-40">
           {/* grid row */}
-          <div className="flex justify-center gap-7.5 absolute left-1/2 -translate-x-1/2 -top-[16%] max-w-[690px] w-full -z-1 opacity-40">
+          <div className="flex justify-center gap-7.5 absolute left-1/2 -translate-x-1/2 -top-[16%] w-full -z-1 opacity-40">
             {[12, 7, 3, 0, 0, 0, 2, 5, 8].map((bottom, i) => (
               <div
                 key={i}
@@ -16,20 +16,20 @@ const Contact = () => {
           </div>
 
           {/* stars */}
-          <div className="max-w-[482px] w-full h-60 overflow-hidden absolute z-[5] -top-30 left-1/2 -translate-x-1/2">
+          <div className="w-full h-60 overflow-hidden absolute z-[5] -top-30 left-1/2 -translate-x-1/2">
             <div className="stars"></div>
             <div className="stars2"></div>
           </div>
 
           {/* bg shapes */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
-            <span className="absolute top-0 -translate-x-1/2 left-1/2 -z-1">
+            <span className="absolute top-0 left-0 -z-1">
               <img src="/images/blur/blur-19.svg" alt="blur-sm" className="max-w-none" />
             </span>
             <span className="absolute top-0 -translate-x-1/2 left-1/2 -z-1">
               <img src="/images/blur/blur-20.svg" alt="blur-sm" className="max-w-none" />
             </span>
-            <span className="absolute top-0 -translate-x-1/2 left-1/2 -z-1">
+            <span className="absolute top-0 right-0 -z-1">
               <img src="/images/blur/blur-21.svg" alt="blur-sm" className="max-w-none" />
             </span>
           </div>
@@ -52,7 +52,7 @@ const Contact = () => {
           {/* support form */}
           <div className="max-w-[1104px] mx-auto px-4 sm:px-8 xl:px-0">
             <div className="form-box-gradient relative overflow-hidden rounded-[25px] bg-dark p-6 sm:p-8 xl:p-15">
-            <form className="relative z-10">
+              <form className="relative z-10">
               <div className="flex flex-wrap -mx-4 xl:-mx-10">
                 <div className="w-full px-4 xl:px-5 md:w-1/2">
                   <div className="mb-9.5">
@@ -107,7 +107,8 @@ const Contact = () => {
                   </div>
                 </div>
               </div>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
       </div>
