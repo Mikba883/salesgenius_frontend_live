@@ -13,20 +13,16 @@ const FeaturesList = () => {
                   <div className="max-w-[477px] w-full">
                     <span className="hero-subtitle-gradient relative mb-4 font-medium text-sm inline-flex items-center gap-2 py-2 px-6 rounded-full">
                       <img src="/images/hero/icon-title.svg" alt="icon" />
-                      <span className="hero-subtitle-text">AI-Powered Writing Tool</span>
+                      <span className="hero-subtitle-text">REAL-TIME MAGIC</span>
                     </span>
                     <h3 className="text-white mb-4.5 font-bold text-heading-4">
-                      Intelligent Writing Assistance
+                      Don't Analyze the Loss. Save the Deal.
                     </h3>
                     <p className="mb-10 font-medium">
-                      Our AI writing tool is designed to empower you with exceptional writing capabilities, 
-                      making the writing process...
+                      Post-call analytics are autopsies. SalesGenius is surgery. We don't tell you why you lost the deal yesterday; we give you the exact words to win it today, while the client is still listening.
                     </p>
                     <a href="#" className="features-button-gradient relative inline-flex items-center gap-1.5 rounded-full py-3 px-6 text-white text-sm ease-in duration-300 hover:shadow-button">
-                      Learn more
-                      <svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M13.3992 5.60002L8.22422 0.350024C7.99922 0.125024 7.64922 0.125024 7.42422 0.350024C7.19922 0.575024 7.19922 0.925025 7.42422 1.15002L11.6242 5.42503H0.999219C0.699219 5.42503 0.449219 5.67502 0.449219 5.97502C0.449219 6.27502 0.699219 6.55003 0.999219 6.55003H11.6742L7.42422 10.875C7.19922 11.1 7.19922 11.45 7.42422 11.675C7.52422 11.775 7.67422 11.825 7.82422 11.825C7.97422 11.825 8.12422 11.775 8.22422 11.65L13.3992 6.40002C13.6242 6.17502 13.6242 5.82502 13.3992 5.60002Z" fill="white"/>
-                      </svg>
+                      Try it in your next call →
                     </a>
                   </div>
 
@@ -65,16 +61,15 @@ const FeaturesList = () => {
             <div className="relative rounded-3xl features-box-border">
               <div className="relative overflow-hidden rounded-3xl px-11 pt-20 pb-14 box-hover box-hover-small">
                 <div className="relative z-20">
-                  <span className="icon-border relative max-w-[80px] w-full h-20 rounded-full inline-flex items-center justify-center mb-13.5 mx-auto">
-                    <img src="/images/features/icon-05.svg" alt="icon" />
+                  <span className="icon-border relative max-w-[80px] w-full h-20 rounded-full inline-flex items-center justify-center mb-13.5 mx-auto text-4xl">
+                    🔒
                   </span>
 
                   <h3 className="text-white mb-4.5 font-semibold text-heading-6">
-                    Empowering Writing Excellence
+                    Enterprise-Grade Privacy
                   </h3>
                   <p className="font-medium">
-                    Our AI writing tool is designed to empower you with exceptional writing capabilities, 
-                    making the writing process...
+                    Your data is yours. We are fully GDPR & CCPA compliant. We never sell your conversations; we only use them to make your personal AI smarter.
                   </p>
                 </div>
 
@@ -105,15 +100,15 @@ const FeaturesList = () => {
             <div className="relative rounded-3xl features-box-border">
               <div className="relative overflow-hidden rounded-3xl px-11 pt-20 pb-14 box-hover box-hover-small">
                 <div className="relative z-20">
-                  <span className="icon-border relative max-w-[80px] w-full h-20 rounded-full inline-flex items-center justify-center mb-13.5 mx-auto">
-                    <img src="/images/features/icon-05.svg" alt="icon" />
+                  <span className="icon-border relative max-w-[80px] w-full h-20 rounded-full inline-flex items-center justify-center mb-13.5 mx-auto text-4xl">
+                    ⚡
                   </span>
 
                   <h3 className="text-white mb-4.5 font-semibold text-heading-6">
-                    Grammar and Spell Check
+                    Works Where You Work
                   </h3>
                   <p className="font-medium">
-                    Our AI writing tool is designed to empower you with exceptional writing capabilities.
+                    Zero integration headaches. Launch it instantly on Google Meet, Zoom, and Microsoft Teams with just 2 clicks.
                   </p>
                 </div>
 
