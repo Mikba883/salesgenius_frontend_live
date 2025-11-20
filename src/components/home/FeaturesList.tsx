@@ -16,7 +16,7 @@ const FeaturesList = () => {
                       <span className="hero-subtitle-text">Real-time Magic</span>
                     </span>
                     <h3 className="text-white mb-4.5 font-bold text-heading-4">
-                      Don't Analyze the Loss Save the Deal
+                      Don't Analyze the Loss<br />Save the Deal
                     </h3>
                     <p className="mb-10 font-medium">
                       Post-call analytics are autopsies. SalesGenius is surgery. We don't tell you why you lost the deal yesterday; we give you the exact words to win it today, while the client is still listening.
@@ -27,7 +27,7 @@ const FeaturesList = () => {
                   </div>
 
                   <div className="hidden sm:flex flex-1 items-center justify-end">
-                    <div className="relative w-[300px] h-[300px] p-5 mt-4 sm:mt-6">
+                    <div className="relative w-[380px] h-[380px] p-5 mt-4 sm:mt-6">
                       <img
                         src="/images/features/big-icon.svg"
                         alt="AI sales assistant icon"
