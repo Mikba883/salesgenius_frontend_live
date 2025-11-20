@@ -44,8 +44,9 @@ const KeyFeatures = () => {
       <div className="max-w-[1222px] mx-auto px-4 sm:px-8 xl:px-0">
         {/* Section Title */}
         <div className="text-center mb-16">
-          <span className="inline-block mb-4 text-xs font-bold tracking-widest uppercase" style={{ color: '#a78bfa' }}>
-            UNFAIR ADVANTAGE
+          <span className="hero-subtitle-gradient relative mb-4 font-medium text-sm inline-flex items-center gap-2 py-2 px-6 rounded-full">
+            <img src="/images/hero/icon-title.svg" alt="icon" />
+            <span className="hero-subtitle-text">UNFAIR ADVANTAGE</span>
           </span>
           <h2 className="text-white mb-6 text-3xl font-extrabold sm:text-4xl xl:text-heading-2">
             Never Be Lost for Words Again
@@ -57,8 +58,8 @@ const KeyFeatures = () => {
 
         {/* Features Grid - Bento Style */}
         <div className="grid grid-cols-12 gap-4">
-          {/* Rapport - 5 cols */}
-          <div className="col-span-12 md:col-span-5">
+          {/* Rapport - 4 cols */}
+          <div className="col-span-12 md:col-span-4">
             <div 
               className="group bg-white/5 border-2 rounded-2xl p-6 h-full flex flex-col gap-4 transition-all duration-300 hover:-translate-y-1 cursor-pointer"
               style={{ 
@@ -97,8 +98,8 @@ const KeyFeatures = () => {
             </div>
           </div>
 
-          {/* Discovery - 7 cols */}
-          <div className="col-span-12 md:col-span-7">
+          {/* Discovery - 4 cols */}
+          <div className="col-span-12 md:col-span-4">
             <div 
               className="group bg-white/5 border-2 rounded-2xl p-6 h-full flex flex-col gap-4 transition-all duration-300 hover:-translate-y-1 cursor-pointer"
               style={{ 
@@ -177,8 +178,8 @@ const KeyFeatures = () => {
             </div>
           </div>
 
-          {/* Objection - 4 cols */}
-          <div className="col-span-12 md:col-span-4">
+          {/* Objection - 6 cols */}
+          <div className="col-span-12 md:col-span-6">
             <div 
               className="group bg-white/5 border-2 rounded-2xl p-6 h-full flex flex-col gap-4 transition-all duration-300 hover:-translate-y-1 cursor-pointer"
               style={{ 
@@ -217,8 +218,8 @@ const KeyFeatures = () => {
             </div>
           </div>
 
-          {/* Closing - 4 cols */}
-          <div className="col-span-12 md:col-span-4">
+          {/* Closing - 6 cols */}
+          <div className="col-span-12 md:col-span-6">
             <div 
               className="group bg-white/5 border-2 rounded-2xl p-6 h-full flex flex-col gap-4 transition-all duration-300 hover:-translate-y-1 cursor-pointer"
               style={{ 
