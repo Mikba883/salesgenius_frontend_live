@@ -20,8 +20,8 @@ const VisualEffect = () => {
         </div>
       </div>
 
-      {/* Background stars - starting below the black circle */}
-      <div className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-1" style={{ top: '800px', height: '400px' }}>
+      {/* Background stars - starting well below the black circle */}
+      <div className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-1" style={{ top: '1150px', height: '280px' }}>
         <div className="max-w-[1400px] w-full h-full overflow-visible relative">
           <div className="stars"></div>
           <div className="stars2"></div>
