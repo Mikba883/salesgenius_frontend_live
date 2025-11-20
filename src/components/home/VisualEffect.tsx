@@ -20,6 +20,14 @@ const VisualEffect = () => {
         </div>
       </div>
 
+      {/* Background stars - starting from black circle edge, going down */}
+      <div className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-1" style={{ top: '400px', height: '350px' }}>
+        <div className="max-w-[1400px] w-full h-full overflow-visible relative">
+          <div className="stars"></div>
+          <div className="stars2"></div>
+        </div>
+      </div>
+
       {/* Giant black circle - positioned lower where stars begin */}
       <div className="absolute left-1/2 -translate-x-1/2 top-[400px] w-[2400px] h-[1400px] rounded-[50%] bg-[#0a0118] z-5 overflow-hidden">
       </div>
@@ -57,84 +65,84 @@ const VisualEffect = () => {
                 <div className="space-y-0">
                   {/* Row 1 */}
                   <div className="grid grid-cols-3 hover:bg-white/5 transition-colors">
-                    <div className="bg-dark/40 px-6 py-5">
+                    <div className="bg-dark px-6 py-5">
                       <p className="text-white font-semibold">Built for Sales Calls</p>
                     </div>
-                    <div className="bg-dark/40 px-6 py-5 relative overflow-hidden">
+                    <div className="bg-dark px-6 py-5 relative overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-r from-purple/5 to-pink/5"></div>
                       <p className="relative text-white/90 leading-relaxed">Speaks the language of persuasion — trained on real negotiations and deal-closing moments.</p>
                     </div>
-                    <div className="bg-dark/40 px-6 py-5">
+                    <div className="bg-dark px-6 py-5">
                       <p className="text-white/50 leading-relaxed">Generic assistant, not optimized for sales.</p>
                     </div>
                   </div>
 
                   {/* Row 2 */}
                   <div className="grid grid-cols-3 hover:bg-white/5 transition-colors">
-                    <div className="bg-dark/40 px-6 py-5">
+                    <div className="bg-dark px-6 py-5">
                       <p className="text-white font-semibold">Live Coaching While You Speak</p>
                     </div>
-                    <div className="bg-dark/40 px-6 py-5 relative overflow-hidden">
+                    <div className="bg-dark px-6 py-5 relative overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-r from-purple/5 to-pink/5"></div>
                       <p className="relative text-white/90 leading-relaxed">Listens to your pitch and gives instant cues to say the right line at the right time.</p>
                     </div>
-                    <div className="bg-dark/40 px-6 py-5">
+                    <div className="bg-dark px-6 py-5">
                       <p className="text-white/50 leading-relaxed">You must type to get help — too slow for real calls.</p>
                     </div>
                   </div>
 
                   {/* Row 3 */}
                   <div className="grid grid-cols-3 hover:bg-white/5 transition-colors">
-                    <div className="bg-dark/40 px-6 py-5">
+                    <div className="bg-dark px-6 py-5">
                       <p className="text-white font-semibold">Understands the Whole Conversation</p>
                     </div>
-                    <div className="bg-dark/40 px-6 py-5 relative overflow-hidden">
+                    <div className="bg-dark px-6 py-5 relative overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-r from-purple/5 to-pink/5"></div>
                       <p className="relative text-white/90 leading-relaxed">Gets the full context — tone, client intent, and negotiation phase. Knows what's happening and what's next.</p>
                     </div>
-                    <div className="bg-dark/40 px-6 py-5">
+                    <div className="bg-dark px-6 py-5">
                       <p className="text-white/50 leading-relaxed">Reacts only to isolated prompts, missing the flow of the meeting.</p>
                     </div>
                   </div>
 
                   {/* Row 4 */}
                   <div className="grid grid-cols-3 hover:bg-white/5 transition-colors">
-                    <div className="bg-dark/40 px-6 py-5">
+                    <div className="bg-dark px-6 py-5">
                       <p className="text-white font-semibold">Privacy First</p>
                     </div>
-                    <div className="bg-dark/40 px-6 py-5 relative overflow-hidden">
+                    <div className="bg-dark px-6 py-5 relative overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-r from-purple/5 to-pink/5"></div>
                       <p className="relative text-white/90 leading-relaxed">Audio stays on your device — nothing sent to the cloud, nothing recorded.</p>
                     </div>
-                    <div className="bg-dark/40 px-6 py-5">
+                    <div className="bg-dark px-6 py-5">
                       <p className="text-white/50 leading-relaxed">Often processed externally with unclear data use.</p>
                     </div>
                   </div>
 
                   {/* Row 5 */}
                   <div className="grid grid-cols-3 hover:bg-white/5 transition-colors">
-                    <div className="bg-dark/40 px-6 py-5">
+                    <div className="bg-dark px-6 py-5">
                       <p className="text-white font-semibold">Works Seamlessly Anywhere</p>
                     </div>
-                    <div className="bg-dark/40 px-6 py-5 relative overflow-hidden">
+                    <div className="bg-dark px-6 py-5 relative overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-r from-purple/5 to-pink/5"></div>
                       <p className="relative text-white/90 leading-relaxed">Integrates instantly with Zoom, Meet, or Teams — no setup needed.</p>
                     </div>
-                    <div className="bg-dark/40 px-6 py-5">
+                    <div className="bg-dark px-6 py-5">
                       <p className="text-white/50 leading-relaxed">Generic AI can't join your calls.</p>
                     </div>
                   </div>
 
                   {/* Row 6 */}
                   <div className="grid grid-cols-3 hover:bg-white/5 transition-colors">
-                    <div className="bg-dark/40 px-6 py-5">
+                    <div className="bg-dark px-6 py-5">
                       <p className="text-white font-semibold">Built by Sales Pros</p>
                     </div>
-                    <div className="bg-dark/40 px-6 py-5 relative overflow-hidden">
+                    <div className="bg-dark px-6 py-5 relative overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-r from-purple/5 to-pink/5"></div>
                       <p className="relative text-white/90 leading-relaxed">Created with top sales coaches and AI engineers for real-world performance.</p>
                     </div>
-                    <div className="bg-dark/40 px-6 py-5">
+                    <div className="bg-dark px-6 py-5">
                       <p className="text-white/50 leading-relaxed">Designed for everyone, fine for no one.</p>
                     </div>
                   </div>
@@ -154,7 +162,7 @@ const VisualEffect = () => {
                     <p className="text-xs text-purple font-semibold mb-2 uppercase tracking-wider">SalesGenius</p>
                     <p className="text-white/90 text-sm leading-relaxed">Speaks the language of persuasion — trained on real negotiations and deal-closing moments.</p>
                   </div>
-                  <div className="rounded-lg bg-dark/60 p-4 border border-white/5">
+                  <div className="rounded-lg bg-dark p-4 border border-white/5">
                     <p className="text-xs text-white/40 font-semibold mb-2 uppercase tracking-wider">Generic AI</p>
                     <p className="text-white/50 text-sm leading-relaxed">Generic assistant, not optimized for sales.</p>
                   </div>
@@ -171,7 +179,7 @@ const VisualEffect = () => {
                     <p className="text-xs text-purple font-semibold mb-2 uppercase tracking-wider">SalesGenius</p>
                     <p className="text-white/90 text-sm leading-relaxed">Listens to your pitch and gives instant cues to say the right line at the right time.</p>
                   </div>
-                  <div className="rounded-lg bg-dark/60 p-4 border border-white/5">
+                  <div className="rounded-lg bg-dark p-4 border border-white/5">
                     <p className="text-xs text-white/40 font-semibold mb-2 uppercase tracking-wider">Generic AI</p>
                     <p className="text-white/50 text-sm leading-relaxed">You must type to get help — too slow for real calls.</p>
                   </div>
@@ -188,7 +196,7 @@ const VisualEffect = () => {
                     <p className="text-xs text-purple font-semibold mb-2 uppercase tracking-wider">SalesGenius</p>
                     <p className="text-white/90 text-sm leading-relaxed">Gets the full context — tone, client intent, and negotiation phase. Knows what's happening and what's next.</p>
                   </div>
-                  <div className="rounded-lg bg-dark/60 p-4 border border-white/5">
+                  <div className="rounded-lg bg-dark p-4 border border-white/5">
                     <p className="text-xs text-white/40 font-semibold mb-2 uppercase tracking-wider">Generic AI</p>
                     <p className="text-white/50 text-sm leading-relaxed">Reacts only to isolated prompts, missing the flow of the meeting.</p>
                   </div>
@@ -205,7 +213,7 @@ const VisualEffect = () => {
                     <p className="text-xs text-purple font-semibold mb-2 uppercase tracking-wider">SalesGenius</p>
                     <p className="text-white/90 text-sm leading-relaxed">Audio stays on your device — nothing sent to the cloud, nothing recorded.</p>
                   </div>
-                  <div className="rounded-lg bg-dark/60 p-4 border border-white/5">
+                  <div className="rounded-lg bg-dark p-4 border border-white/5">
                     <p className="text-xs text-white/40 font-semibold mb-2 uppercase tracking-wider">Generic AI</p>
                     <p className="text-white/50 text-sm leading-relaxed">Often processed externally with unclear data use.</p>
                   </div>
@@ -222,7 +230,7 @@ const VisualEffect = () => {
                     <p className="text-xs text-purple font-semibold mb-2 uppercase tracking-wider">SalesGenius</p>
                     <p className="text-white/90 text-sm leading-relaxed">Integrates instantly with Zoom, Meet, or Teams — no setup needed.</p>
                   </div>
-                  <div className="rounded-lg bg-dark/60 p-4 border border-white/5">
+                  <div className="rounded-lg bg-dark p-4 border border-white/5">
                     <p className="text-xs text-white/40 font-semibold mb-2 uppercase tracking-wider">Generic AI</p>
                     <p className="text-white/50 text-sm leading-relaxed">Generic AI can't join your calls.</p>
                   </div>
