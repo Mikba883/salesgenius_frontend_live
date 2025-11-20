@@ -27,11 +27,11 @@ const FeaturesList = () => {
                   </div>
 
                   <div className="hidden sm:flex flex-1 items-center justify-end">
-                    <div className="relative w-[360px] h-[360px] p-8 mt-4 sm:mt-6">
+                    <div className="relative w-[420px] h-[420px] p-4 mt-4 sm:mt-6">
                       <img
                         src="/images/features/big-icon.svg"
                         alt="AI sales assistant icon"
-                        className="w-full h-full object-contain"
+                        className="w-full h-full object-contain opacity-70"
                       />
                     </div>
                   </div>
