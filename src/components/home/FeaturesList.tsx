@@ -8,7 +8,7 @@ const FeaturesList = () => {
           {/* Large Feature */}
           <div className="sm:col-span-12">
             <div className="relative rounded-3xl features-box-border">
-              <div className="relative p-10 overflow-hidden rounded-3xl xl:px-15 xl:py-12 box-hover">
+              <div className="relative p-10 rounded-3xl xl:px-15 xl:py-12 box-hover">
                 <div className="relative z-20 flex items-center justify-between">
                   <div className="max-w-[477px] w-full">
                     <span className="hero-subtitle-gradient relative mb-4 font-medium text-sm inline-flex items-center gap-2 py-2 px-6 rounded-full">
