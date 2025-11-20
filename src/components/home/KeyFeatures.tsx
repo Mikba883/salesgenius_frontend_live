@@ -30,7 +30,7 @@ const KeyFeatures = () => {
   ];
 
   return (
-    <section className="overflow-hidden pt-17.5 lg:pt-22.5 xl:pt-27.5">
+    <section className="overflow-hidden py-20 lg:py-28 xl:py-32">
       <div className="max-w-[1222px] mx-auto px-4 sm:px-8 xl:px-0">
         {/* Section Title */}
         <div className="text-center mb-16">
@@ -51,7 +51,7 @@ const KeyFeatures = () => {
           {features.slice(0, 3).map((feature, index) => (
             <div
               key={index}
-              className="col-span-12 sm:col-span-4 bg-black border border-gray-800"
+              className="col-span-12 sm:col-span-4 border border-gray-800"
             >
               <div className="p-10 h-full">
                 <div className="text-center h-full flex flex-col">
@@ -71,7 +71,7 @@ const KeyFeatures = () => {
           {features.slice(3, 5).map((feature, index) => (
             <div
               key={index + 3}
-              className="col-span-12 sm:col-span-6 bg-black border border-gray-800"
+              className="col-span-12 sm:col-span-6 border border-gray-800"
             >
               <div className="p-10 h-full">
                 <div className="text-center h-full flex flex-col">
