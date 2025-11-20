@@ -13,10 +13,10 @@ const FeaturesList = () => {
                   <div className="max-w-[477px] w-full">
                     <span className="hero-subtitle-gradient relative mb-4 font-medium text-sm inline-flex items-center gap-2 py-2 px-6 rounded-full">
                       <img src="/images/hero/icon-title.svg" alt="icon" />
-                      <span className="hero-subtitle-text">REAL-TIME MAGIC</span>
+                      <span className="hero-subtitle-text">Real-time Magic</span>
                     </span>
                     <h3 className="text-white mb-4.5 font-bold text-heading-4">
-                      Don't Analyze the Loss. Save the Deal.
+                      Don't Analyze the Loss Save the Deal
                     </h3>
                     <p className="mb-10 font-medium">
                       Post-call analytics are autopsies. SalesGenius is surgery. We don't tell you why you lost the deal yesterday; we give you the exact words to win it today, while the client is still listening.
@@ -26,8 +26,9 @@ const FeaturesList = () => {
                     </a>
                   </div>
 
-                  <div className="max-w-[428px] w-full hidden sm:block">
-                    <img src="/images/features/big-icon.svg" alt="icon" />
+                  <div className="max-w-[280px] w-full hidden sm:block relative">
+                    <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-dark/80 z-10 pointer-events-none"></div>
+                    <img src="/images/features/big-icon.svg" alt="icon" className="relative" />
                   </div>
                 </div>
 
@@ -58,10 +59,10 @@ const FeaturesList = () => {
 
           {/* Medium Feature */}
           <div className="sm:col-span-7">
-            <div className="relative rounded-3xl features-box-border">
-              <div className="relative overflow-hidden rounded-3xl px-11 pt-20 pb-14 box-hover box-hover-small">
-                <div className="relative z-20">
-                  <span className="icon-border relative max-w-[80px] w-full h-20 rounded-full inline-flex items-center justify-center mb-13.5 mx-auto text-4xl">
+            <div className="relative rounded-3xl features-box-border h-full">
+              <div className="relative overflow-hidden rounded-3xl px-11 pt-20 pb-14 box-hover box-hover-small h-full flex flex-col">
+                <div className="relative z-20 flex-1 flex flex-col">
+                  <span className="icon-border relative max-w-[80px] w-full h-20 rounded-full inline-flex items-center justify-center mb-20 mx-auto text-4xl">
                     🔒
                   </span>
 
@@ -97,10 +98,10 @@ const FeaturesList = () => {
 
           {/* Small Feature */}
           <div className="sm:col-span-5">
-            <div className="relative rounded-3xl features-box-border">
-              <div className="relative overflow-hidden rounded-3xl px-11 pt-20 pb-14 box-hover box-hover-small">
-                <div className="relative z-20">
-                  <span className="icon-border relative max-w-[80px] w-full h-20 rounded-full inline-flex items-center justify-center mb-13.5 mx-auto text-4xl">
+            <div className="relative rounded-3xl features-box-border h-full">
+              <div className="relative overflow-hidden rounded-3xl px-11 pt-20 pb-14 box-hover box-hover-small h-full flex flex-col">
+                <div className="relative z-20 flex-1 flex flex-col">
+                  <span className="icon-border relative max-w-[80px] w-full h-20 rounded-full inline-flex items-center justify-center mb-20 mx-auto text-4xl">
                     ⚡
                   </span>
 
