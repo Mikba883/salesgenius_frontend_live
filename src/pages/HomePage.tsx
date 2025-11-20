@@ -1,5 +1,6 @@
 import React from 'react';
 import Layout from '@/components/layout/Layout';
+import KeyFeatures from '@/components/home/KeyFeatures';
 import FeaturesGrid from '@/components/home/FeaturesGrid';
 import FeaturesList from '@/components/home/FeaturesList';
 import Testimonials from '@/components/home/Testimonials';
@@ -54,6 +55,7 @@ const HomePage = () => {
       </section>
 
       {/* All Other Sections */}
+      <KeyFeatures />
       <FeaturesGrid />
       <FeaturesList />
       <VisualEffect />
