@@ -3,19 +3,19 @@ import React from 'react';
 const VisualEffect = () => {
   return (
     <section className="relative py-40 lg:py-48 overflow-visible min-h-[140vh] bg-[#030014]">
-      {/* Purple glow effects - extended upward and downward for sunrise effect */}
+      {/* Purple glow effects - centered below the black circle */}
       <div className="absolute inset-0 overflow-visible pointer-events-none z-0" style={{ top: '-200px', bottom: '-200px' }}>
-        <div className="absolute top-[250px] left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="absolute top-[550px] left-1/2 -translate-x-1/2 -translate-y-1/2">
           <img src="/images/blur/blur-15.svg" alt="blur" className="max-w-none scale-[2.0] opacity-100" />
         </div>
-        <div className="absolute top-[300px] left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="absolute top-[600px] left-1/2 -translate-x-1/2 -translate-y-1/2">
           <img src="/images/blur/blur-14.svg" alt="blur" className="max-w-none scale-[2.6] opacity-60" />
         </div>
-        <div className="absolute top-[350px] left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="absolute top-[650px] left-1/2 -translate-x-1/2 -translate-y-1/2">
           <img src="/images/blur/blur-13.svg" alt="blur" className="max-w-none scale-[3.5] opacity-20" />
         </div>
         {/* Additional glow layers for more intense sunrise effect */}
-        <div className="absolute top-[400px] left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="absolute top-[700px] left-1/2 -translate-x-1/2 -translate-y-1/2">
           <img src="/images/blur/blur-15.svg" alt="blur" className="max-w-none scale-[3.0] opacity-40" />
         </div>
       </div>
@@ -24,9 +24,9 @@ const VisualEffect = () => {
       <div className="absolute left-1/2 -translate-x-1/2 top-[400px] w-[2400px] h-[1400px] rounded-[50%] bg-[#0a0118] z-5 overflow-hidden">
       </div>
 
-      {/* Background stars - extended both above and below */}
-      <div className="absolute inset-0 z-30" style={{ top: '-100px', bottom: '-100px' }}>
-        <div className="max-w-[800px] w-full h-[800px] overflow-visible absolute top-20 left-1/2 -translate-x-1/2">
+      {/* Background stars - behind black circle, starting from its edge */}
+      <div className="absolute inset-0 z-1" style={{ top: '400px', height: '600px' }}>
+        <div className="max-w-[1200px] w-full h-full overflow-visible absolute top-0 left-1/2 -translate-x-1/2">
           <div className="stars"></div>
           <div className="stars2"></div>
         </div>
