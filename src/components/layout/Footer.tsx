@@ -168,6 +168,14 @@ const Footer = () => {
 
                 <ul className="flex flex-col gap-3.5">
                   <li>
+                    <Link
+                      to="/contact"
+                      className="font-medium ease-in duration-300 hover:text-white"
+                    >
+                      Contact
+                    </Link>
+                  </li>
+                  <li>
                     <a
                       href="/#"
                       className="font-medium ease-in duration-300 hover:text-white"
