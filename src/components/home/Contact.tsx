@@ -2,9 +2,9 @@ import React from 'react';
 
 const Contact = () => {
   return (
-    <section id="support" className="pt-20 lg:pt-25 xl:pt-27.5 scroll-mt-17">
+    <section id="support" className="py-24 lg:py-32 xl:py-40 scroll-mt-17">
       <div className="max-w-[1104px] mx-auto px-4 sm:px-8 xl:px-0">
-        <div className="relative z-999 overflow-hidden rounded-[30px] bg-dark pt-25 px-4 sm:px-20 lg:px-27.5">
+        <div className="relative z-10 overflow-hidden rounded-[30px] bg-dark pt-25 px-4 sm:px-20 lg:px-27.5">
           {/* grid row */}
           <div className="flex justify-center gap-7.5 absolute left-1/2 -translate-x-1/2 -top-[16%] max-w-[690px] w-full -z-1 opacity-40">
             {[12, 7, 3, 0, 0, 0, 2, 5, 8].map((bottom, i) => (
@@ -16,7 +16,7 @@ const Contact = () => {
           </div>
 
           {/* stars */}
-          <div className="max-w-[482px] w-full h-60 overflow-hidden absolute -z-1 -top-30 left-1/2 -translate-x-1/2">
+          <div className="max-w-[482px] w-full h-60 overflow-hidden absolute z-[5] -top-30 left-1/2 -translate-x-1/2">
             <div className="stars"></div>
             <div className="stars2"></div>
           </div>
@@ -35,7 +35,7 @@ const Contact = () => {
           </div>
 
           {/* section title */}
-          <div className="relative mb-16 text-center z-999">
+          <div className="relative mb-16 text-center z-[1]">
             <span className="hero-subtitle-gradient relative mb-4 font-medium text-sm inline-flex items-center gap-2 py-2 px-6 rounded-full">
               <img src="/images/hero/icon-title.svg" alt="icon" />
               <span className="hero-subtitle-text">Need Any Help?</span>
