@@ -26,8 +26,8 @@ const VisualEffect = () => {
       </div>
 
       {/* Background stars - copied from pricing section */}
-      <div className="absolute inset-0 z-10">
-        <div className="max-w-[600px] w-full h-60 overflow-hidden absolute top-[1150px] left-1/2 -translate-x-1/2">
+      <div className="absolute inset-0 z-1">
+        <div className="max-w-[600px] w-full h-60 overflow-hidden absolute top-[850px] left-1/2 -translate-x-1/2">
           <div className="stars"></div>
           <div className="stars2"></div>
         </div>
