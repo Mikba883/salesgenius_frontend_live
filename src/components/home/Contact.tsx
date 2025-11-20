@@ -4,7 +4,7 @@ const Contact = () => {
   return (
     <section id="support" className="pb-24 lg:pb-32 xl:pb-40 scroll-mt-17">
       <div className="w-full">
-        <div className="relative z-10 overflow-hidden bg-dark pt-40 px-4 sm:px-20 lg:px-27.5">
+        <div className="relative z-10 overflow-hidden bg-dark pt-40">
           {/* grid row */}
           <div className="flex justify-center gap-7.5 absolute left-1/2 -translate-x-1/2 -top-[16%] max-w-[690px] w-full -z-1 opacity-40">
             {[12, 7, 3, 0, 0, 0, 2, 5, 8].map((bottom, i) => (
@@ -35,7 +35,7 @@ const Contact = () => {
           </div>
 
           {/* section title */}
-          <div className="relative mb-16 text-center z-[1]">
+          <div className="relative mb-16 text-center z-[1] px-4 sm:px-8">
             <span className="hero-subtitle-gradient relative mb-4 font-medium text-sm inline-flex items-center gap-2 py-2 px-6 rounded-full">
               <img src="/images/hero/icon-title.svg" alt="icon" />
               <span className="hero-subtitle-text">Need Any Help?</span>
@@ -50,7 +50,8 @@ const Contact = () => {
           </div>
 
           {/* support form */}
-          <div className="form-box-gradient relative overflow-hidden rounded-[25px] bg-dark p-6 sm:p-8 xl:p-15">
+          <div className="max-w-[1104px] mx-auto px-4 sm:px-8 xl:px-0">
+            <div className="form-box-gradient relative overflow-hidden rounded-[25px] bg-dark p-6 sm:p-8 xl:p-15">
             <form className="relative z-10">
               <div className="flex flex-wrap -mx-4 xl:-mx-10">
                 <div className="w-full px-4 xl:px-5 md:w-1/2">
