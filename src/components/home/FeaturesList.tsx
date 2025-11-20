@@ -27,7 +27,6 @@ const FeaturesList = () => {
                   </div>
 
                   <div className="max-w-[428px] w-full hidden sm:block relative">
-                    <div className="absolute inset-0 bg-gradient-radial from-transparent from-20% via-dark/30 via-50% to-dark z-10 pointer-events-none"></div>
                     <img src="/images/features/big-icon.svg" alt="icon" className="relative" />
                   </div>
                 </div>
