@@ -16,8 +16,8 @@ const VisualEffect = () => {
         </div>
       </div>
 
-      {/* Giant black circle - positioned between title and table, much flatter curve */}
-      <div className="absolute left-1/2 -translate-x-1/2 top-[250px] w-[2400px] h-[1400px] rounded-[50%] bg-[#0a0118] z-5 overflow-hidden">
+      {/* Giant black circle - positioned where stars begin */}
+      <div className="absolute left-1/2 -translate-x-1/2 top-20 w-[2400px] h-[1400px] rounded-[50%] bg-[#0a0118] z-5 overflow-hidden">
       </div>
 
       {/* Background stars - above purple glow */}
