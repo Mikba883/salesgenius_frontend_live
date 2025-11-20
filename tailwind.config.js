@@ -80,6 +80,9 @@ module.exports = {
         'dark': '0px 2px 4px rgba(11, 20, 51, 0.05), 0px 6px 24px rgba(11, 20, 51, 0.4)',
         'video': '0px -3px 10px 0px rgba(0, 0, 0, 0.25) inset, 0px 26px 50px 0px rgba(18, 9, 36, 0.1)',
       },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(circle, var(--tw-gradient-stops))',
+      },
     },
   },
   plugins: [],
