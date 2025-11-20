@@ -9,6 +9,7 @@ import Blog from '@/components/home/Blog';
 import CTA from '@/components/home/CTA';
 import VisualEffect from '@/components/home/VisualEffect';
 import PricingVisualEffect from '@/components/home/PricingVisualEffect';
+import VideoDemo from '@/components/home/VideoDemo';
 
 const HomePage = () => {
   return (
@@ -54,6 +55,7 @@ const HomePage = () => {
       </section>
 
       {/* All Other Sections */}
+      <VideoDemo />
       <KeyFeatures />
       <FeaturesGrid />
       <FeaturesList />
