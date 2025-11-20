@@ -24,8 +24,8 @@ const VisualEffect = () => {
       <div className="absolute left-1/2 -translate-x-1/2 top-[400px] w-[2400px] h-[1400px] rounded-[50%] bg-[#0a0118] z-5 overflow-hidden">
       </div>
 
-      {/* Background stars - behind black circle, starting from its edge */}
-      <div className="absolute inset-0 z-1" style={{ top: '400px', height: '600px' }}>
+      {/* Background stars - behind black circle, shorter effect ending mid-cards */}
+      <div className="absolute inset-0 z-1" style={{ top: '400px', height: '350px' }}>
         <div className="max-w-[1200px] w-full h-full overflow-visible absolute top-0 left-1/2 -translate-x-1/2">
           <div className="stars"></div>
           <div className="stars2"></div>
@@ -46,7 +46,7 @@ const VisualEffect = () => {
           <div className="w-full max-w-[1100px] mt-48 lg:mt-40">
             {/* Desktop Table View */}
             <div className="hidden lg:block">
-              <div className="rounded-2xl border border-white/10 bg-dark/40 backdrop-blur-sm overflow-hidden">
+              <div className="rounded-2xl border border-white/10 bg-dark/95 backdrop-blur-sm overflow-hidden">
                 {/* Table Header */}
                 <div className="grid grid-cols-3">
                   <div className="bg-dark/60 px-6 py-5">
@@ -153,7 +153,7 @@ const VisualEffect = () => {
             {/* Mobile Card View */}
             <div className="lg:hidden space-y-6">
               {/* Feature 1 */}
-              <div className="rounded-xl border border-white/10 bg-dark/40 backdrop-blur-sm overflow-hidden">
+              <div className="rounded-xl border border-white/10 bg-dark/95 backdrop-blur-sm overflow-hidden">
                 <div className="px-5 py-4 border-b border-white/10">
                   <h3 className="text-white font-bold text-lg">Built for Sales Calls</h3>
                 </div>
@@ -170,7 +170,7 @@ const VisualEffect = () => {
               </div>
 
               {/* Feature 2 */}
-              <div className="rounded-xl border border-white/10 bg-dark/40 backdrop-blur-sm overflow-hidden">
+              <div className="rounded-xl border border-white/10 bg-dark/95 backdrop-blur-sm overflow-hidden">
                 <div className="px-5 py-4 border-b border-white/10">
                   <h3 className="text-white font-bold text-lg">Live Coaching While You Speak</h3>
                 </div>
@@ -187,7 +187,7 @@ const VisualEffect = () => {
               </div>
 
               {/* Feature 3 */}
-              <div className="rounded-xl border border-white/10 bg-dark/40 backdrop-blur-sm overflow-hidden">
+              <div className="rounded-xl border border-white/10 bg-dark/95 backdrop-blur-sm overflow-hidden">
                 <div className="px-5 py-4 border-b border-white/10">
                   <h3 className="text-white font-bold text-lg">Understands the Whole Conversation</h3>
                 </div>
@@ -204,7 +204,7 @@ const VisualEffect = () => {
               </div>
 
               {/* Feature 4 */}
-              <div className="rounded-xl border border-white/10 bg-dark/40 backdrop-blur-sm overflow-hidden">
+              <div className="rounded-xl border border-white/10 bg-dark/95 backdrop-blur-sm overflow-hidden">
                 <div className="px-5 py-4 border-b border-white/10">
                   <h3 className="text-white font-bold text-lg">Privacy First</h3>
                 </div>
@@ -221,7 +221,7 @@ const VisualEffect = () => {
               </div>
 
               {/* Feature 5 */}
-              <div className="rounded-xl border border-white/10 bg-dark/40 backdrop-blur-sm overflow-hidden">
+              <div className="rounded-xl border border-white/10 bg-dark/95 backdrop-blur-sm overflow-hidden">
                 <div className="px-5 py-4 border-b border-white/10">
                   <h3 className="text-white font-bold text-lg">Works Seamlessly Anywhere</h3>
                 </div>
@@ -238,7 +238,7 @@ const VisualEffect = () => {
               </div>
 
               {/* Feature 6 */}
-              <div className="rounded-xl border border-white/10 bg-dark/40 backdrop-blur-sm overflow-hidden">
+              <div className="rounded-xl border border-white/10 bg-dark/95 backdrop-blur-sm overflow-hidden">
                 <div className="px-5 py-4 border-b border-white/10">
                   <h3 className="text-white font-bold text-lg">Built by Sales Pros</h3>
                 </div>
