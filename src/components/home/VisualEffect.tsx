@@ -2,17 +2,17 @@ import React from 'react';
 
 const VisualEffect = () => {
   return (
-    <section className="relative py-20 lg:py-32 overflow-hidden min-h-screen bg-[#030014]">
+    <section className="relative py-32 lg:py-40 overflow-hidden min-h-[120vh] bg-[#030014]">
       {/* Purple glow effects - under everything, starting below the circle like a sunrise */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         <div className="absolute top-[450px] left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <img src="/images/blur/blur-15.svg" alt="blur" className="max-w-none scale-[1.2] opacity-100" />
+          <img src="/images/blur/blur-15.svg" alt="blur" className="max-w-none scale-[1.4] opacity-100" />
         </div>
         <div className="absolute top-[500px] left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <img src="/images/blur/blur-14.svg" alt="blur" className="max-w-none scale-[1.8] opacity-25" />
+          <img src="/images/blur/blur-14.svg" alt="blur" className="max-w-none scale-[2.0] opacity-40" />
         </div>
         <div className="absolute top-[550px] left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <img src="/images/blur/blur-13.svg" alt="blur" className="max-w-none scale-[2.5] opacity-5" />
+          <img src="/images/blur/blur-13.svg" alt="blur" className="max-w-none scale-[2.8] opacity-10" />
         </div>
       </div>
 
@@ -29,7 +29,7 @@ const VisualEffect = () => {
       </div>
 
       {/* Content on top */}
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-8 xl:px-0 relative z-10 pt-16 lg:pt-12">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-8 xl:px-0 relative z-10 pt-4 lg:pt-2">
         <div className="flex flex-col items-center gap-16 text-center">
           {/* Title - moved higher */}
           <div className="space-y-6">
