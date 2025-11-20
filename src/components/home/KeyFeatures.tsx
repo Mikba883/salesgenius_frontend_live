@@ -47,14 +47,14 @@ const KeyFeatures = () => {
         </div>
 
         {/* Features Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-12">
-          {features.map((feature, index) => (
+        <div className="grid grid-cols-12 gap-0">
+          {features.slice(0, 3).map((feature, index) => (
             <div
               key={index}
-              className="relative rounded-3xl features-box-border group"
+              className="col-span-12 sm:col-span-4 bg-black border border-gray-800"
             >
-              <div className="relative overflow-hidden rounded-3xl p-10 box-hover">
-                <div className="relative z-20 text-center">
+              <div className="p-10 h-full">
+                <div className="text-center h-full flex flex-col">
                   <div className="icon-border relative max-w-[80px] w-full h-20 rounded-full inline-flex items-center justify-center mb-10 mx-auto">
                     <img src={feature.icon} alt="icon" />
                   </div>
@@ -65,15 +65,25 @@ const KeyFeatures = () => {
                     {feature.description}
                   </p>
                 </div>
-
-                {/* bg shapes */}
-                <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
-                  <span className="absolute bottom-0 left-0">
-                    <img src="/images/features/shape-04.svg" alt="shape" />
-                  </span>
-                  <span className="absolute top-0 right-0">
-                    <img src="/images/features/shape-05.svg" alt="shape" />
-                  </span>
+              </div>
+            </div>
+          ))}
+          {features.slice(3, 5).map((feature, index) => (
+            <div
+              key={index + 3}
+              className="col-span-12 sm:col-span-6 bg-black border border-gray-800"
+            >
+              <div className="p-10 h-full">
+                <div className="text-center h-full flex flex-col">
+                  <div className="icon-border relative max-w-[80px] w-full h-20 rounded-full inline-flex items-center justify-center mb-10 mx-auto">
+                    <img src={feature.icon} alt="icon" />
+                  </div>
+                  <h3 className="text-white mb-5 font-bold text-xl">
+                    {feature.title}
+                  </h3>
+                  <p className="font-medium leading-relaxed">
+                    {feature.description}
+                  </p>
                 </div>
               </div>
             </div>
