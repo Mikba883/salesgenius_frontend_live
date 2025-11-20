@@ -10,6 +10,7 @@ import CheckEmailPage from './pages/CheckEmailPage';
 import DashboardPage from './pages/DashboardPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsOfServicePage from './pages/TermsOfServicePage';
+import ContactPage from './pages/ContactPage';
 import ErrorFallback from './components/ErrorFallback';
 
 interface ErrorBoundaryProps {
@@ -105,6 +106,7 @@ function App() {
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="/terms" element={<TermsOfServicePage />} />
+        <Route path="/contact" element={<ContactPage />} />
       </Routes>
     </ErrorBoundary>
   );

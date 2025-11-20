@@ -5,7 +5,6 @@ import FeaturesGrid from '@/components/home/FeaturesGrid';
 import FeaturesList from '@/components/home/FeaturesList';
 import Testimonials from '@/components/home/Testimonials';
 import Clients from '@/components/home/Clients';
-import Contact from '@/components/home/Contact';
 import Blog from '@/components/home/Blog';
 import CTA from '@/components/home/CTA';
 import VisualEffect from '@/components/home/VisualEffect';
@@ -61,7 +60,6 @@ const HomePage = () => {
       <VisualEffect />
       <Testimonials />
       <Clients />
-      <Contact />
       <Blog />
       <PricingVisualEffect />
       <CTA />
