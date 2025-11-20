@@ -141,23 +141,27 @@ const Footer = () => {
               </div>
 
               <div>
-                <h5 className="font-semibold text-white mb-5">Company</h5>
+                <h5 className="font-semibold text-white mb-5">Legal</h5>
 
                 <ul className="flex flex-col gap-3.5">
                   <li>
-                    <a
-                      href="/#"
+                    <Link
+                      to="/privacy-policy"
                       className="font-medium ease-in duration-300 hover:text-white"
                     >
                       Privacy Policy
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
-                      href="/#"
+                    <Link
+                      to="/terms"
                       className="font-medium ease-in duration-300 hover:text-white"
                     >
-                      Refund Policy
+                      Terms of Service
+                    </Link>
+                  </li>
+                </ul>
+              </div>
                     </a>
                   </li>
                   <li>
