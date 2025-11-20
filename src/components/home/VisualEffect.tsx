@@ -21,7 +21,7 @@ const VisualEffect = () => {
       </div>
 
       {/* Background stars - starting from black circle edge, going down */}
-      <div className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-1" style={{ top: '400px', height: '350px' }}>
+      <div className="hidden">
         <div className="max-w-[1400px] w-full h-full overflow-visible relative">
           <div className="stars"></div>
           <div className="stars2"></div>
@@ -49,14 +49,14 @@ const VisualEffect = () => {
               <div className="rounded-2xl border border-white/10 bg-dark/95 backdrop-blur-sm overflow-hidden">
                 {/* Table Header */}
                 <div className="grid grid-cols-3">
-                  <div className="bg-dark/60 px-6 py-5">
+                  <div className="bg-dark px-6 py-5">
                     <h3 className="text-white/60 font-semibold text-sm uppercase tracking-wider">Feature</h3>
                   </div>
                   <div className="bg-gradient-to-br from-purple/20 to-pink/20 px-6 py-5 relative">
                     <div className="absolute inset-0 bg-gradient-to-r from-purple/10 to-pink/10 opacity-50"></div>
                     <h3 className="relative bg-gradient-to-r from-purple to-pink bg-clip-text text-transparent font-bold text-base uppercase tracking-wider">SalesGenius</h3>
                   </div>
-                  <div className="bg-dark/60 px-6 py-5">
+                  <div className="bg-dark px-6 py-5">
                     <h3 className="text-white/60 font-semibold text-sm uppercase tracking-wider">Generic AI Tools</h3>
                   </div>
                 </div>
@@ -247,7 +247,7 @@ const VisualEffect = () => {
                     <p className="text-xs text-purple font-semibold mb-2 uppercase tracking-wider">SalesGenius</p>
                     <p className="text-white/90 text-sm leading-relaxed">Created with top sales coaches and AI engineers for real-world performance.</p>
                   </div>
-                  <div className="rounded-lg bg-dark/60 p-4 border border-white/5">
+                  <div className="rounded-lg bg-dark p-4 border border-white/5">
                     <p className="text-xs text-white/40 font-semibold mb-2 uppercase tracking-wider">Generic AI</p>
                     <p className="text-white/50 text-sm leading-relaxed">Designed for everyone, fine for no one.</p>
                   </div>
