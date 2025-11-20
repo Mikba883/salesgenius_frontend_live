@@ -162,26 +162,6 @@ const Footer = () => {
                   </li>
                 </ul>
               </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/#"
-                      className="font-medium ease-in duration-300 hover:text-white"
-                    >
-                      Support
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/#"
-                      className="font-medium ease-in duration-300 hover:text-white"
-                    >
-                      Community
-                    </a>
-                  </li>
-                </ul>
-              </div>
 
               <div>
                 <h5 className="font-semibold text-white mb-5">Support</h5>
