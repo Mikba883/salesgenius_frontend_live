@@ -175,46 +175,6 @@ const Footer = () => {
                       Contact
                     </Link>
                   </li>
-                  <li>
-                    <a
-                      href="/#"
-                      className="font-medium ease-in duration-300 hover:text-white"
-                    >
-                      Features
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/#"
-                      className="font-medium ease-in duration-300 hover:text-white"
-                    >
-                      Integrations
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/#"
-                      className="font-medium ease-in duration-300 hover:text-white"
-                    >
-                      Pricing
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/#"
-                      className="font-medium ease-in duration-300 hover:text-white"
-                    >
-                      Changelog
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/#"
-                      className="font-medium ease-in duration-300 hover:text-white"
-                    >
-                      Roadmap
-                    </a>
-                  </li>
                 </ul>
               </div>
             </div>
