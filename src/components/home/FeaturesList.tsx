@@ -27,7 +27,7 @@ const FeaturesList = () => {
                   </div>
 
                   <div className="max-w-[428px] w-full hidden sm:block relative">
-                    <div className="absolute inset-0 bg-gradient-radial from-transparent from-30% via-transparent via-60% to-dark z-10 pointer-events-none"></div>
+                    <div className="absolute inset-0 bg-gradient-radial from-transparent from-20% via-dark/30 via-50% to-dark z-10 pointer-events-none"></div>
                     <img src="/images/features/big-icon.svg" alt="icon" className="relative" />
                   </div>
                 </div>
@@ -60,9 +60,9 @@ const FeaturesList = () => {
           {/* Medium Feature */}
           <div className="sm:col-span-7">
             <div className="relative rounded-3xl features-box-border h-full">
-              <div className="relative overflow-hidden rounded-3xl px-11 pt-20 pb-14 box-hover box-hover-small h-full flex flex-col">
+              <div className="relative overflow-hidden rounded-3xl px-11 pt-12 pb-10 box-hover box-hover-small h-full flex flex-col">
                 <div className="relative z-20 flex-1 flex flex-col">
-                  <span className="icon-border relative max-w-[80px] w-full h-20 rounded-full inline-flex items-center justify-center mb-20 text-4xl">
+                  <span className="icon-border relative max-w-[80px] w-full h-20 rounded-full inline-flex items-center justify-center mb-10 text-4xl bg-dark">
                     🔒
                   </span>
 
@@ -99,9 +99,9 @@ const FeaturesList = () => {
           {/* Small Feature */}
           <div className="sm:col-span-5">
             <div className="relative rounded-3xl features-box-border h-full">
-              <div className="relative overflow-hidden rounded-3xl px-11 pt-20 pb-14 box-hover box-hover-small h-full flex flex-col">
+              <div className="relative overflow-hidden rounded-3xl px-11 pt-12 pb-10 box-hover box-hover-small h-full flex flex-col">
                 <div className="relative z-20 flex-1 flex flex-col">
-                  <span className="icon-border relative max-w-[80px] w-full h-20 rounded-full inline-flex items-center justify-center mb-20 text-4xl">
+                  <span className="icon-border relative max-w-[80px] w-full h-20 rounded-full inline-flex items-center justify-center mb-10 text-4xl bg-dark">
                     ⚡
                   </span>
 
