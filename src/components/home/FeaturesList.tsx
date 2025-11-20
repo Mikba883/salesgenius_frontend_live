@@ -8,7 +8,7 @@ const FeaturesList = () => {
           {/* Large Feature */}
           <div className="sm:col-span-12">
             <div className="relative rounded-3xl features-box-border">
-              <div className="relative p-10 overflow-hidden rounded-3xl xl:p-15 box-hover">
+              <div className="relative p-10 overflow-hidden rounded-3xl xl:px-15 xl:py-12 box-hover">
                 <div className="relative z-20 flex items-center justify-between">
                   <div className="max-w-[477px] w-full">
                     <span className="hero-subtitle-gradient relative mb-4 font-medium text-sm inline-flex items-center gap-2 py-2 px-6 rounded-full">
@@ -26,8 +26,8 @@ const FeaturesList = () => {
                     </a>
                   </div>
 
-                  <div className="max-w-[280px] w-full hidden sm:block relative">
-                    <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-dark/80 z-10 pointer-events-none"></div>
+                  <div className="max-w-[428px] w-full hidden sm:block relative">
+                    <div className="absolute inset-0 bg-gradient-radial from-transparent from-30% via-transparent via-60% to-dark z-10 pointer-events-none"></div>
                     <img src="/images/features/big-icon.svg" alt="icon" className="relative" />
                   </div>
                 </div>
@@ -62,7 +62,7 @@ const FeaturesList = () => {
             <div className="relative rounded-3xl features-box-border h-full">
               <div className="relative overflow-hidden rounded-3xl px-11 pt-20 pb-14 box-hover box-hover-small h-full flex flex-col">
                 <div className="relative z-20 flex-1 flex flex-col">
-                  <span className="icon-border relative max-w-[80px] w-full h-20 rounded-full inline-flex items-center justify-center mb-20 mx-auto text-4xl">
+                  <span className="icon-border relative max-w-[80px] w-full h-20 rounded-full inline-flex items-center justify-center mb-20 text-4xl">
                     🔒
                   </span>
 
@@ -101,7 +101,7 @@ const FeaturesList = () => {
             <div className="relative rounded-3xl features-box-border h-full">
               <div className="relative overflow-hidden rounded-3xl px-11 pt-20 pb-14 box-hover box-hover-small h-full flex flex-col">
                 <div className="relative z-20 flex-1 flex flex-col">
-                  <span className="icon-border relative max-w-[80px] w-full h-20 rounded-full inline-flex items-center justify-center mb-20 mx-auto text-4xl">
+                  <span className="icon-border relative max-w-[80px] w-full h-20 rounded-full inline-flex items-center justify-center mb-20 text-4xl">
                     ⚡
                   </span>
 
