@@ -3,29 +3,44 @@ import React from 'react';
 const KeyFeatures = () => {
   const features = [
     {
-      icon: '/images/features/icon-01.svg',
-      title: 'Real-Time Speech Recognition',
-      description: 'Instant transcription of your conversations with high accuracy, powered by advanced AI technology.'
+      emoji: '🤝',
+      bgColor: '#e0f2fe',
+      textColor: '#0c4a6e',
+      category: 'Rapport',
+      title: 'Build Connection',
+      description: 'AI-powered suggestions to establish trust and authentic relationships with prospects during calls.'
     },
     {
-      icon: '/images/features/icon-02.svg',
-      title: 'Intent & Tone Analysis',
-      description: 'Understand customer sentiment and intent in real-time to adapt your approach instantly.'
+      emoji: '🧭',
+      bgColor: '#f3e8ff',
+      textColor: '#6b21a8',
+      category: 'Discovery',
+      title: 'Uncover Needs',
+      description: 'Real-time prompts to ask the right questions and deeply understand customer pain points.'
     },
     {
-      icon: '/images/features/icon-03.svg',
-      title: 'Smart Suggestions',
-      description: 'Get contextual recommendations for your next best line during live sales calls.'
+      emoji: '💎',
+      bgColor: '#dcfce7',
+      textColor: '#166534',
+      category: 'Value',
+      title: 'Demonstrate Worth',
+      description: 'Contextual recommendations to showcase your product value aligned with customer needs.'
     },
     {
-      icon: '/images/features/icon-04.svg',
-      title: 'Multi-Language Support',
-      description: 'Work seamlessly across different languages and regional dialects.'
+      emoji: '⚖️',
+      bgColor: '#ffedd5',
+      textColor: '#9a3412',
+      category: 'Objection',
+      title: 'Handle Concerns',
+      description: 'Smart responses to address objections confidently and turn hesitations into opportunities.'
     },
     {
-      icon: '/images/features/icon-05.svg',
-      title: 'Privacy First',
-      description: 'Your data is encrypted and protected with enterprise-grade security standards.'
+      emoji: '✅',
+      bgColor: '#fef9c3',
+      textColor: '#854d0e',
+      category: 'Closing',
+      title: 'Seal the Deal',
+      description: 'Recognize buying signals and get the perfect closing lines to move deals forward.'
     }
   ];
 
@@ -47,21 +62,32 @@ const KeyFeatures = () => {
         </div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-12 gap-0">
+        <div className="grid grid-cols-12 gap-6">
           {features.slice(0, 3).map((feature, index) => (
             <div
               key={index}
-              className="col-span-12 sm:col-span-4 border border-gray-800"
+              className="col-span-12 sm:col-span-4"
             >
-              <div className="p-10 h-full">
-                <div className="text-center h-full flex flex-col">
-                  <div className="icon-border relative max-w-[80px] w-full h-20 rounded-full inline-flex items-center justify-center mb-10 mx-auto">
-                    <img src={feature.icon} alt="icon" />
-                  </div>
-                  <h3 className="text-white mb-5 font-bold text-xl">
+              <div 
+                className="bg-white/5 border border-white/10 rounded-2xl p-5 h-full flex gap-4 items-start hover:bg-white/10 transition-colors duration-300"
+              >
+                <div 
+                  className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-2xl"
+                  style={{ backgroundColor: feature.bgColor }}
+                >
+                  {feature.emoji}
+                </div>
+                <div className="flex flex-col">
+                  <span 
+                    className="text-sm font-bold mb-1 capitalize tracking-wide"
+                    style={{ color: feature.textColor }}
+                  >
+                    {feature.category}
+                  </span>
+                  <h3 className="text-white mb-2 font-bold text-lg">
                     {feature.title}
                   </h3>
-                  <p className="font-medium leading-relaxed">
+                  <p className="text-gray-300 text-sm leading-relaxed">
                     {feature.description}
                   </p>
                 </div>
@@ -71,17 +97,28 @@ const KeyFeatures = () => {
           {features.slice(3, 5).map((feature, index) => (
             <div
               key={index + 3}
-              className="col-span-12 sm:col-span-6 border border-gray-800"
+              className="col-span-12 sm:col-span-6"
             >
-              <div className="p-10 h-full">
-                <div className="text-center h-full flex flex-col">
-                  <div className="icon-border relative max-w-[80px] w-full h-20 rounded-full inline-flex items-center justify-center mb-10 mx-auto">
-                    <img src={feature.icon} alt="icon" />
-                  </div>
-                  <h3 className="text-white mb-5 font-bold text-xl">
+              <div 
+                className="bg-white/5 border border-white/10 rounded-2xl p-5 h-full flex gap-4 items-start hover:bg-white/10 transition-colors duration-300"
+              >
+                <div 
+                  className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-2xl"
+                  style={{ backgroundColor: feature.bgColor }}
+                >
+                  {feature.emoji}
+                </div>
+                <div className="flex flex-col">
+                  <span 
+                    className="text-sm font-bold mb-1 capitalize tracking-wide"
+                    style={{ color: feature.textColor }}
+                  >
+                    {feature.category}
+                  </span>
+                  <h3 className="text-white mb-2 font-bold text-lg">
                     {feature.title}
                   </h3>
-                  <p className="font-medium leading-relaxed">
+                  <p className="text-gray-300 text-sm leading-relaxed">
                     {feature.description}
                   </p>
                 </div>
