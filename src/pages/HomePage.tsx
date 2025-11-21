@@ -48,8 +48,19 @@ const HomePage = () => {
           </div>
         </div>
 
-        <div className="mt-24">
-          <img className="mx-auto" src="/images/hero/hero.svg" alt="hero" />
+        <div className="mt-24 relative mx-auto max-w-[1170px]">
+          {/* Hero SVG come cornice */}
+          <img className="mx-auto w-full" src="/images/hero/hero.svg" alt="hero frame" />
+          
+          {/* GIF posizionato sopra hero.svg */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <img 
+              src="/images/video/gif.gif" 
+              alt="SalesGenius in action" 
+              className="w-[62%] h-auto ml-[13%] rounded-lg shadow-2xl"
+              style={{ maxHeight: '75%' }}
+            />
+          </div>
         </div>
       </section>
 
