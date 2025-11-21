@@ -72,10 +72,10 @@ const HomePage = () => {
       <KeyFeatures />
       <FeaturesGrid />
       <FeaturesList />
-      <PricingVisualEffect />
-      <CTA />
       <VisualEffect />
       <Clients />
+      <PricingVisualEffect />
+      <CTA />
     </Layout>
     </>
   );
