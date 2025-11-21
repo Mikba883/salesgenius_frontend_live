@@ -28,7 +28,7 @@ const StickyBanner = () => {
       // Responsive padding: smaller on mobile
       const updatePadding = () => {
         if (window.innerWidth < 640) {
-          document.body.style.paddingTop = '90px';
+          document.body.style.paddingTop = '80px';
         } else {
           document.body.style.paddingTop = '70px';
         }
@@ -118,7 +118,7 @@ const StickyBanner = () => {
           </svg>
         </button>
 
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-6 w-full pr-8 sm:pr-12">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-4 w-full sm:pr-12">
           {/* Left side: Badge + Copy - Hidden on mobile */}
           <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
             <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white text-xs font-bold uppercase">
@@ -140,10 +140,10 @@ const StickyBanner = () => {
           </div>
 
           {/* Right side: CTA */}
-          <div className="flex-shrink-0">
+          <div className="w-full sm:w-auto sm:flex-shrink-0">
             <Link
               to="/signup"
-              className="px-4 sm:px-6 py-2 sm:py-3 rounded-lg bg-white text-purple-900 font-semibold text-sm sm:text-base hover:bg-pink-100 transition-all duration-300 hover:scale-105 whitespace-nowrap"
+              className="w-full sm:w-auto text-center px-4 sm:px-6 py-2 sm:py-3 rounded-lg bg-white text-purple-900 font-semibold text-sm sm:text-base hover:bg-pink-100 transition-all duration-300 hover:scale-105"
             >
               Claim Deal
             </Link>
