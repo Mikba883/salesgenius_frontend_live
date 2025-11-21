@@ -49,16 +49,24 @@ const HomePage = () => {
         </div>
 
         <div className="mt-32 sm:mt-40 relative mx-auto max-w-[1170px]">
-          {/* Hero SVG come cornice di sfondo */}
-          <img className="mx-auto w-full opacity-50" src="/images/hero/hero.svg" alt="hero frame" />
-          
-          {/* GIF centrato e ben visibile, con spazio per mostrare il glow sotto */}
-          <div className="absolute inset-x-4 sm:inset-x-8 md:inset-x-16 top-6 sm:top-8 md:top-10 bottom-10 sm:bottom-12 md:bottom-14 flex items-center justify-center">
+          {/* GIF con dimensioni corrette */}
+          <div className="flex items-center justify-center">
             <img 
               src="/images/video/gif.gif" 
               alt="SalesGenius in action" 
-              className="w-full h-full max-w-[900px] object-contain rounded-xl shadow-2xl border-2 border-white/20"
+              className="w-full max-w-[900px] h-auto rounded-xl shadow-2xl border-2 border-white/20"
             />
+          </div>
+          
+          {/* Effetti blur/glow sotto la GIF */}
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 -z-10 pointer-events-none">
+            <img src="/images/blur/blur-22.svg" alt="blur" className="max-w-none opacity-25" />
+          </div>
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 -z-10 pointer-events-none">
+            <img src="/images/blur/blur-23.svg" alt="blur" className="max-w-none opacity-22" />
+          </div>
+          <div className="absolute left-1/2 -translate-x-1/2 top-20 -z-10 pointer-events-none">
+            <img src="/images/blur/blur-24.svg" alt="blur" className="max-w-none opacity-20" />
           </div>
         </div>
       </section>
