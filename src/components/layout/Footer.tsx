@@ -20,13 +20,13 @@ const Footer = () => {
       <div className="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0 relative pt-17.5">
         <div className="w-full h-[1px] footer-divider-gradient absolute top-0 left-0"></div>
 
-        <div className="flex flex-wrap justify-between">
-          <div className="mb-10 max-w-[571px] w-full">
+        <div className="flex flex-wrap lg:flex-nowrap justify-between items-start gap-10">
+          <div className="w-full lg:w-auto">
             <Link className="mb-8.5 inline-block" to="/">
               <img src="/images/logo/logo.svg" alt="Logo" />
             </Link>
 
-            <p className="mb-12 xl:w-4/5">
+            <p className="mb-12 max-w-md">
               AI writing tool is designed to empower you with exceptional writing
               capabilities.
             </p>
@@ -91,92 +91,90 @@ const Footer = () => {
             <p className="font-medium mt-5.5">AI Tool, LLC. All rights reserved.</p>
           </div>
 
-          <div className="max-w-[571px] w-full">
-            <div className="flex flex-col sm:flex-row sm:justify-between gap-10">
-              <div>
-                <h5 className="font-semibold text-white mb-5">Products</h5>
+          <div className="flex flex-wrap sm:flex-nowrap gap-10 lg:gap-16">
+            <div>
+              <h5 className="font-semibold text-white mb-5">Products</h5>
 
-                <ul className="flex flex-col gap-3.5">
-                  <li>
-                    <a
-                      href="/#"
-                      className="font-medium ease-in duration-300 hover:text-white"
-                    >
-                      Features
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/#"
-                      className="font-medium ease-in duration-300 hover:text-white"
-                    >
-                      Integrations
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/#"
-                      className="font-medium ease-in duration-300 hover:text-white"
-                    >
-                      Pricing
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/#"
-                      className="font-medium ease-in duration-300 hover:text-white"
-                    >
-                      Changelog
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/#"
-                      className="font-medium ease-in duration-300 hover:text-white"
-                    >
-                      Roadmap
-                    </a>
-                  </li>
-                </ul>
-              </div>
+              <ul className="flex flex-col gap-3.5">
+                <li>
+                  <a
+                    href="/#"
+                    className="font-medium ease-in duration-300 hover:text-white"
+                  >
+                    Features
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/#"
+                    className="font-medium ease-in duration-300 hover:text-white"
+                  >
+                    Integrations
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/#"
+                    className="font-medium ease-in duration-300 hover:text-white"
+                  >
+                    Pricing
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/#"
+                    className="font-medium ease-in duration-300 hover:text-white"
+                  >
+                    Changelog
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/#"
+                    className="font-medium ease-in duration-300 hover:text-white"
+                  >
+                    Roadmap
+                  </a>
+                </li>
+              </ul>
+            </div>
 
-              <div>
-                <h5 className="font-semibold text-white mb-5">Legal</h5>
+            <div>
+              <h5 className="font-semibold text-white mb-5">Legal</h5>
 
-                <ul className="flex flex-col gap-3.5">
-                  <li>
-                    <Link
-                      to="/privacy-policy"
-                      className="font-medium ease-in duration-300 hover:text-white"
-                    >
-                      Privacy Policy
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/terms"
-                      className="font-medium ease-in duration-300 hover:text-white"
-                    >
-                      Terms of Service
-                    </Link>
-                  </li>
-                </ul>
-              </div>
+              <ul className="flex flex-col gap-3.5">
+                <li>
+                  <Link
+                    to="/privacy-policy"
+                    className="font-medium ease-in duration-300 hover:text-white"
+                  >
+                    Privacy Policy
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/terms"
+                    className="font-medium ease-in duration-300 hover:text-white"
+                  >
+                    Terms of Service
+                  </Link>
+                </li>
+              </ul>
+            </div>
 
-              <div>
-                <h5 className="font-semibold text-white mb-5">Support</h5>
+            <div>
+              <h5 className="font-semibold text-white mb-5">Support</h5>
 
-                <ul className="flex flex-col gap-3.5">
-                  <li>
-                    <Link
-                      to="/contact"
-                      className="font-medium ease-in duration-300 hover:text-white"
-                    >
-                      Contact
-                    </Link>
-                  </li>
-                </ul>
-              </div>
+              <ul className="flex flex-col gap-3.5">
+                <li>
+                  <Link
+                    to="/contact"
+                    className="font-medium ease-in duration-300 hover:text-white"
+                  >
+                    Contact
+                  </Link>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
