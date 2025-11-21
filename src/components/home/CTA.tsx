@@ -1,6 +1,46 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const CTA = () => {
+  const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 0, seconds: 0 });
+
+  useEffect(() => {
+    // Get or set deadline (same as StickyBanner)
+    const getDeadline = () => {
+      const saved = localStorage.getItem('earlyAdopterDeadline');
+      if (saved) return new Date(saved);
+      
+      const now = new Date();
+      now.setHours(now.getHours() + 22);
+      now.setMinutes(now.getMinutes() + 40);
+      localStorage.setItem('earlyAdopterDeadline', now.toISOString());
+      return now;
+    };
+
+    const deadline = getDeadline();
+
+    const updateTimer = () => {
+      const now = new Date();
+      const diff = deadline.getTime() - now.getTime();
+
+      if (diff <= 0) {
+        setTimeLeft({ hours: 0, minutes: 0, seconds: 0 });
+        return;
+      }
+
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      setTimeLeft({ hours, minutes, seconds });
+    };
+
+    updateTimer();
+    const interval = setInterval(updateTimer, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const formatTime = (num: number) => String(num).padStart(2, '0');
   return (
     <section className="py-20 lg:py-25">
       <div className="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0">
@@ -28,7 +68,7 @@ const CTA = () => {
               <span className="hero-subtitle-text">Get Started Today</span>
             </span>
             <h2 className="text-white mb-4.5 text-2xl font-extrabold sm:text-4xl xl:text-heading-2">
-              Launch Offer: Lock the World's Most Advanced AI Sales Coach
+              Lock the Most Advanced AI Sales Coach
             </h2>
             <p className="max-w-[530px] mx-auto font-medium">
               Stop losing deals today. Get real-time guidance to handle objections and close more sales instantly.
@@ -91,12 +131,16 @@ const CTA = () => {
                 href="/#"
                 className="w-full flex items-center justify-center gap-2 font-bold text-white text-lg py-4 px-12 rounded-lg transition-all ease-in-out duration-300 relative pricing-button-gradient hover:shadow-[0_0_30px_rgba(139,92,246,0.6)] hover:scale-105"
               >
-                🚀 Start Your Free Trial
+                LOCK IN $11.70 PRICE
               </a>
 
-              <p className="mt-6 text-sm text-center text-gray-400 font-medium">
-                Lock in Early Adopter pricing now
-              </p>
+              {/* Countdown Timer - Red Elegant */}
+              <div className="mt-6 flex flex-col items-center gap-1">
+                <span className="text-red-400/80 text-xs uppercase tracking-wide font-medium">Offer Ends In</span>
+                <div className="font-mono font-bold text-red-500 text-3xl">
+                  {formatTime(timeLeft.hours)}:{formatTime(timeLeft.minutes)}:{formatTime(timeLeft.seconds)}
+                </div>
+              </div>
 
               {/* bg shapes */}
               <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
