@@ -48,9 +48,9 @@ const HomePage = () => {
           </div>
         </div>
 
-        <div className="mt-24 relative mx-auto max-w-[1170px]">
+        <div className="mt-32 sm:mt-40 relative mx-auto max-w-[1170px]">
           {/* Hero SVG come cornice di sfondo */}
-          <img className="mx-auto w-full opacity-30" src="/images/hero/hero.svg" alt="hero frame" />
+          <img className="mx-auto w-full opacity-50" src="/images/hero/hero.svg" alt="hero frame" />
           
           {/* GIF centrato e ben visibile */}
           <div className="absolute inset-0 flex items-center justify-center px-4 sm:px-8 md:px-16">
