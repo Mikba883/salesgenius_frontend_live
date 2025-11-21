@@ -20,18 +20,20 @@ const Footer = () => {
       <div className="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0 relative pt-17.5">
         <div className="w-full h-[1px] footer-divider-gradient absolute top-0 left-0"></div>
 
-        <div className="flex flex-wrap justify-between">
-          <div className="mb-10 max-w-[571px] w-full">
-            <Link className="mb-8.5 inline-block" to="/">
-              <img src="/images/logo/logo.svg" alt="Logo" />
-            </Link>
+        <div className="flex flex-wrap gap-10 lg:gap-0 lg:justify-between">
+          <div className="w-full lg:w-auto mb-10 lg:mb-0">
+            <div className="flex items-center gap-3 mb-5">
+              <Link to="/">
+                <img src="/images/logo/logo.svg" alt="SalesGenius" className="h-10" />
+              </Link>
+              <span className="text-white text-2xl font-bold">SalesGenius</span>
+            </div>
 
-            <p className="mb-12 xl:w-4/5">
-              AI writing tool is designed to empower you with exceptional writing
-              capabilities.
+            <p className="mb-8 max-w-[380px]">
+              Real-time AI sales coaching that helps you close more deals with instant objection handling and conversation guidance.
             </p>
 
-            <div className="flex items-center gap-5">
+            <div className="flex items-center gap-5 mb-5.5">
               <a href="#" className="hover:text-white ease-in duration-300">
                 <svg
                   className="fill-current"
@@ -88,11 +90,10 @@ const Footer = () => {
               </a>
             </div>
 
-            <p className="font-medium mt-5.5">AI Tool, LLC. All rights reserved.</p>
+            <p className="font-medium">AI Tool, LLC. All rights reserved.</p>
           </div>
 
-          <div className="max-w-[571px] w-full">
-            <div className="flex flex-col sm:flex-row sm:justify-between gap-10">
+          <div className="flex flex-wrap gap-10 sm:gap-16 lg:gap-20">
               <div>
                 <h5 className="font-semibold text-white mb-5">Products</h5>
 
@@ -176,9 +177,10 @@ const Footer = () => {
                     </Link>
                   </li>
                 </ul>
-              </div>
             </div>
           </div>
+        </div>
+      </div>
         </div>
       </div>
     </footer>
