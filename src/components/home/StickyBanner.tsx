@@ -99,7 +99,7 @@ const StickyBanner = () => {
         {/* Close button */}
         <button
           onClick={handleDismiss}
-          className="absolute top-3 right-32 text-white/60 hover:text-white transition-colors p-1 z-10"
+          className="absolute top-3 right-4 text-white/60 hover:text-white transition-colors p-1 z-10"
           aria-label="Close banner"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -107,7 +107,7 @@ const StickyBanner = () => {
           </svg>
         </button>
 
-        <div className="flex items-center justify-between gap-6 w-full pr-28">
+        <div className="flex items-center justify-between gap-6 w-full pr-12">
           {/* Left side: Badge + Copy */}
           <div className="flex items-center gap-3 flex-shrink-0">
             <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white text-xs font-bold uppercase">
