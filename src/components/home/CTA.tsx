@@ -148,6 +148,8 @@ const CTA = () => {
               <div className="stars2"></div>
             </div>
           </div>
+        </div>
+      </div>
     </section>
   );
 };
