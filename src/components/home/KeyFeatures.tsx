@@ -40,19 +40,8 @@ const KeyFeatures = () => {
   ];
 
   return (
-    <section className="overflow-hidden py-20 lg:py-28 xl:py-32 relative">
-      {/* Effetti blur/glow sopra la sezione */}
-      <div className="absolute left-1/2 -translate-x-1/2 -top-32 sm:-top-40 md:-top-48 z-0 pointer-events-none">
-        <img src="/images/blur/blur-22.svg" alt="blur" className="max-w-none opacity-50" />
-      </div>
-      <div className="absolute left-1/2 -translate-x-1/2 -top-32 sm:-top-40 md:-top-48 z-0 pointer-events-none">
-        <img src="/images/blur/blur-23.svg" alt="blur" className="max-w-none opacity-45" />
-      </div>
-      <div className="absolute left-1/2 -translate-x-1/2 -top-20 sm:-top-28 md:-top-36 z-0 pointer-events-none">
-        <img src="/images/blur/blur-24.svg" alt="blur" className="max-w-none opacity-80" />
-      </div>
-      
-      <div className="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0 relative z-10">
+    <section className="overflow-hidden py-20 lg:py-28 xl:py-32">
+      <div className="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0">
         {/* Section Title */}
         <div className="text-center mb-16">
           <span className="hero-subtitle-gradient relative mb-4 font-medium text-sm inline-flex items-center gap-2 py-2 px-6 rounded-full">
