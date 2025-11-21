@@ -14,7 +14,7 @@ const HomePage = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <section id="home" className="relative z-10 overflow-hidden pt-32 sm:pt-36 md:pt-40 xl:pt-45">
+      <section id="home" className="relative z-10 overflow-hidden pt-24 md:pt-40 xl:pt-45">
         {/* Hero Bg Shapes */}
         <div className="mx-auto max-w-7xl">
           <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10 -mx-28">
@@ -49,18 +49,16 @@ const HomePage = () => {
         </div>
 
         <div className="mt-32 sm:mt-40 relative mx-auto max-w-[1170px]">
-          {/* GIF con dimensioni corrette */}
-          <div className="flex items-center justify-center relative z-10">
+          {/* Hero SVG come cornice di sfondo */}
+          <img className="mx-auto w-full opacity-50" src="/images/hero/hero.svg" alt="hero frame" />
+          
+          {/* GIF centrato e ben visibile */}
+          <div className="absolute inset-0 flex items-center justify-center px-4 sm:px-8 md:px-16">
             <img 
               src="/images/video/gif.gif" 
               alt="SalesGenius in action" 
-              className="w-full max-w-[1100px] h-auto rounded-xl shadow-2xl border-2 border-white/20"
+              className="w-full max-w-[900px] h-auto rounded-xl shadow-2xl border-2 border-white/20"
             />
-          </div>
-          
-          {/* Spotlight line tra GIF e sezione "Unfair Advantage" */}
-          <div className="hero-spotlight-line-wrapper">
-            <div className="hero-spotlight-line" />
           </div>
         </div>
       </section>
