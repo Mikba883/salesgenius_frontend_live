@@ -3,7 +3,9 @@ import Layout from '@/components/layout/Layout';
 import KeyFeatures from '@/components/home/KeyFeatures';
 import FeaturesGrid from '@/components/home/FeaturesGrid';
 import FeaturesList from '@/components/home/FeaturesList';
+import Testimonials from '@/components/home/Testimonials';
 import Clients from '@/components/home/Clients';
+import Blog from '@/components/home/Blog';
 import CTA from '@/components/home/CTA';
 import VisualEffect from '@/components/home/VisualEffect';
 import PricingVisualEffect from '@/components/home/PricingVisualEffect';
@@ -73,7 +75,9 @@ const HomePage = () => {
       <FeaturesGrid />
       <FeaturesList />
       <VisualEffect />
+      <Testimonials />
       <Clients />
+      <Blog />
       <PricingVisualEffect />
       <CTA />
     </Layout>
