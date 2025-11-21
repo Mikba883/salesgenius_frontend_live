@@ -118,32 +118,31 @@ const StickyBanner = () => {
           </svg>
         </button>
 
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-4 w-full sm:pr-12">
-          {/* Left side: Badge + Copy - Hidden on mobile */}
-          <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white text-xs font-bold uppercase">
+        <div className="flex flex-col items-center gap-2 w-full sm:flex-row sm:justify-between sm:gap-4 sm:pr-12">
+          {/* Top: Copy - Visible on all sizes */}
+          <div className="flex items-center gap-2 text-center sm:text-left flex-shrink-0">
+            <span className="hidden lg:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white text-xs font-bold uppercase">
               ⚡ Early Adopter
             </span>
-            <p className="text-white text-sm font-medium">
+            <p className="text-white text-xs sm:text-sm font-medium">
               Lock in <span className="font-bold text-pink-300">$11.70/month</span> before price goes up
             </p>
           </div>
 
-          {/* Center: Timer */}
-          <div className="flex-1 flex justify-center">
-            <div className="flex flex-col items-center gap-0.5 sm:gap-1">
-              <span className="text-white/60 text-[10px] sm:text-xs uppercase tracking-wide">Time Remaining</span>
-              <div className="font-mono font-bold text-white text-xl sm:text-2xl lg:text-3xl">
+          {/* Bottom: Timer + Button on same row */}
+          <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto sm:flex-1 justify-center sm:justify-end">
+            {/* Timer */}
+            <div className="flex flex-col items-center gap-0.5">
+              <span className="text-white/60 text-[10px] uppercase tracking-wide">Time Left</span>
+              <div className="font-mono font-bold text-white text-lg sm:text-2xl lg:text-3xl whitespace-nowrap">
                 {formatTime(timeLeft.hours)}:{formatTime(timeLeft.minutes)}:{formatTime(timeLeft.seconds)}
               </div>
             </div>
-          </div>
 
-          {/* Right side: CTA */}
-          <div className="w-full sm:w-auto sm:flex-shrink-0">
+            {/* Button */}
             <Link
               to="/signup"
-              className="w-full sm:w-auto text-center px-4 sm:px-6 py-2 sm:py-3 rounded-lg bg-white text-purple-900 font-semibold text-sm sm:text-base hover:bg-pink-100 transition-all duration-300 hover:scale-105"
+              className="px-3 sm:px-6 py-2 sm:py-3 rounded-lg bg-white text-purple-900 font-semibold text-xs sm:text-base hover:bg-pink-100 transition-all duration-300 hover:scale-105 whitespace-nowrap"
             >
               Claim Deal
             </Link>
