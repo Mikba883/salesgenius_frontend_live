@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import AuthLayout from '@/components/layout/AuthLayout';
 import { supabase } from '@/integrations/supabase/client';
 import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
+import { syncSessionWithExtension } from '@/utils/extensionSync';
 
 const SignInPage = () => {
   const [email, setEmail] = useState('');
@@ -16,11 +17,15 @@ const SignInPage = () => {
   useEffect(() => {
     // Setup del listener per i cambiamenti di autenticazione
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event, session) => {
+      async (event, session) => {
         console.log('[SignInPage] Auth event:', event, 'Has session:', !!session);
         
         if (session?.user) {
-          // Redirect IMMEDIATO - la sincronizzazione avverrà nel Dashboard
+          // 🔑 CRITICO: Sincronizza token con estensione Chrome PRIMA del redirect
+          if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
+            console.log('[SignInPage] 🔄 Sincronizzazione token con estensione Chrome...');
+            await syncSessionWithExtension(session);
+          }
           console.log('[SignInPage] ✅ Login completato, redirect a dashboard');
           navigate('/dashboard');
         }
