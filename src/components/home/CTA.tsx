@@ -141,9 +141,11 @@ const CTA = () => {
                 </span>
               </div>
             </div>
+          </div>
 
-            {/* Stars Effect - Below Pricing Card */}
-            <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-full max-w-[600px] h-60 overflow-hidden pointer-events-none">
+          {/* Stars Effect - Below Pricing Box */}
+          <div className="relative z-10 flex justify-center mt-8">
+            <div className="w-full max-w-[600px] h-60 overflow-hidden pointer-events-none">
               <div className="stars"></div>
               <div className="stars2"></div>
             </div>
