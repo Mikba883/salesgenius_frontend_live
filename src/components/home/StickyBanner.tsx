@@ -7,23 +7,18 @@ const StickyBanner = () => {
 
   // Check if banner should be visible on mount
   useEffect(() => {
-    const dismissed = localStorage.getItem('earlyAdopterBannerDismissed');
-    if (dismissed === 'true') {
-      setIsVisible(false);
-      return;
-    }
-
     const deadline = localStorage.getItem('earlyAdopterDeadline');
     if (deadline) {
       const now = new Date();
       const diff = new Date(deadline).getTime() - now.getTime();
       if (diff <= 0) {
+        // Countdown expired - hide forever
         setIsVisible(false);
-        localStorage.setItem('earlyAdopterBannerDismissed', 'true');
         return;
       }
     }
 
+    // Countdown not expired - always show
     setIsVisible(true);
   }, []);
 
@@ -62,6 +57,7 @@ const StickyBanner = () => {
       if (diff <= 0) {
         setTimeLeft({ hours: 0, minutes: 0, seconds: 0 });
         setIsVisible(false);
+        // Only save dismissed when countdown reaches 0
         localStorage.setItem('earlyAdopterBannerDismissed', 'true');
         return;
       }
@@ -88,8 +84,9 @@ const StickyBanner = () => {
   };
 
   const handleDismiss = () => {
+    // Only hide visually, don't save to localStorage
+    // Banner will reappear on page reload until countdown reaches 0
     setIsVisible(false);
-    localStorage.setItem('earlyAdopterBannerDismissed', 'true');
   };
 
   const formatTime = (num: number) => String(num).padStart(2, '0');
