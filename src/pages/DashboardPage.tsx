@@ -135,13 +135,15 @@ const DashboardPage = () => {
             )}
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button
-                onClick={handleDebugToken}
-                disabled={isDebugLoading}
-                className="inline-flex py-3 font-medium text-white duration-300 ease-in rounded-lg bg-purple/80 hover:bg-purple px-8 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isDebugLoading ? 'Testing Token...' : '🔍 Debug Token'}
-              </button>
+              {import.meta.env.DEV && (
+                <button
+                  onClick={handleDebugToken}
+                  disabled={isDebugLoading}
+                  className="inline-flex py-3 font-medium text-white duration-300 ease-in rounded-lg bg-purple/80 hover:bg-purple px-8 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isDebugLoading ? 'Testing Token...' : '🔍 Debug Token'}
+                </button>
+              )}
               
               <button
                 onClick={handleSignOut}
@@ -151,7 +153,7 @@ const DashboardPage = () => {
               </button>
             </div>
 
-            {debugResult && (
+            {import.meta.env.DEV && debugResult && (
               <div className="mt-8 max-w-2xl mx-auto">
                 <div className="bg-white/5 border border-white/10 rounded-lg p-6">
                   <h3 className="text-lg font-semibold text-white mb-4">
