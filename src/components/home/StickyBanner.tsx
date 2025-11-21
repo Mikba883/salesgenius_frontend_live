@@ -99,7 +99,7 @@ const StickyBanner = () => {
         {/* Close button */}
         <button
           onClick={handleDismiss}
-          className="absolute top-3 right-4 text-white/60 hover:text-white transition-colors p-1 z-10"
+          className="absolute top-3 right-8 text-white/60 hover:text-white transition-colors p-1 z-10"
           aria-label="Close banner"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
