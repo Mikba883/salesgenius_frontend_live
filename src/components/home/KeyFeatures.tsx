@@ -41,15 +41,9 @@ const KeyFeatures = () => {
 
   return (
     <section className="overflow-hidden py-20 lg:py-28 xl:py-32 relative">
-      {/* Effetti blur/glow sopra la sezione */}
-      <div className="absolute left-1/2 -translate-x-1/2 -top-32 sm:-top-40 md:-top-48 z-0 pointer-events-none">
-        <img src="/images/blur/blur-22.svg" alt="blur" className="max-w-none opacity-50" />
-      </div>
-      <div className="absolute left-1/2 -translate-x-1/2 -top-32 sm:-top-40 md:-top-48 z-0 pointer-events-none">
-        <img src="/images/blur/blur-23.svg" alt="blur" className="max-w-none opacity-45" />
-      </div>
-      <div className="absolute left-1/2 -translate-x-1/2 -top-20 sm:-top-28 md:-top-36 z-0 pointer-events-none">
-        <img src="/images/blur/blur-24.svg" alt="blur" className="max-w-none opacity-80" />
+      {/* Effetto verticale viola intenso */}
+      <div className="absolute left-1/2 -translate-x-1/2 -top-[400px] sm:-top-[500px] md:-top-[600px] z-0 pointer-events-none">
+        <img src="/images/blur/blur-vertical-glow.svg" alt="vertical glow" className="max-w-none opacity-90" />
       </div>
       
       <div className="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0 relative z-10">
