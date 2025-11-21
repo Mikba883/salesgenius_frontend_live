@@ -42,9 +42,9 @@ const CTA = () => {
 
   const formatTime = (num: number) => String(num).padStart(2, '0');
   return (
-    <section className="pt-8 pb-20 lg:pt-12 lg:pb-24">
+    <section className="pt-4 pb-20 lg:pt-8 lg:pb-24">
       <div className="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0">
-        <div className="cta-box-gradient bg-dark rounded-[30px] relative overflow-hidden px-4 pt-10 pb-18 lg:pt-14 lg:pb-22 z-999">
+        <div className="cta-box-gradient bg-dark rounded-[30px] relative overflow-hidden px-4 pt-8 pb-16 lg:pt-12 lg:pb-20 z-999">
           {/* bg shapes */}
           <span className="absolute bottom-0 left-0 -z-1">
             <img src="/images/cta/grid.svg" alt="grid" />

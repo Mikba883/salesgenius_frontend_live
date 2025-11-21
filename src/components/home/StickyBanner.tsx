@@ -133,8 +133,8 @@ const StickyBanner = () => {
           <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto sm:flex-1 justify-center sm:justify-end">
             {/* Timer */}
             <div className="flex flex-col items-center gap-0.5">
-              <span className="text-white/60 text-[10px] uppercase tracking-wide">Time Left</span>
-              <div className="font-mono font-bold text-white text-lg sm:text-2xl lg:text-3xl whitespace-nowrap">
+              <span className="hidden sm:block text-white/60 text-[10px] uppercase tracking-wide">Time Left</span>
+              <div className="font-mono font-bold text-white text-xl sm:text-2xl lg:text-3xl whitespace-nowrap">
                 {formatTime(timeLeft.hours)}:{formatTime(timeLeft.minutes)}:{formatTime(timeLeft.seconds)}
               </div>
             </div>
