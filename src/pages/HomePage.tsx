@@ -9,10 +9,13 @@ import Blog from '@/components/home/Blog';
 import CTA from '@/components/home/CTA';
 import VisualEffect from '@/components/home/VisualEffect';
 import PricingVisualEffect from '@/components/home/PricingVisualEffect';
+import StickyBanner from '@/components/home/StickyBanner';
 
 const HomePage = () => {
   return (
-    <Layout>
+    <>
+      <StickyBanner />
+      <Layout>
       {/* Hero Section */}
       <section id="home" className="relative z-10 pt-32 md:pt-40 xl:pt-45">
         {/* Hero Bg Shapes */}
@@ -78,6 +81,7 @@ const HomePage = () => {
       <PricingVisualEffect />
       <CTA />
     </Layout>
+    </>
   );
 };
 
