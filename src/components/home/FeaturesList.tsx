@@ -6,9 +6,9 @@ const FeaturesList = () => {
       <div className="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0">
         <div className="grid sm:grid-cols-12 gap-12">
           {/* Large Feature */}
-          <div className="sm:col-span-7">
+          <div className="sm:col-span-12">
             <div className="relative rounded-3xl features-box-border">
-              <div className="relative p-10 rounded-3xl xl:px-15 xl:py-12 box-hover">
+              <div className="relative overflow-hidden p-10 rounded-3xl xl:px-15 xl:py-12 box-hover">
                 <div className="relative z-20 flex items-center justify-between">
                   <div className="max-w-[477px] w-full">
                     <span className="hero-subtitle-gradient relative mb-4 font-medium text-sm inline-flex items-center gap-2 py-2 px-6 rounded-full">
@@ -38,7 +38,7 @@ const FeaturesList = () => {
                 </div>
 
                 {/* bg shapes */}
-                <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10 -mx-28">
+                <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
                   <span className="absolute bottom-0 right-0">
                     <img src="/images/features/shape-01.png" alt="shape" />
                   </span>
