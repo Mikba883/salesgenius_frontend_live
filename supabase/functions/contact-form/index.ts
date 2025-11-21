@@ -11,13 +11,49 @@ interface ContactFormData {
   message: string;
 }
 
+const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hour
+const MAX_SUBMISSIONS_PER_WINDOW = 3;
+
 Deno.serve(async (req) => {
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
 
+  const supabase = createClient(
+    Deno.env.get('SUPABASE_URL') ?? '',
+    Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
+  );
+
   try {
+    // Get client IP for rate limiting
+    const clientIp = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 
+                     req.headers.get('x-real-ip') || 
+                     'unknown';
+
+    // Check rate limit
+    const { checkRateLimit } = await import('./rate-limiter.ts');
+    const rateLimit = await checkRateLimit(
+      supabase,
+      clientIp,
+      RATE_LIMIT_WINDOW_MS,
+      MAX_SUBMISSIONS_PER_WINDOW
+    );
+
+    if (!rateLimit.allowed) {
+      console.warn(`Rate limit exceeded for IP: ${clientIp}`);
+      return new Response(
+        JSON.stringify({ 
+          error: 'Too many submissions. Please try again later.',
+          retryAfter: Math.ceil(RATE_LIMIT_WINDOW_MS / 1000 / 60) // minutes
+        }),
+        { 
+          status: 429,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        }
+      );
+    }
+
     const { name, email, message }: ContactFormData = await req.json();
 
     // Server-side validation
