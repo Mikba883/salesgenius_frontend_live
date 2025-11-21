@@ -50,6 +50,12 @@ const CTA = () => {
             <img src="/images/cta/grid.svg" alt="grid" />
           </span>
 
+          {/* Stars Effect - Above Grid */}
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[600px] h-60 overflow-hidden pointer-events-none z-10">
+            <div className="stars"></div>
+            <div className="stars2"></div>
+          </div>
+
           {/* Title Section - Moved Up */}
           <div className="relative z-10 text-center mb-10">
             <span className="hero-subtitle-gradient relative mb-4 font-medium text-sm inline-flex items-center gap-2 py-2 px-6 rounded-full">
@@ -140,14 +146,6 @@ const CTA = () => {
                   <img src="/images/blur/blur-17.svg" alt="blur-sm" className="max-w-none" />
                 </span>
               </div>
-            </div>
-          </div>
-
-          {/* Stars Effect - Below Pricing Box */}
-          <div className="relative z-10 flex justify-center mt-8">
-            <div className="w-full max-w-[600px] h-60 overflow-hidden pointer-events-none">
-              <div className="stars"></div>
-              <div className="stars2"></div>
             </div>
           </div>
         </div>
