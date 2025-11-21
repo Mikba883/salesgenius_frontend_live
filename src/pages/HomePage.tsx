@@ -58,15 +58,9 @@ const HomePage = () => {
             />
           </div>
           
-          {/* Effetti blur/glow sotto la GIF */}
-          <div className="absolute left-1/2 -translate-x-1/2 top-[500px] sm:top-[600px] md:top-[700px] z-0 pointer-events-none">
-            <img src="/images/blur/blur-22.svg" alt="blur" className="max-w-none opacity-50" />
-          </div>
-          <div className="absolute left-1/2 -translate-x-1/2 top-[500px] sm:top-[600px] md:top-[700px] z-0 pointer-events-none">
-            <img src="/images/blur/blur-23.svg" alt="blur" className="max-w-none opacity-45" />
-          </div>
-          <div className="absolute left-1/2 -translate-x-1/2 top-[550px] sm:top-[650px] md:top-[750px] z-0 pointer-events-none">
-            <img src="/images/blur/blur-24.svg" alt="blur" className="max-w-none opacity-80" />
+          {/* Spotlight line tra GIF e sezione "Unfair Advantage" */}
+          <div className="hero-spotlight-line-wrapper">
+            <div className="hero-spotlight-line" />
           </div>
         </div>
       </section>
