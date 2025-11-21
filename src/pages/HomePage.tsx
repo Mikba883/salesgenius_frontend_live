@@ -59,7 +59,7 @@ const HomePage = () => {
           </div>
 
           {/* Spotlight Line Effect */}
-          <div className="relative mt-2 mx-auto max-w-[960px] h-[2px] overflow-visible pointer-events-none">
+          <div className="relative -mt-8 mx-auto max-w-[960px] h-[2px] overflow-visible pointer-events-none">
             <div className="absolute left-1/2 -translate-x-1/2 w-full">
               <img src="/images/blur/blur-24.svg" alt="" className="w-full opacity-80" style={{ filter: 'blur(1px)' }} />
             </div>
