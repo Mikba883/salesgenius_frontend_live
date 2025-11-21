@@ -34,7 +34,6 @@ const Clients = () => {
     "/images/clients/client-03.svg",
     "/images/clients/client-04.svg",
     "/images/clients/client-05.svg",
-    "/images/clients/client-06.svg",
     "/images/clients/client-07.svg",
   ];
 
