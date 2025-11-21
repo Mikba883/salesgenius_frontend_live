@@ -92,21 +92,21 @@ export type Database = {
           email: string | null
           id: string
           is_premium: boolean | null
-          user_id: string | null
+          user_id: string
         }
         Insert: {
           created_at?: string
           email?: string | null
           id?: string
           is_premium?: boolean | null
-          user_id?: string | null
+          user_id: string
         }
         Update: {
           created_at?: string
           email?: string | null
           id?: string
           is_premium?: boolean | null
-          user_id?: string | null
+          user_id?: string
         }
         Relationships: []
       }
