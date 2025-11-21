@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const StickyBanner = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -101,7 +102,7 @@ const StickyBanner = () => {
         {/* Close button */}
         <button
           onClick={handleDismiss}
-          className="absolute top-3 right-3 text-white/60 hover:text-white transition-colors p-1"
+          className="absolute top-3 right-8 text-white/60 hover:text-white transition-colors p-1"
           aria-label="Close banner"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -121,22 +122,22 @@ const StickyBanner = () => {
           </div>
 
           {/* Right side: Timer + CTA */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-6">
             {/* Countdown Timer */}
-            <div className="flex items-center gap-2">
-              <span className="text-white/80 text-sm">⏰</span>
-              <div className="font-mono font-bold text-white text-lg">
+            <div className="flex flex-col items-center gap-1">
+              <span className="text-white/60 text-xs uppercase tracking-wide">Time Remaining</span>
+              <div className="font-mono font-bold text-white text-3xl sm:text-4xl">
                 {formatTime(timeLeft.hours)}:{formatTime(timeLeft.minutes)}:{formatTime(timeLeft.seconds)}
               </div>
             </div>
 
             {/* CTA Button */}
-            <button
-              onClick={scrollToPricing}
-              className="px-5 py-2 rounded-lg bg-white text-purple-900 font-semibold text-sm hover:bg-pink-100 transition-all duration-300 hover:scale-105 whitespace-nowrap"
+            <Link
+              to="/signup"
+              className="px-6 py-3 rounded-lg bg-white text-purple-900 font-semibold text-base hover:bg-pink-100 transition-all duration-300 hover:scale-105 whitespace-nowrap"
             >
               Claim Deal →
-            </button>
+            </Link>
           </div>
         </div>
       </div>
