@@ -28,24 +28,21 @@ const CTA = () => {
               <span className="hero-subtitle-text">Get Started Today</span>
             </span>
             <h2 className="text-white mb-4.5 text-2xl font-extrabold sm:text-4xl xl:text-heading-2">
-              Start Creating Engaging Content
+              Launch Offer: Lock the World's Most Advanced AI Sales Coach
             </h2>
             <p className="max-w-[530px] mx-auto font-medium">
-              Our AI writing tool is designed to empower you with exceptional writing capabilities, 
-              making the writing process more efficient, accurate, and enjoyable.
+              Stop losing deals today. Get real-time guidance to handle objections and close more sales instantly.
             </p>
           </div>
 
           {/* content */}
           <div className="relative z-10 max-w-[700px] w-full mx-auto">
             {/* Pricing Card */}
-            <div className="w-full rounded-3xl bg-dark relative overflow-hidden pt-12.5 pb-10 px-8 xl:px-10 pricing-item-border shadow-[0_0_60px_rgba(139,92,246,0.4)]">
+            <div className="w-full rounded-3xl bg-black/80 border border-white/10 relative overflow-hidden pt-16 pb-14 px-8 xl:px-10 pricing-item-border shadow-[0_0_60px_rgba(139,92,246,0.4)]">
               {/* Early Adopter Badge - Top Right */}
               <span className="absolute right-6 top-6 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white text-xs font-bold uppercase animate-pulse">
                 ⚡ 70% OFF
               </span>
-
-              <h3 className="font-semibold text-heading-6 text-white mb-8">Premium</h3>
 
               {/* Pricing */}
               <div className="mb-6">
@@ -69,27 +66,23 @@ const CTA = () => {
               <ul className="flex flex-col gap-4 mb-10">
                 <li className="flex items-center gap-4">
                   <span className="text-green-400 text-xl flex-shrink-0">✓</span>
-                  <span className="font-medium text-gray-300">Real-time AI suggestions during calls</span>
+                  <span className="font-medium text-gray-300">Works with any platform (Zoom, Meet, Teams)</span>
                 </li>
                 <li className="flex items-center gap-4">
                   <span className="text-green-400 text-xl flex-shrink-0">✓</span>
-                  <span className="font-medium text-gray-300">Advanced tone & intent analysis</span>
+                  <span className="font-medium text-gray-300">100% Private: No sensitive info leaves your device</span>
                 </li>
                 <li className="flex items-center gap-4">
                   <span className="text-green-400 text-xl flex-shrink-0">✓</span>
-                  <span className="font-medium text-gray-300">Unlimited meetings & recording</span>
+                  <span className="font-medium text-gray-300">Real-time objection & closing guidance</span>
                 </li>
                 <li className="flex items-center gap-4">
                   <span className="text-green-400 text-xl flex-shrink-0">✓</span>
-                  <span className="font-medium text-gray-300">Full transcript history & search</span>
+                  <span className="font-medium text-gray-300">Instant answers (&lt;300ms latency)</span>
                 </li>
                 <li className="flex items-center gap-4">
                   <span className="text-green-400 text-xl flex-shrink-0">✓</span>
-                  <span className="font-medium text-gray-300">Advanced analytics dashboard</span>
-                </li>
-                <li className="flex items-center gap-4">
-                  <span className="text-green-400 text-xl flex-shrink-0">✓</span>
-                  <span className="font-medium text-gray-300">Priority customer support</span>
+                  <span className="font-medium text-gray-300">Unlimited calls and usage</span>
                 </li>
               </ul>
 
