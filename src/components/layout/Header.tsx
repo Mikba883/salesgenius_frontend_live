@@ -24,7 +24,7 @@ const Header = () => {
           : ''
       }`}
     >
-      <div className="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0 md:flex md:items-center md:py-4 lg:py-5 items-center justify-between relative">
+      <div className="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0 md:flex md:items-center md:py-2 lg:py-3 items-center justify-between relative">
         <div className="w-full md:w-1/4 flex items-center justify-between">
           <Link to="/">
             <img src="/images/logo/logo.svg" alt="Logo" />
