@@ -61,6 +61,19 @@ const HomePage = () => {
             />
           </div>
         </div>
+
+        {/* Visual Effects sotto Hero.svg */}
+        <div className="relative mx-auto max-w-7xl mt-[-200px] pointer-events-none">
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 -z-10">
+            <img src="/images/blur/blur-22.svg" alt="blur" className="max-w-none opacity-70" />
+          </div>
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 -z-10">
+            <img src="/images/blur/blur-23.svg" alt="blur" className="max-w-none opacity-60" />
+          </div>
+          <div className="absolute left-1/2 -translate-x-1/2 top-20 -z-10">
+            <img src="/images/blur/blur-24.svg" alt="blur" className="max-w-none opacity-50" />
+          </div>
+        </div>
       </section>
 
       {/* All Other Sections */}
