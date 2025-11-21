@@ -4,7 +4,7 @@ const CTA = () => {
   return (
     <section className="py-20 lg:py-25">
       <div className="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0">
-        <div className="cta-box-gradient bg-dark rounded-[30px] relative overflow-hidden px-4 py-20 lg:py-25 z-999">
+        <div className="cta-box-gradient bg-dark rounded-[30px] relative overflow-hidden px-4 pt-12 pb-20 lg:pt-16 lg:pb-25 z-999 min-h-[900px] flex flex-col">
           {/* bg shapes */}
           <span className="absolute bottom-0 left-0 -z-1">
             <img src="/images/cta/grid.svg" alt="grid" />
@@ -21,8 +21,23 @@ const CTA = () => {
             </span>
           </div>
 
+          {/* Title Section - Moved Up */}
+          <div className="relative z-10 text-center mb-12">
+            <span className="hero-subtitle-gradient relative mb-4 font-medium text-sm inline-flex items-center gap-2 py-2 px-6 rounded-full">
+              <img src="/images/hero/icon-title.svg" alt="icon" />
+              <span className="hero-subtitle-text">Get Started Today</span>
+            </span>
+            <h2 className="text-white mb-4.5 text-2xl font-extrabold sm:text-4xl xl:text-heading-2">
+              Start Creating Engaging Content
+            </h2>
+            <p className="max-w-[530px] mx-auto font-medium">
+              Our AI writing tool is designed to empower you with exceptional writing capabilities, 
+              making the writing process more efficient, accurate, and enjoyable.
+            </p>
+          </div>
+
           {/* content */}
-          <div className="relative z-10 max-w-[600px] w-full mx-auto">
+          <div className="relative z-10 max-w-[600px] w-full mx-auto flex-1 flex items-center">
             {/* Pricing Card */}
             <div className="w-full rounded-3xl bg-dark relative overflow-hidden pt-12.5 pb-10 px-8 xl:px-10 pricing-item-border shadow-[0_0_60px_rgba(139,92,246,0.4)]">
               {/* Early Adopter Badge - Top Right */}
