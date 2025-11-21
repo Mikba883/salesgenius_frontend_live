@@ -49,17 +49,6 @@ const CTA = () => {
           <span className="absolute bottom-0 left-0 -z-1">
             <img src="/images/cta/grid.svg" alt="grid" />
           </span>
-          <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
-            <span className="absolute bottom-0 right-0 -z-1">
-              <img src="/images/blur/blur-22.svg" alt="blur-sm" className="max-w-none" />
-            </span>
-            <span className="absolute bottom-0 right-0 -z-1">
-              <img src="/images/blur/blur-23.svg" alt="blur-sm" className="max-w-none" />
-            </span>
-            <span className="absolute bottom-0 right-0 -z-1">
-              <img src="/images/blur/blur-24.svg" alt="blur-sm" className="max-w-none" />
-            </span>
-          </div>
 
           {/* Title Section - Moved Up */}
           <div className="relative z-10 text-center mb-10">
