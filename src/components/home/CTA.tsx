@@ -4,7 +4,7 @@ const CTA = () => {
   return (
     <section className="py-20 lg:py-25">
       <div className="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0">
-        <div className="cta-box-gradient bg-dark rounded-[30px] relative overflow-hidden px-4 pt-12 pb-20 lg:pt-16 lg:pb-25 z-999 min-h-[900px] flex flex-col">
+        <div className="cta-box-gradient bg-dark rounded-[30px] relative overflow-hidden px-4 pt-12 pb-20 lg:pt-16 lg:pb-25 z-999">
           {/* bg shapes */}
           <span className="absolute bottom-0 left-0 -z-1">
             <img src="/images/cta/grid.svg" alt="grid" />
@@ -22,7 +22,7 @@ const CTA = () => {
           </div>
 
           {/* Title Section - Moved Up */}
-          <div className="relative z-10 text-center mb-12">
+          <div className="relative z-10 text-center mb-10">
             <span className="hero-subtitle-gradient relative mb-4 font-medium text-sm inline-flex items-center gap-2 py-2 px-6 rounded-full">
               <img src="/images/hero/icon-title.svg" alt="icon" />
               <span className="hero-subtitle-text">Get Started Today</span>
@@ -37,7 +37,7 @@ const CTA = () => {
           </div>
 
           {/* content */}
-          <div className="relative z-10 max-w-[900px] w-full mx-auto flex-1 flex items-center">
+          <div className="relative z-10 max-w-[700px] w-full mx-auto">
             {/* Pricing Card */}
             <div className="w-full rounded-3xl bg-dark relative overflow-hidden pt-12.5 pb-10 px-8 xl:px-10 pricing-item-border shadow-[0_0_60px_rgba(139,92,246,0.4)]">
               {/* Early Adopter Badge - Top Right */}
