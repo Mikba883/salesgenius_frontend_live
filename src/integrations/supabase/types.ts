@@ -14,6 +14,24 @@ export type Database = {
   }
   public: {
     Tables: {
+      contact_form_rate_limits: {
+        Row: {
+          created_at: string
+          id: string
+          identifier: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          identifier: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          identifier?: string
+        }
+        Relationships: []
+      }
       sales_events: {
         Row: {
           category: string | null
