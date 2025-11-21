@@ -59,13 +59,13 @@ const HomePage = () => {
           </div>
           
           {/* Effetti blur/glow sotto la GIF */}
-          <div className="absolute left-1/2 -translate-x-1/2 top-40 sm:top-52 md:top-64 z-0 pointer-events-none">
+          <div className="absolute left-1/2 -translate-x-1/2 top-[500px] sm:top-[600px] md:top-[700px] z-0 pointer-events-none">
             <img src="/images/blur/blur-22.svg" alt="blur" className="max-w-none opacity-50" />
           </div>
-          <div className="absolute left-1/2 -translate-x-1/2 top-40 sm:top-52 md:top-64 z-0 pointer-events-none">
+          <div className="absolute left-1/2 -translate-x-1/2 top-[500px] sm:top-[600px] md:top-[700px] z-0 pointer-events-none">
             <img src="/images/blur/blur-23.svg" alt="blur" className="max-w-none opacity-45" />
           </div>
-          <div className="absolute left-1/2 -translate-x-1/2 top-52 sm:top-64 md:top-72 z-0 pointer-events-none">
+          <div className="absolute left-1/2 -translate-x-1/2 top-[550px] sm:top-[650px] md:top-[750px] z-0 pointer-events-none">
             <img src="/images/blur/blur-24.svg" alt="blur" className="max-w-none opacity-80" />
           </div>
         </div>
