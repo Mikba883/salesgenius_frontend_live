@@ -99,7 +99,7 @@ const StickyBanner = () => {
         {/* Close button */}
         <button
           onClick={handleDismiss}
-          className="absolute top-3 right-8 text-white/60 hover:text-white transition-colors p-1"
+          className="absolute top-3 right-12 text-white/60 hover:text-white transition-colors p-1"
           aria-label="Close banner"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -107,33 +107,35 @@ const StickyBanner = () => {
           </svg>
         </button>
 
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 pr-8">
-          {/* Left side: Badge + Copy */}
-          <div className="flex items-center gap-3 flex-wrap justify-center sm:justify-start">
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white text-xs font-bold uppercase">
-              ⚡ Early Adopter
-            </span>
-            <p className="text-white text-sm sm:text-base font-medium text-center sm:text-left">
-              Lock in <span className="font-bold text-pink-300">$11.70/month</span> before price goes up
-            </p>
-          </div>
-
-          {/* Right side: Timer + CTA */}
-          <div className="flex items-center gap-6">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 pr-16">
+          {/* Left side: Badge + Copy + Timer */}
+          <div className="flex items-center gap-6 flex-wrap justify-center sm:justify-start">
+            <div className="flex items-center gap-3">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white text-xs font-bold uppercase">
+                ⚡ Early Adopter
+              </span>
+              <p className="text-white text-sm sm:text-base font-medium text-center sm:text-left">
+                Lock in <span className="font-bold text-pink-300">$11.70/month</span> before price goes up
+              </p>
+            </div>
+            
             {/* Countdown Timer */}
-            <div className="flex flex-col items-center gap-1">
+            <div className="flex flex-col items-start gap-1">
               <span className="text-white/60 text-xs uppercase tracking-wide">Time Remaining</span>
               <div className="font-mono font-bold text-white text-3xl sm:text-4xl">
                 {formatTime(timeLeft.hours)}:{formatTime(timeLeft.minutes)}:{formatTime(timeLeft.seconds)}
               </div>
             </div>
+          </div>
 
+          {/* Right side: CTA */}
+          <div className="flex items-center">
             {/* CTA Button */}
             <Link
               to="/signup"
               className="px-6 py-3 rounded-lg bg-white text-purple-900 font-semibold text-base hover:bg-pink-100 transition-all duration-300 hover:scale-105 whitespace-nowrap"
             >
-              Claim Deal →
+              Claim Deal
             </Link>
           </div>
         </div>
