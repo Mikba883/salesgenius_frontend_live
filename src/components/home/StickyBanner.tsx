@@ -1,7 +1,43 @@
 import React, { useState, useEffect } from 'react';
 
 const StickyBanner = () => {
+  const [isVisible, setIsVisible] = useState(true);
   const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 0, seconds: 0 });
+
+  // Check if banner should be visible on mount
+  useEffect(() => {
+    const dismissed = localStorage.getItem('earlyAdopterBannerDismissed');
+    if (dismissed === 'true') {
+      setIsVisible(false);
+      return;
+    }
+
+    const deadline = localStorage.getItem('earlyAdopterDeadline');
+    if (deadline) {
+      const now = new Date();
+      const diff = new Date(deadline).getTime() - now.getTime();
+      if (diff <= 0) {
+        setIsVisible(false);
+        localStorage.setItem('earlyAdopterBannerDismissed', 'true');
+        return;
+      }
+    }
+
+    setIsVisible(true);
+  }, []);
+
+  // Manage body padding based on banner visibility
+  useEffect(() => {
+    if (isVisible) {
+      document.body.style.paddingTop = '70px';
+    } else {
+      document.body.style.paddingTop = '0px';
+    }
+
+    return () => {
+      document.body.style.paddingTop = '0px';
+    };
+  }, [isVisible]);
 
   useEffect(() => {
     // Get or set deadline
@@ -24,6 +60,8 @@ const StickyBanner = () => {
 
       if (diff <= 0) {
         setTimeLeft({ hours: 0, minutes: 0, seconds: 0 });
+        setIsVisible(false);
+        localStorage.setItem('earlyAdopterBannerDismissed', 'true');
         return;
       }
 
@@ -48,12 +86,30 @@ const StickyBanner = () => {
     }
   };
 
+  const handleDismiss = () => {
+    setIsVisible(false);
+    localStorage.setItem('earlyAdopterBannerDismissed', 'true');
+  };
+
   const formatTime = (num: number) => String(num).padStart(2, '0');
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-purple-900/95 via-purple-800/95 to-purple-900/95 backdrop-blur-sm border-b border-purple-500/20">
-      <div className="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0 py-4">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
+    <div className={`fixed top-0 left-0 right-0 z-[10000] bg-gradient-to-r from-purple-900/95 via-purple-800/95 to-purple-900/95 backdrop-blur-sm border-b border-purple-500/20 transition-transform duration-300 ease-in-out ${
+      isVisible ? 'translate-y-0' : '-translate-y-full'
+    }`}>
+      <div className="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0 py-4 relative">
+        {/* Close button */}
+        <button
+          onClick={handleDismiss}
+          className="absolute top-3 right-3 text-white/60 hover:text-white transition-colors p-1"
+          aria-label="Close banner"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 pr-8">
           {/* Left side: Badge + Copy */}
           <div className="flex items-center gap-3 flex-wrap justify-center sm:justify-start">
             <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white text-xs font-bold uppercase">
