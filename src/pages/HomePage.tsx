@@ -57,15 +57,6 @@ const HomePage = () => {
               className="w-full max-w-[1100px] h-auto rounded-xl shadow-2xl border-2 border-white/20"
             />
           </div>
-
-          {/* Hero SVG che spunta dal basso sotto la GIF */}
-          <div className="mt-10">
-            <img
-              className="mx-auto w-full opacity-60"
-              src="/images/hero/hero.svg"
-              alt="hero frame"
-            />
-          </div>
         </div>
       </section>
 
