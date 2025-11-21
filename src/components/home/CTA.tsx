@@ -6,8 +6,8 @@ const CTA = () => {
       <div className="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0">
         <div className="cta-box-gradient bg-dark rounded-[30px] relative overflow-hidden px-4 pt-12 pb-20 lg:pt-16 lg:pb-25 z-999 min-h-[900px] flex flex-col">
           {/* bg shapes */}
-          <span className="absolute top-0 left-0 -z-1 w-full h-full">
-            <img src="/images/cta/grid.svg" alt="grid" className="w-full h-full object-cover" />
+          <span className="absolute bottom-0 left-0 -z-1">
+            <img src="/images/cta/grid.svg" alt="grid" />
           </span>
           <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
             <span className="absolute bottom-0 right-0 -z-1">
@@ -37,7 +37,7 @@ const CTA = () => {
           </div>
 
           {/* content */}
-          <div className="relative z-10 max-w-[600px] w-full mx-auto flex-1 flex items-center">
+          <div className="relative z-10 max-w-[900px] w-full mx-auto flex-1 flex items-center">
             {/* Pricing Card */}
             <div className="w-full rounded-3xl bg-dark relative overflow-hidden pt-12.5 pb-10 px-8 xl:px-10 pricing-item-border shadow-[0_0_60px_rgba(139,92,246,0.4)]">
               {/* Early Adopter Badge - Top Right */}
