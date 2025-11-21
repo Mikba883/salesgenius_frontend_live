@@ -99,7 +99,7 @@ const StickyBanner = () => {
         {/* Close button */}
         <button
           onClick={handleDismiss}
-          className="absolute top-3 right-20 text-white/60 hover:text-white transition-colors p-1 z-10"
+          className="absolute top-3 right-32 text-white/60 hover:text-white transition-colors p-1 z-10"
           aria-label="Close banner"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -122,7 +122,7 @@ const StickyBanner = () => {
           <div className="flex-1 flex justify-center">
             <div className="flex flex-col items-center gap-1">
               <span className="text-white/60 text-xs uppercase tracking-wide">Time Remaining</span>
-              <div className="font-mono font-bold text-white text-3xl sm:text-4xl">
+              <div className="font-mono font-bold text-white text-2xl sm:text-3xl">
                 {formatTime(timeLeft.hours)}:{formatTime(timeLeft.minutes)}:{formatTime(timeLeft.seconds)}
               </div>
             </div>
