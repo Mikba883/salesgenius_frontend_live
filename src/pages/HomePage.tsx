@@ -14,7 +14,7 @@ const HomePage = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <section id="home" className="relative z-10 overflow-hidden pt-24 md:pt-40 xl:pt-45">
+      <section id="home" className="relative z-10 overflow-hidden pt-32 sm:pt-36 md:pt-40 xl:pt-45">
         {/* Hero Bg Shapes */}
         <div className="mx-auto max-w-7xl">
           <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10 -mx-28">
@@ -50,23 +50,23 @@ const HomePage = () => {
 
         <div className="mt-32 sm:mt-40 relative mx-auto max-w-[1170px]">
           {/* GIF con dimensioni corrette */}
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-center relative z-10">
             <img 
               src="/images/video/gif.gif" 
               alt="SalesGenius in action" 
-              className="w-full max-w-[900px] h-auto rounded-xl shadow-2xl border-2 border-white/20"
+              className="w-full max-w-[1100px] h-auto rounded-xl shadow-2xl border-2 border-white/20"
             />
           </div>
           
           {/* Effetti blur/glow sotto la GIF */}
-          <div className="absolute left-1/2 -translate-x-1/2 top-0 -z-10 pointer-events-none">
-            <img src="/images/blur/blur-22.svg" alt="blur" className="max-w-none opacity-25" />
-          </div>
-          <div className="absolute left-1/2 -translate-x-1/2 top-0 -z-10 pointer-events-none">
-            <img src="/images/blur/blur-23.svg" alt="blur" className="max-w-none opacity-22" />
+          <div className="absolute left-1/2 -translate-x-1/2 top-20 -z-10 pointer-events-none">
+            <img src="/images/blur/blur-22.svg" alt="blur" className="max-w-none opacity-40" />
           </div>
           <div className="absolute left-1/2 -translate-x-1/2 top-20 -z-10 pointer-events-none">
-            <img src="/images/blur/blur-24.svg" alt="blur" className="max-w-none opacity-20" />
+            <img src="/images/blur/blur-23.svg" alt="blur" className="max-w-none opacity-35" />
+          </div>
+          <div className="absolute left-1/2 -translate-x-1/2 top-40 -z-10 pointer-events-none">
+            <img src="/images/blur/blur-24.svg" alt="blur" className="max-w-none opacity-50" />
           </div>
         </div>
       </section>
