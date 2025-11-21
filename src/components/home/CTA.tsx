@@ -6,8 +6,8 @@ const CTA = () => {
       <div className="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0">
         <div className="cta-box-gradient bg-dark rounded-[30px] relative overflow-hidden px-4 pt-12 pb-20 lg:pt-16 lg:pb-25 z-999 min-h-[900px] flex flex-col">
           {/* bg shapes */}
-          <span className="absolute bottom-0 left-0 -z-1">
-            <img src="/images/cta/grid.svg" alt="grid" />
+          <span className="absolute top-0 left-0 -z-1 w-full h-full">
+            <img src="/images/cta/grid.svg" alt="grid" className="w-full h-full object-cover" />
           </span>
           <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
             <span className="absolute bottom-0 right-0 -z-1">
