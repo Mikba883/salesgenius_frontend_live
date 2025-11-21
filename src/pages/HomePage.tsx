@@ -48,7 +48,7 @@ const HomePage = () => {
           </div>
         </div>
 
-        <div className="mt-32 sm:mt-40 relative mx-auto max-w-[1170px] pb-[260px]">
+        <div className="mt-32 sm:mt-40 relative mx-auto max-w-[1170px]">
           {/* GIF con dimensioni corrette */}
           <div className="flex items-center justify-center relative z-10">
             <img 
@@ -59,13 +59,13 @@ const HomePage = () => {
           </div>
           
           {/* Effetti blur/glow sotto la GIF */}
-          <div className="absolute left-1/2 -translate-x-1/2 top-[260px] sm:top-[280px] md:top-[300px] z-0 pointer-events-none">
+          <div className="absolute left-1/2 -translate-x-1/2 top-[500px] sm:top-[600px] md:top-[700px] z-0 pointer-events-none">
             <img src="/images/blur/blur-22.svg" alt="blur" className="max-w-none opacity-50" />
           </div>
-          <div className="absolute left-1/2 -translate-x-1/2 top-[260px] sm:top-[280px] md:top-[300px] z-0 pointer-events-none">
+          <div className="absolute left-1/2 -translate-x-1/2 top-[500px] sm:top-[600px] md:top-[700px] z-0 pointer-events-none">
             <img src="/images/blur/blur-23.svg" alt="blur" className="max-w-none opacity-45" />
           </div>
-          <div className="absolute left-1/2 -translate-x-1/2 top-[300px] sm:top-[320px] md:top-[340px] z-0 pointer-events-none">
+          <div className="absolute left-1/2 -translate-x-1/2 top-[550px] sm:top-[650px] md:top-[750px] z-0 pointer-events-none">
             <img src="/images/blur/blur-24.svg" alt="blur" className="max-w-none opacity-80" />
           </div>
         </div>
