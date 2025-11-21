@@ -48,7 +48,7 @@ const HomePage = () => {
           </div>
         </div>
 
-        <div className="mt-32 sm:mt-40 mx-auto max-w-[1170px] pb-32">
+        <div className="mt-32 sm:mt-40 mx-auto max-w-[1170px]">
           {/* GIF centrato e ben visibile */}
           <div className="relative flex items-center justify-center px-4 sm:px-8 md:px-16">
             <img
@@ -57,15 +57,15 @@ const HomePage = () => {
               className="w-full max-w-[1100px] h-auto rounded-xl shadow-2xl border-2 border-white/20"
             />
           </div>
+
+          {/* Spotlight Line Effect */}
+          <div className="relative mt-20 mx-auto max-w-[960px] h-[2px] overflow-visible pointer-events-none">
+            <div className="absolute left-1/2 -translate-x-1/2 w-full">
+              <img src="/images/blur/blur-24.svg" alt="" className="w-full opacity-80" style={{ filter: 'blur(1px)' }} />
+            </div>
+          </div>
         </div>
       </section>
-
-      {/* Spotlight Line Effect */}
-      <div className="relative -mt-48 mb-20 mx-auto max-w-[960px] h-[2px] overflow-visible pointer-events-none">
-        <div className="absolute left-1/2 -translate-x-1/2 w-full">
-          <img src="/images/blur/blur-24.svg" alt="" className="w-full opacity-80" style={{ filter: 'blur(1px)' }} />
-        </div>
-      </div>
 
       {/* All Other Sections */}
       <KeyFeatures />
