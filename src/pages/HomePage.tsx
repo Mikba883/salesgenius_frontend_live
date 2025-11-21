@@ -3,8 +3,8 @@ import Layout from '@/components/layout/Layout';
 import KeyFeatures from '@/components/home/KeyFeatures';
 import FeaturesGrid from '@/components/home/FeaturesGrid';
 import FeaturesList from '@/components/home/FeaturesList';
-import Clients from '@/components/home/Clients';
 import VisualEffect from '@/components/home/VisualEffect';
+import CTA from '@/components/home/CTA';
 import StickyBanner from '@/components/home/StickyBanner';
 
 const HomePage = () => {
@@ -71,7 +71,7 @@ const HomePage = () => {
       <FeaturesGrid />
       <FeaturesList />
       <VisualEffect />
-      <Clients />
+      <CTA />
     </Layout>
     </>
   );
