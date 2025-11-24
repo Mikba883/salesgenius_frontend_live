@@ -19,7 +19,19 @@ const SignUpPage = () => {
           if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
             await syncSessionWithExtension(session);
           }
-          navigate('/dashboard');
+          
+          // Check subscription status
+          const { data: profileData } = await supabase
+            .from('user_profiles')
+            .select('is_premium')
+            .eq('user_id', session.user.id)
+            .single();
+          
+          if (profileData?.is_premium) {
+            navigate('/dashboard');
+          } else {
+            navigate('/pricing');
+          }
         }
       }
     );

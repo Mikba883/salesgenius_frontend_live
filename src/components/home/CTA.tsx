@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 const CTA = () => {
   const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 0, seconds: 0 });
+  const [isTimerVisible, setIsTimerVisible] = useState(true);
 
   useEffect(() => {
     // Get or set deadline (same as StickyBanner)
@@ -24,6 +25,7 @@ const CTA = () => {
 
       if (diff <= 0) {
         setTimeLeft({ hours: 0, minutes: 0, seconds: 0 });
+        setIsTimerVisible(false);
         return;
       }
 
@@ -123,19 +125,21 @@ const CTA = () => {
 
               {/* CTA Button */}
               <a
-                href="/#"
+                href="/signup"
                 className="w-full flex items-center justify-center gap-2 font-bold text-white text-lg py-4 px-12 rounded-lg transition-all ease-in-out duration-300 relative pricing-button-gradient hover:shadow-[0_0_30px_rgba(139,92,246,0.6)] hover:scale-105"
               >
                 LOCK IN $11.70 PRICE
               </a>
 
               {/* Countdown Timer - Red Elegant */}
-              <div className="mt-6 flex flex-col items-center gap-1">
-                <span className="text-red-400/80 text-xs uppercase tracking-wide font-medium">Offer Ends In</span>
-                <div className="font-mono font-bold text-red-500 text-3xl">
-                  {formatTime(timeLeft.hours)}:{formatTime(timeLeft.minutes)}:{formatTime(timeLeft.seconds)}
+              {isTimerVisible && (
+                <div className="mt-6 flex flex-col items-center gap-1">
+                  <span className="text-red-400/80 text-xs uppercase tracking-wide font-medium">Offer Ends In</span>
+                  <div className="font-mono font-bold text-red-500 text-3xl">
+                    {formatTime(timeLeft.hours)}:{formatTime(timeLeft.minutes)}:{formatTime(timeLeft.seconds)}
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* bg shapes */}
               <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
