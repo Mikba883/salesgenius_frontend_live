@@ -120,12 +120,14 @@ const StickyBanner = () => {
 
         <div className="flex flex-col items-center gap-2 w-full sm:grid sm:grid-cols-3 sm:gap-4 sm:pr-12">
           {/* Left: Copy */}
-          <div className="flex items-center gap-2 text-center sm:text-left sm:justify-start">
-            <span className="hidden lg:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white text-xs font-bold uppercase">
+          <div className="flex items-center gap-3 text-center sm:text-left sm:justify-start">
+            <span className="hidden lg:inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white text-base font-bold uppercase">
               ⚡ Early Adopter
             </span>
-            <p className="text-white text-xs sm:text-sm font-medium">
-              Lock in <span className="font-bold text-pink-300">$11.70/month</span> before price goes up
+            <p className="text-white text-xs sm:text-sm lg:text-base font-medium">
+              Lock in <span className="font-bold text-pink-300">$11.70/month</span>
+              <br className="hidden lg:block" />
+              before price goes up
             </p>
           </div>
 
