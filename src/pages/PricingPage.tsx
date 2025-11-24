@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Layout from '@/components/layout/Layout';
 import { supabase } from '@/integrations/supabase/client';
-import { useToast } from '@/hooks/use-toast';
 
 const PricingPage = () => {
   const navigate = useNavigate();
-  const { toast } = useToast();
   const [loading, setLoading] = useState(false);
 
   const handleSubscribe = async () => {
@@ -30,11 +28,7 @@ const PricingPage = () => {
       }
     } catch (error: any) {
       console.error('Checkout error:', error);
-      toast({
-        title: "Error",
-        description: error.message || "Failed to create checkout session",
-        variant: "destructive"
-      });
+      alert(error.message || "Failed to create checkout session");
     } finally {
       setLoading(false);
     }
