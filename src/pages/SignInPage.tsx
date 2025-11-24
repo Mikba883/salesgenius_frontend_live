@@ -26,8 +26,21 @@ const SignInPage = () => {
             console.log('[SignInPage] 🔄 Sincronizzazione token con estensione Chrome...');
             await syncSessionWithExtension(session);
           }
-          console.log('[SignInPage] ✅ Login completato, redirect a dashboard');
-          navigate('/dashboard');
+          
+          // Check subscription status
+          const { data: profileData } = await supabase
+            .from('user_profiles')
+            .select('is_premium')
+            .eq('user_id', session.user.id)
+            .single();
+          
+          if (profileData?.is_premium) {
+            console.log('[SignInPage] ✅ Premium user, redirect to dashboard');
+            navigate('/dashboard');
+          } else {
+            console.log('[SignInPage] ℹ️ Non-premium user, redirect to pricing');
+            navigate('/pricing');
+          }
         }
       }
     );

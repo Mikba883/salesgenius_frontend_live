@@ -9,6 +9,8 @@ const DashboardPage = () => {
   const [loading, setLoading] = useState(true);
   const [debugResult, setDebugResult] = useState<any>(null);
   const [isDebugLoading, setIsDebugLoading] = useState(false);
+  const [isPremium, setIsPremium] = useState(false);
+  const [subscriptionChecking, setSubscriptionChecking] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,8 +21,21 @@ const DashboardPage = () => {
         navigate('/login');
       } else {
         setUser(session.user);
-        setLoading(false);
-        // Sincronizzazione gestita globalmente in App.tsx
+        
+        // Check premium status
+        const { data: profileData } = await supabase
+          .from('user_profiles')
+          .select('is_premium')
+          .eq('user_id', session.user.id)
+          .single();
+        
+        if (!profileData?.is_premium) {
+          navigate('/pricing');
+        } else {
+          setIsPremium(true);
+          setSubscriptionChecking(false);
+          setLoading(false);
+        }
       }
     };
 
