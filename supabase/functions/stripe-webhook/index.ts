@@ -67,13 +67,16 @@ serve(async (req) => {
     switch (event.type) {
       case "checkout.session.completed": {
         const session = event.data.object as Stripe.Checkout.Session;
+        // L'email può essere in customer_email O in customer_details.email
+        const customerEmail = session.customer_email || session.customer_details?.email;
+        
         logStep("Processing checkout.session.completed", { 
           sessionId: session.id,
-          customerEmail: session.customer_email 
+          customerEmail: customerEmail 
         });
 
-        if (!session.customer_email) {
-          logStep("No customer email in session");
+        if (!customerEmail) {
+          logStep("No customer email in session or customer_details");
           return new Response(JSON.stringify({ error: "No customer email" }), {
             status: 400,
             headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -84,7 +87,7 @@ serve(async (req) => {
         const { data: profile, error: profileError } = await supabaseClient
           .from("user_profiles")
           .select("id, user_id, email, is_premium")
-          .eq("email", session.customer_email)
+          .eq("email", customerEmail)
           .maybeSingle();
 
         if (profileError) {
@@ -109,7 +112,7 @@ serve(async (req) => {
             });
           }
           
-          const authUser = authData.users.find(u => u.email === session.customer_email);
+          const authUser = authData.users.find(u => u.email === customerEmail);
           
           if (!authUser) {
             logStep("No auth user found with this email");
@@ -123,7 +126,7 @@ serve(async (req) => {
             .from("user_profiles")
             .insert({
               user_id: authUser.id,
-              email: session.customer_email,
+              email: customerEmail,
               is_premium: true,
             });
             
