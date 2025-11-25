@@ -37,21 +37,21 @@ const PricingPage = () => {
   return (
     <AuthLayout>
       <div className="w-full max-w-[600px] mx-auto px-4">
+        {/* Title Section */}
+        <div className="text-center mb-12">
+          <h1 className="text-white mb-4 text-3xl font-extrabold sm:text-4xl">
+            Start Closing More Deals Today
+          </h1>
+          <p className="max-w-[500px] mx-auto font-medium text-base text-gray-300">
+            Stop losing deals today. Get real-time guidance to handle objections and close more sales instantly.
+          </p>
+        </div>
+
         <div className="w-full rounded-3xl bg-black/80 border border-white/10 relative overflow-hidden pt-16 pb-14 px-8 xl:px-10 pricing-item-border shadow-[0_0_60px_rgba(139,92,246,0.4)]">
           {/* Early Adopter Badge */}
           <span className="absolute right-6 top-6 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white text-xs font-bold uppercase animate-pulse">
             ⚡ 70% OFF - First Month
           </span>
-
-          {/* Title Section */}
-          <div className="text-center mb-8">
-            <h1 className="text-white mb-4 text-3xl font-extrabold sm:text-4xl">
-              Start Closing More Deals Today
-            </h1>
-            <p className="max-w-[500px] mx-auto font-medium text-base text-gray-300">
-              Stop losing deals today. Get real-time guidance to handle objections and close more sales instantly.
-            </p>
-          </div>
 
           {/* Pricing */}
           <div className="mb-6 text-center">
