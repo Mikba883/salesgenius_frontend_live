@@ -79,8 +79,23 @@ serve(async (req) => {
 
     if (hasActiveSub) {
       const subscription = subscriptions.data[0];
-      subscriptionEnd = new Date(subscription.current_period_end * 1000).toISOString();
-      logStep("Active subscription found", { subscriptionId: subscription.id, endDate: subscriptionEnd });
+
+      // Safely handle subscription end timestamp to avoid "Invalid time value" errors
+      const rawEnd: any = (subscription as any).current_period_end;
+      const endTimestamp =
+        typeof rawEnd === "number" ? rawEnd : rawEnd ? Number(rawEnd) : null;
+
+      if (endTimestamp && !Number.isNaN(endTimestamp)) {
+        subscriptionEnd = new Date(endTimestamp * 1000).toISOString();
+      } else {
+        logStep("Subscription end timestamp missing or invalid", { rawEnd });
+        subscriptionEnd = null;
+      }
+
+      logStep("Active subscription found", {
+        subscriptionId: subscription.id,
+        endDate: subscriptionEnd,
+      });
       productId = subscription.items.data[0].price.product;
       logStep("Determined subscription tier", { productId });
       
