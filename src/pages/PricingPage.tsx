@@ -48,7 +48,7 @@ const PricingPage = () => {
               Start Closing More Deals Today
             </h1>
             <p className="max-w-[600px] mx-auto font-medium text-lg">
-              Get access to the most advanced AI Sales Coach and never lose a deal again
+              Stop losing deals today. Get real-time guidance to handle objections and close more sales instantly.
             </p>
           </div>
 
@@ -71,12 +71,7 @@ const PricingPage = () => {
                     $11.70
                   </h2>
                 </div>
-                <p className="font-medium text-gray-400 mb-4">/month for the first month, then $39/month</p>
-                
-                {/* Savings Badge */}
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-green-500/20 border border-green-500/50 text-green-400 font-semibold text-sm">
-                  💰 You save $27.30 on your first month
-                </div>
+                <p className="font-medium text-gray-400">/month</p>
               </div>
 
               <div className="my-10 w-full h-[1px] pricing-gradient-divider"></div>
