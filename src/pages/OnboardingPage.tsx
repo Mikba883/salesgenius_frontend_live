@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
-import AuthLayout from '@/components/layout/AuthLayout';
+import DashboardHeader from '@/components/dashboard/DashboardHeader';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import type { User } from '@supabase/supabase-js';
 
 export default function OnboardingPage() {
   const navigate = useNavigate();
@@ -9,6 +12,8 @@ export default function OnboardingPage() {
   const [isPremium, setIsPremium] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [attempts, setAttempts] = useState(0);
+  const [currentStep, setCurrentStep] = useState(0);
+  const [user, setUser] = useState<User | null>(null);
 
   const checkSubscription = async () => {
     try {
@@ -48,18 +53,22 @@ export default function OnboardingPage() {
   };
 
   useEffect(() => {
+    const fetchUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) setUser(user);
+    };
+    fetchUser();
+
     let pollInterval: NodeJS.Timeout;
-    let maxAttempts = 4; // 4 attempts * 3 seconds = 12 seconds (webhook should arrive much faster)
+    let maxAttempts = 4;
 
     const startPolling = async () => {
-      // First immediate check
       const isActive = await checkSubscription();
       
       if (isActive) {
         return;
       }
 
-      // Start polling
       pollInterval = setInterval(async () => {
         setAttempts(prev => prev + 1);
 
@@ -75,7 +84,7 @@ export default function OnboardingPage() {
         if (isActive) {
           clearInterval(pollInterval);
         }
-      }, 3000); // Check every 3 seconds (webhook should arrive before)
+      }, 3000);
     };
 
     startPolling();
@@ -94,82 +103,190 @@ export default function OnboardingPage() {
     checkSubscription();
   };
 
+  const steps = [
+    {
+      title: "Install Sales Genius Extension",
+      subtitle: "Add our Chrome extension to get real-time sales suggestions during your calls",
+      cta: "Download Extension",
+      ctaAction: () => window.open('https://chrome.google.com/webstore', '_blank')
+    },
+    {
+      title: "Enable Permissions",
+      subtitle: "Accept terms and allow microphone access so we can listen to your calls",
+      cta: "Accept & Enable Microphone",
+      ctaAction: () => {
+        // Request microphone permission
+        navigator.mediaDevices.getUserMedia({ audio: true })
+          .then(() => {
+            console.log('Microphone permission granted');
+            setCurrentStep(2);
+          })
+          .catch((err) => {
+            console.error('Microphone permission denied:', err);
+            alert('Please allow microphone access to continue');
+          });
+      }
+    },
+    {
+      title: "You're Ready!",
+      subtitle: "Here's how to activate Sales Genius during your video calls",
+      cta: "Go to Dashboard",
+      ctaAction: () => navigate('/dashboard')
+    }
+  ];
+
+  const nextStep = () => {
+    if (currentStep < steps.length - 1) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+
+  const prevStep = () => {
+    if (currentStep > 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+
   if (loading) {
     return (
-      <AuthLayout>
+      <div className="min-h-screen bg-dark">
+        {user && <DashboardHeader user={user} />}
         <div className="min-h-screen flex items-center justify-center">
           <div className="text-center">
             <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary mb-4"></div>
-            <h2 className="text-2xl font-semibold mb-2">Stiamo verificando il tuo pagamento...</h2>
-            <p className="text-muted-foreground">Attendere qualche secondo ⏳</p>
+            <h2 className="text-2xl font-semibold text-white mb-2">Stiamo verificando il tuo pagamento...</h2>
+            <p className="text-white/60">Attendere qualche secondo ⏳</p>
             {attempts > 0 && (
-              <p className="text-sm text-muted-foreground mt-2">
+              <p className="text-sm text-white/40 mt-2">
                 Tentativo {attempts} di 4...
               </p>
             )}
           </div>
         </div>
-      </AuthLayout>
+      </div>
     );
   }
 
   if (error) {
     return (
-      <AuthLayout>
+      <div className="min-h-screen bg-dark">
+        {user && <DashboardHeader user={user} />}
         <div className="min-h-screen flex items-center justify-center">
-          <div className="text-center max-w-md">
+          <div className="text-center max-w-md px-4">
             <div className="text-6xl mb-4">⚠️</div>
-            <h2 className="text-2xl font-semibold mb-4">{error}</h2>
+            <h2 className="text-2xl font-semibold text-white mb-4">{error}</h2>
             <button
               onClick={handleRetry}
-              className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors"
+              className="px-6 py-3 bg-gradient-to-r from-purple to-blue text-white rounded-lg font-semibold hover:opacity-90 transition-opacity"
             >
               Riprova
             </button>
           </div>
         </div>
-      </AuthLayout>
+      </div>
     );
   }
 
-  if (isPremium) {
+  if (isPremium && user) {
     return (
-      <AuthLayout>
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="text-center max-w-2xl px-4">
-            <div className="text-6xl mb-6">🎉</div>
-            <h1 className="text-4xl font-bold mb-4">Benvenuto in Sales Genius Premium!</h1>
-            <p className="text-xl text-muted-foreground mb-8">
-              Il tuo pagamento è stato confermato con successo. Ora hai accesso a tutte le funzionalità premium.
-            </p>
-            
-            <div className="bg-card border border-border rounded-lg p-8 mb-8 text-left">
-              <h2 className="text-2xl font-semibold mb-4">Prossimi passi:</h2>
-              <ol className="space-y-3 text-muted-foreground">
-                <li className="flex items-start">
-                  <span className="font-bold text-primary mr-2">1.</span>
-                  <span>Installa l'estensione Chrome di Sales Genius</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="font-bold text-primary mr-2">2.</span>
-                  <span>Accedi all'estensione con le tue credenziali</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="font-bold text-primary mr-2">3.</span>
-                  <span>Inizia la tua prima chiamata e ricevi suggerimenti in tempo reale</span>
-                </li>
-              </ol>
-            </div>
-
-            <button
-              onClick={() => navigate('/dashboard')}
-              className="px-8 py-4 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors"
-            >
-              Vai alla Dashboard
-            </button>
+      <div className="min-h-screen bg-dark relative overflow-hidden">
+        {/* Background effects */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2">
+            <img src="/images/blur/blur-02.svg" alt="blur" className="max-w-none opacity-30" />
           </div>
         </div>
-      </AuthLayout>
+
+        <DashboardHeader user={user} />
+        
+        <div className="pt-32 pb-20 px-4">
+          <div className="max-w-4xl mx-auto">
+            {/* Progress indicators */}
+            <div className="flex justify-center gap-2 mb-12">
+              {steps.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentStep(index)}
+                  className={`w-3 h-3 rounded-full transition-all ${
+                    index === currentStep 
+                      ? 'bg-gradient-to-r from-purple to-blue w-8' 
+                      : 'bg-white/20 hover:bg-white/30'
+                  }`}
+                />
+              ))}
+            </div>
+
+            {/* Step card */}
+            <div className="relative">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentStep}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.3 }}
+                  className="bg-black/60 border border-white/10 rounded-2xl p-8 md:p-12 backdrop-blur-sm"
+                >
+                  {/* Navigation arrows */}
+                  <div className="flex items-center justify-between mb-8">
+                    <button
+                      onClick={prevStep}
+                      disabled={currentStep === 0}
+                      className={`p-2 rounded-full transition-all ${
+                        currentStep === 0 
+                          ? 'opacity-0 pointer-events-none' 
+                          : 'bg-white/5 hover:bg-white/10 text-white'
+                      }`}
+                    >
+                      <ChevronLeft className="w-6 h-6" />
+                    </button>
+
+                    <div className="text-center flex-1">
+                      <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">
+                        {steps[currentStep].title}
+                      </h1>
+                      <p className="text-lg text-white/60 max-w-2xl mx-auto">
+                        {steps[currentStep].subtitle}
+                      </p>
+                    </div>
+
+                    <button
+                      onClick={nextStep}
+                      disabled={currentStep === steps.length - 1}
+                      className={`p-2 rounded-full transition-all ${
+                        currentStep === steps.length - 1 
+                          ? 'opacity-0 pointer-events-none' 
+                          : 'bg-white/5 hover:bg-white/10 text-white'
+                      }`}
+                    >
+                      <ChevronRight className="w-6 h-6" />
+                    </button>
+                  </div>
+
+                  {/* GIF demo */}
+                  <div className="mb-8 flex justify-center">
+                    <img 
+                      src="/images/video/gif.gif" 
+                      alt="Demo" 
+                      className="max-w-full md:max-w-2xl rounded-xl border-2 border-white/10 shadow-2xl"
+                    />
+                  </div>
+
+                  {/* CTA button */}
+                  <div className="flex justify-center">
+                    <button
+                      onClick={steps[currentStep].ctaAction}
+                      className="px-8 py-4 bg-gradient-to-r from-purple to-blue text-white rounded-lg font-semibold hover:opacity-90 transition-opacity text-lg"
+                    >
+                      {steps[currentStep].cta}
+                    </button>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 
