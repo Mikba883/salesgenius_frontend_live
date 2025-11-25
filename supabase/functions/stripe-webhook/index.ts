@@ -85,14 +85,58 @@ serve(async (req) => {
           .from("user_profiles")
           .select("id, user_id, email, is_premium")
           .eq("email", session.customer_email)
-          .single();
+          .maybeSingle();
 
         if (profileError) {
-          logStep("Error finding user profile", { error: profileError.message });
-          return new Response(JSON.stringify({ error: "User profile not found" }), {
-            status: 404,
+          logStep("Error querying user profile", { error: profileError.message });
+          return new Response(JSON.stringify({ error: "Database error" }), {
+            status: 500,
             headers: { ...corsHeaders, "Content-Type": "application/json" },
           });
+        }
+
+        // If profile doesn't exist, create it
+        if (!profile) {
+          logStep("Profile not found, looking up user in auth.users");
+          
+          const { data: authData, error: authError } = await supabaseClient.auth.admin.listUsers();
+          
+          if (authError) {
+            logStep("Error listing auth users", { error: authError.message });
+            return new Response(JSON.stringify({ error: "Could not find user" }), {
+              status: 404,
+              headers: { ...corsHeaders, "Content-Type": "application/json" },
+            });
+          }
+          
+          const authUser = authData.users.find(u => u.email === session.customer_email);
+          
+          if (!authUser) {
+            logStep("No auth user found with this email");
+            return new Response(JSON.stringify({ error: "User not found in auth" }), {
+              status: 404,
+              headers: { ...corsHeaders, "Content-Type": "application/json" },
+            });
+          }
+          
+          const { error: insertError } = await supabaseClient
+            .from("user_profiles")
+            .insert({
+              user_id: authUser.id,
+              email: session.customer_email,
+              is_premium: true,
+            });
+            
+          if (insertError) {
+            logStep("Error creating profile", { error: insertError.message });
+            return new Response(JSON.stringify({ error: "Failed to create profile" }), {
+              status: 500,
+              headers: { ...corsHeaders, "Content-Type": "application/json" },
+            });
+          }
+          
+          logStep("Created new profile with is_premium = true", { userId: authUser.id });
+          break;
         }
 
         logStep("User profile found", { userId: profile.user_id, currentPremium: profile.is_premium });
@@ -146,12 +190,20 @@ serve(async (req) => {
           .from("user_profiles")
           .select("id, user_id, email, is_premium")
           .eq("email", customerEmail)
-          .single();
+          .maybeSingle();
 
         if (profileError) {
-          logStep("Error finding user profile", { error: profileError.message });
-          return new Response(JSON.stringify({ error: "User profile not found" }), {
-            status: 404,
+          logStep("Error querying user profile", { error: profileError.message });
+          return new Response(JSON.stringify({ error: "Database error" }), {
+            status: 500,
+            headers: { ...corsHeaders, "Content-Type": "application/json" },
+          });
+        }
+
+        if (!profile) {
+          logStep("Profile not found for subscription.deleted event", { email: customerEmail });
+          return new Response(JSON.stringify({ received: true }), {
+            status: 200,
             headers: { ...corsHeaders, "Content-Type": "application/json" },
           });
         }
@@ -207,12 +259,20 @@ serve(async (req) => {
           .from("user_profiles")
           .select("id, user_id, email, is_premium")
           .eq("email", customerEmail)
-          .single();
+          .maybeSingle();
 
         if (profileError) {
-          logStep("Error finding user profile", { error: profileError.message });
-          return new Response(JSON.stringify({ error: "User profile not found" }), {
-            status: 404,
+          logStep("Error querying user profile", { error: profileError.message });
+          return new Response(JSON.stringify({ error: "Database error" }), {
+            status: 500,
+            headers: { ...corsHeaders, "Content-Type": "application/json" },
+          });
+        }
+
+        if (!profile) {
+          logStep("Profile not found for subscription.updated event", { email: customerEmail });
+          return new Response(JSON.stringify({ received: true }), {
+            status: 200,
             headers: { ...corsHeaders, "Content-Type": "application/json" },
           });
         }
