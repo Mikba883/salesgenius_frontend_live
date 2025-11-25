@@ -70,30 +70,32 @@ const DashboardStats = ({ totalMinutes, totalSuggestions, categoryBreakdown }: D
             </svg>
           </div>
         </div>
-        <div className="space-y-3">
-          {categoryBreakdown.slice(0, 3).map((item) => {
-            const config = categoryConfig[item.category.toLowerCase()];
-            return (
-              <div key={item.category}>
-                <div className="flex justify-between items-center mb-1">
-                  <span className="text-white/80 text-sm capitalize flex items-center gap-2">
-                    {config && <span>{config.emoji}</span>}
-                    {item.category}
-                  </span>
-                  <span className="text-white font-semibold">{item.percentage}%</span>
+        <div className="space-y-2.5">
+          {categoryBreakdown
+            .filter(item => item.category.toLowerCase() !== 'system')
+            .map((item) => {
+              const config = categoryConfig[item.category.toLowerCase()];
+              return (
+                <div key={item.category}>
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="text-white/80 text-xs capitalize flex items-center gap-1.5">
+                      {config && <span className="text-sm">{config.emoji}</span>}
+                      {item.category}
+                    </span>
+                    <span className="text-white font-semibold text-xs">{item.percentage}%</span>
+                  </div>
+                  <div className="w-full bg-white/5 rounded-full h-1.5">
+                    <div 
+                      className="h-1.5 rounded-full transition-all duration-500"
+                      style={{ 
+                        width: `${item.percentage}%`,
+                        backgroundColor: config?.color || '#a78bfa'
+                      }}
+                    ></div>
+                  </div>
                 </div>
-                <div className="w-full bg-white/5 rounded-full h-2">
-                  <div 
-                    className="h-2 rounded-full transition-all duration-500"
-                    style={{ 
-                      width: `${item.percentage}%`,
-                      backgroundColor: config?.color || '#a78bfa'
-                    }}
-                  ></div>
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
       </div>
     </div>
