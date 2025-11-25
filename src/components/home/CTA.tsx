@@ -128,7 +128,7 @@ const CTA = () => {
                 href="/signup"
                 className="w-full flex items-center justify-center gap-2 font-bold text-white text-lg py-4 px-12 rounded-lg transition-all ease-in-out duration-300 relative pricing-button-gradient hover:shadow-[0_0_30px_rgba(139,92,246,0.6)] hover:scale-105"
               >
-                LOCK IN $11.70 PRICE
+                Start Now
               </a>
 
               {/* Countdown Timer - Red Elegant */}

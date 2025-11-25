@@ -31,14 +31,31 @@ const Footer = () => {
             </p>
           </div>
 
-          <div className="flex flex-wrap sm:flex-nowrap gap-16 lg:gap-24">
-            <div>
+          <div className="flex flex-wrap gap-16 lg:gap-24">
+            {/* Products - Desktop */}
+            <div className="w-full sm:w-auto order-1">
               <h5 className="font-semibold text-white mb-5">Products</h5>
 
               <ul className="flex flex-col gap-3.5">
                 <li>
                   <a
-                    href="/#"
+                    href="/#key-features"
+                    className="font-medium ease-in duration-300 hover:text-white"
+                  >
+                    Key Features
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/#how-it-works"
+                    className="font-medium ease-in duration-300 hover:text-white"
+                  >
+                    How It Works
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/#features"
                     className="font-medium ease-in duration-300 hover:text-white"
                   >
                     Features
@@ -46,40 +63,17 @@ const Footer = () => {
                 </li>
                 <li>
                   <a
-                    href="/#"
-                    className="font-medium ease-in duration-300 hover:text-white"
-                  >
-                    Integrations
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/#"
+                    href="/#pricing"
                     className="font-medium ease-in duration-300 hover:text-white"
                   >
                     Pricing
                   </a>
                 </li>
-                <li>
-                  <a
-                    href="/#"
-                    className="font-medium ease-in duration-300 hover:text-white"
-                  >
-                    Changelog
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/#"
-                    className="font-medium ease-in duration-300 hover:text-white"
-                  >
-                    Roadmap
-                  </a>
-                </li>
               </ul>
             </div>
 
-            <div>
+            {/* Legal - Desktop and Mobile order-2 */}
+            <div className="w-full sm:w-auto order-2">
               <h5 className="font-semibold text-white mb-5">Legal</h5>
 
               <ul className="flex flex-col gap-3.5">
@@ -102,7 +96,8 @@ const Footer = () => {
               </ul>
             </div>
 
-            <div>
+            {/* Support - Mobile order-3 (after Legal), Desktop order-3 */}
+            <div className="w-full sm:w-auto order-3">
               <h5 className="font-semibold text-white mb-5">Support</h5>
 
               <ul className="flex flex-col gap-3.5">
