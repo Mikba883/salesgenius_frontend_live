@@ -49,7 +49,7 @@ export default function OnboardingPage() {
 
   useEffect(() => {
     let pollInterval: NodeJS.Timeout;
-    let maxAttempts = 15; // 15 attempts * 2 seconds = 30 seconds
+    let maxAttempts = 4; // 4 attempts * 3 seconds = 12 seconds (webhook should arrive much faster)
 
     const startPolling = async () => {
       // First immediate check
@@ -75,7 +75,7 @@ export default function OnboardingPage() {
         if (isActive) {
           clearInterval(pollInterval);
         }
-      }, 2000); // Check every 2 seconds
+      }, 3000); // Check every 3 seconds (webhook should arrive before)
     };
 
     startPolling();
@@ -104,7 +104,7 @@ export default function OnboardingPage() {
             <p className="text-muted-foreground">Attendere qualche secondo ⏳</p>
             {attempts > 0 && (
               <p className="text-sm text-muted-foreground mt-2">
-                Tentativo {attempts} di 15...
+                Tentativo {attempts} di 4...
               </p>
             )}
           </div>
