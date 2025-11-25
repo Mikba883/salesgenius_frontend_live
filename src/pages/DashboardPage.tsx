@@ -101,7 +101,7 @@ const DashboardPage = () => {
 
   return (
     <Layout>
-      <section className="relative z-10 overflow-hidden pt-35 md:pt-40 xl:pt-45 pb-32">
+      <section className="relative z-10 overflow-hidden pt-24 md:pt-28 xl:pt-32 pb-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-8 xl:px-0">
           <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10 -mx-28">
             <div className="absolute -z-1 -top-[128%] sm:-top-[107%] xl:-top-[73%] left-1/2 -translate-x-1/2 hero-circle-gradient w-full h-[1282px] rounded-full max-w-[1282px]"></div>

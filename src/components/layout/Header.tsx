@@ -16,7 +16,10 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  
+  // Don't render header on dashboard - DashboardHeader handles it
+  if (isDashboard) {
+    return null;
+  }
 
   return (
     <header
@@ -28,13 +31,9 @@ const Header = () => {
     >
       <div className="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0 md:flex md:items-center lg:py-2 items-center justify-between relative">
         <div className="w-full md:w-1/4 flex items-center justify-between">
-          {isDashboard ? (
-            <h1 className="text-2xl font-bold text-white">Dashboard</h1>
-          ) : (
-            <Link to="/">
-              <img src="/images/logo/logo.svg" alt="Logo" />
-            </Link>
-          )}
+          <Link to="/">
+            <img src="/images/logo/logo.svg" alt="Logo" />
+          </Link>
 
           {/* Hamburger Toggle BTN */}
           <button
@@ -75,14 +74,13 @@ const Header = () => {
           </button>
         </div>
 
-        {!isDashboard && (
-          <div
-            className={`w-full md:w-auto md:h-auto md:visible md:flex items-center justify-end ${
-              navigationOpen
-                ? 'h-auto visible flex flex-col relative mt-4 p-6'
-                : 'h-0 invisible'
-            }`}
-          >
+        <div
+          className={`w-full md:w-auto md:h-auto md:visible md:flex items-center justify-end ${
+            navigationOpen
+              ? 'h-auto visible flex flex-col relative mt-4 p-6'
+              : 'h-0 invisible'
+          }`}
+        >
             <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 w-full md:w-auto">
               <Link to="/login" className="text-white text-sm lg:text-base hover:text-opacity-75 w-full md:w-auto text-center py-2">
                 Sign in
@@ -109,7 +107,6 @@ const Header = () => {
               </Link>
             </div>
           </div>
-        )}
       </div>
     </header>
   );

@@ -11,6 +11,7 @@ interface DashboardHeaderProps {
 const DashboardHeader = ({ user }: DashboardHeaderProps) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [stickyMenu, setStickyMenu] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
@@ -21,8 +22,16 @@ const DashboardHeader = ({ user }: DashboardHeaderProps) => {
       }
     };
 
+    const handleScroll = () => {
+      setStickyMenu(window.scrollY > 0);
+    };
+
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   const handleManageSubscription = async () => {
@@ -67,25 +76,32 @@ const DashboardHeader = ({ user }: DashboardHeaderProps) => {
   };
 
   return (
-    <div className="flex items-center justify-between mb-8">
-      <div className="flex items-center gap-6">
-        <img src="/images/logo/logo.svg" alt="Logo" className="h-8" />
-        <div>
-          <p className="text-white/60 text-sm">Welcome back</p>
-          <p className="text-white font-semibold">{user.user_metadata?.name || user.email}</p>
+    <header
+      className={`fixed left-0 top-0 w-full z-9999 pt-8 pb-6 lg:py-0 ${
+        stickyMenu
+          ? 'bg-dark/70 backdrop-blur-lg shadow-sm pt-6! pb-4! lg:py-0! transition duration-100 before:absolute before:w-full before:h-[1px] before:bottom-0 before:left-0 before:features-row-border'
+          : ''
+      }`}
+    >
+      <div className="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0 flex items-center justify-between lg:py-2">
+        <div className="flex items-center gap-6">
+          <img src="/images/logo/logo.svg" alt="Logo" className="w-auto h-auto" />
+          <div>
+            <p className="text-white/60 text-sm">Welcome back</p>
+            <p className="text-white font-semibold">{user.user_metadata?.name || user.email}</p>
+          </div>
         </div>
-      </div>
 
-      <div className="relative" ref={dropdownRef}>
-        <button
-          onClick={() => setDropdownOpen(!dropdownOpen)}
-          className="w-12 h-12 rounded-full bg-gradient-to-br from-purple to-blue flex items-center justify-center text-white font-semibold hover:shadow-lg transition-shadow"
-        >
-          {getInitials()}
-        </button>
+        <div className="relative" ref={dropdownRef}>
+          <button
+            onClick={() => setDropdownOpen(!dropdownOpen)}
+            className="w-12 h-12 rounded-full bg-gradient-to-br from-purple to-blue flex items-center justify-center text-white font-semibold hover:shadow-lg transition-shadow"
+          >
+            {getInitials()}
+          </button>
 
-        {dropdownOpen && (
-          <div className="absolute right-0 mt-2 w-56 bg-dark border border-white/10 rounded-lg shadow-xl z-50 overflow-hidden">
+          {dropdownOpen && (
+            <div className="absolute right-0 mt-2 w-56 bg-dark border border-white/10 rounded-lg shadow-xl z-50 overflow-hidden">
             <button
               onClick={handleManageSubscription}
               disabled={loading}
@@ -110,8 +126,9 @@ const DashboardHeader = ({ user }: DashboardHeaderProps) => {
             </button>
           </div>
         )}
+        </div>
       </div>
-    </div>
+    </header>
   );
 };
 
