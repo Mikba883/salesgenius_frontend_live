@@ -32,7 +32,7 @@ const SignInPage = () => {
             .from('user_profiles')
             .select('is_premium')
             .eq('user_id', session.user.id)
-            .single();
+            .maybeSingle();
           
           if (profileData?.is_premium) {
             console.log('[SignInPage] ✅ Premium user, redirect to dashboard');
