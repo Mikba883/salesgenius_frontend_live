@@ -1,16 +1,36 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import Layout from '@/components/layout/Layout';
-import { syncSessionWithExtension, notifyExtensionLogout } from '@/utils/extensionSync';
+import DashboardHeader from '@/components/dashboard/DashboardHeader';
+import DashboardStats from '@/components/dashboard/DashboardStats';
+import DashboardActivity from '@/components/dashboard/DashboardActivity';
+
+interface DashboardData {
+  totalMinutes: number;
+  totalSuggestions: number;
+  categoryBreakdown: Array<{
+    category: string;
+    count: number;
+    percentage: number;
+  }>;
+  calls: Array<{
+    meetingId: string;
+    date: string;
+    duration: number;
+    suggestionsCount: number;
+    suggestions: Array<{
+      category: string;
+      text: string;
+      timestamp: string;
+    }>;
+  }>;
+}
 
 const DashboardPage = () => {
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const [debugResult, setDebugResult] = useState<any>(null);
-  const [isDebugLoading, setIsDebugLoading] = useState(false);
-  const [isPremium, setIsPremium] = useState(false);
-  const [subscriptionChecking, setSubscriptionChecking] = useState(true);
+  const [dashboardData, setDashboardData] = useState<DashboardData | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,23 +39,35 @@ const DashboardPage = () => {
       
       if (!session) {
         navigate('/login');
-      } else {
-        setUser(session.user);
-        
-        // Check premium status
-        const { data: profileData } = await supabase
-          .from('user_profiles')
-          .select('is_premium')
-          .eq('user_id', session.user.id)
-          .single();
-        
-        if (!profileData?.is_premium) {
-          navigate('/pricing');
-        } else {
-          setIsPremium(true);
-          setSubscriptionChecking(false);
-          setLoading(false);
-        }
+        return;
+      }
+
+      setUser(session.user);
+      
+      // Check premium status
+      const { data: profileData } = await supabase
+        .from('user_profiles')
+        .select('is_premium')
+        .eq('user_id', session.user.id)
+        .single();
+      
+      if (!profileData?.is_premium) {
+        navigate('/pricing');
+        return;
+      }
+
+      // Fetch dashboard data
+      try {
+        const { data, error } = await supabase.functions.invoke('dashboard-stats', {
+          headers: { Authorization: `Bearer ${session.access_token}` }
+        });
+
+        if (error) throw error;
+        setDashboardData(data);
+      } catch (error) {
+        console.error('Error fetching dashboard data:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -47,14 +79,6 @@ const DashboardPage = () => {
           navigate('/login');
         } else {
           setUser(session.user);
-          
-          // TOKEN_REFRESHED è gestito dal listener globale in App.tsx
-          // Gestiamo solo SIGNED_IN per il login dalla dashboard
-          if (event === 'SIGNED_IN') {
-            syncSessionWithExtension(session).catch(err => {
-              console.info('[Dashboard] ℹ️ Sync estensione fallita (tutto OK):', err);
-            });
-          }
         }
       }
     );
@@ -62,60 +86,14 @@ const DashboardPage = () => {
     return () => subscription.unsubscribe();
   }, [navigate]);
 
-  const handleSignOut = async () => {
-    // 1. Notifica l'estensione Chrome PRIMA di fare logout
-    //    (così l'estensione può cancellare i token mentre la sessione è ancora valida)
-    notifyExtensionLogout().catch(err => {
-      console.info('[Dashboard] ℹ️ Notifica logout estensione fallita (normale se non installata):', err);
-    });
-    
-    // 2. Esegui logout da Supabase
-    await supabase.auth.signOut();
-    
-    // 3. Redirect alla homepage
-    navigate('/');
-  };
-
-  const handleDebugToken = async () => {
-    setIsDebugLoading(true);
-    setDebugResult(null);
-    
-    try {
-      const { data: { session } } = await supabase.auth.getSession();
-      
-      if (!session?.access_token) {
-        setDebugResult({ error: 'No active session found' });
-        return;
-      }
-
-      console.log('[Debug] Testing token with backend...');
-      
-      const response = await fetch('https://salesgenius-backend.onrender.com/debug-token', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ token: session.access_token })
-      });
-      
-      const result = await response.json();
-      console.log('[Debug] Backend response:', result);
-      setDebugResult(result);
-      
-    } catch (error: any) {
-      console.error('[Debug] Error:', error);
-      setDebugResult({ 
-        error: 'Network error', 
-        details: error.message 
-      });
-    } finally {
-      setIsDebugLoading(false);
-    }
-  };
-
-  if (loading) {
+  if (loading || !user || !dashboardData) {
     return (
       <Layout>
         <div className="min-h-screen flex items-center justify-center">
-          <p className="text-white">Loading...</p>
+          <div className="text-center">
+            <div className="w-16 h-16 border-4 border-purple border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-white/60">Loading dashboard...</p>
+          </div>
         </div>
       </Layout>
     );
@@ -124,72 +102,47 @@ const DashboardPage = () => {
   return (
     <Layout>
       <section className="relative z-10 overflow-hidden pt-35 md:pt-40 xl:pt-45 pb-20">
-        <div className="mx-auto max-w-7xl">
+        <div className="mx-auto max-w-7xl px-4 sm:px-8 xl:px-0">
           <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10 -mx-28">
-            <div className="absolute -z-1 -top-[128%] sm:-top-[107%] xl:-top-[73%] left-1/2 -translate-x-1/2 -u-z-10 hero-circle-gradient w-full h-[1282px] rounded-full max-w-[1282px]"></div>
+            <div className="absolute -z-1 -top-[128%] sm:-top-[107%] xl:-top-[73%] left-1/2 -translate-x-1/2 hero-circle-gradient w-full h-[1282px] rounded-full max-w-[1282px]"></div>
           </div>
-        </div>
 
-        <div className="mx-auto max-w-[900px] px-4 sm:px-8 xl:px-0 relative z-1">
-          <div className="text-center">
-            <h1 className="mb-6 text-3xl font-extrabold text-white sm:text-5xl xl:text-heading-1">
-              Welcome to Your Dashboard
-            </h1>
-            
-            {user && (
-              <div className="mb-8">
-                <p className="text-xl text-white/80 mb-2">
-                  Logged in as: <span className="font-semibold text-purple">{user.email}</span>
-                </p>
-                {user.user_metadata?.name && (
-                  <p className="text-lg text-white/60">
-                    Name: {user.user_metadata.name}
-                  </p>
-                )}
-              </div>
-            )}
+          <DashboardHeader user={user} />
+          
+          <DashboardStats 
+            totalMinutes={dashboardData.totalMinutes}
+            totalSuggestions={dashboardData.totalSuggestions}
+            categoryBreakdown={dashboardData.categoryBreakdown}
+          />
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              {import.meta.env.DEV && (
-                <button
-                  onClick={handleDebugToken}
-                  disabled={isDebugLoading}
-                  className="inline-flex py-3 font-medium text-white duration-300 ease-in rounded-lg bg-purple/80 hover:bg-purple px-8 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {isDebugLoading ? 'Testing Token...' : '🔍 Debug Token'}
-                </button>
-              )}
-              
-              <button
-                onClick={handleSignOut}
-                className="inline-flex py-3 font-medium text-white duration-300 ease-in rounded-lg bg-red-500/80 hover:bg-red-500 px-8"
-              >
-                Sign Out
-              </button>
-            </div>
+          <DashboardActivity calls={dashboardData.calls} />
 
-            {import.meta.env.DEV && debugResult && (
-              <div className="mt-8 max-w-2xl mx-auto">
-                <div className="bg-white/5 border border-white/10 rounded-lg p-6">
-                  <h3 className="text-lg font-semibold text-white mb-4">
-                    🔍 Debug Result:
-                  </h3>
-                  <pre className="text-left text-sm text-white/80 overflow-auto max-h-96 bg-black/30 p-4 rounded">
-                    {JSON.stringify(debugResult, null, 2)}
-                  </pre>
-                  {debugResult.valid === true && (
-                    <p className="mt-4 text-green-400 font-semibold">
-                      ✅ Token is VALID - Backend can decode it successfully!
-                    </p>
-                  )}
-                  {debugResult.valid === false && (
-                    <p className="mt-4 text-red-400 font-semibold">
-                      ❌ Token is INVALID - Check the error details above
-                    </p>
-                  )}
+          {/* Onboarding Card */}
+          <div className="mt-8 bg-gradient-to-br from-purple/20 to-blue/20 border border-purple/30 rounded-xl p-8">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="flex-1">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-12 h-12 rounded-lg bg-purple/30 flex items-center justify-center">
+                    <svg className="w-6 h-6 text-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-2xl font-bold text-white">Inizia con SalesGenius</h3>
                 </div>
+                <p className="text-white/70">
+                  Scopri come installare e usare l'estensione Chrome per ottenere suggerimenti AI in tempo reale durante le tue chiamate di vendita.
+                </p>
               </div>
-            )}
+              <Link
+                to="/onboarding"
+                className="inline-flex items-center gap-2 px-8 py-3 bg-purple hover:bg-purple/80 text-white font-medium rounded-lg transition-colors"
+              >
+                Guida Completa
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
