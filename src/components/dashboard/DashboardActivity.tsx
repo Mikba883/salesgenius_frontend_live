@@ -6,6 +6,14 @@ interface Suggestion {
   timestamp: string;
 }
 
+const categoryConfig: Record<string, { emoji: string; color: string }> = {
+  rapport: { emoji: '🤝', color: '#38bdf8' },
+  discovery: { emoji: '🧭', color: '#a78bfa' },
+  value: { emoji: '💎', color: '#34d399' },
+  objection: { emoji: '⚖️', color: '#fb923c' },
+  closing: { emoji: '✅', color: '#facc15' },
+};
+
 interface Call {
   meetingId: string;
   date: string;
@@ -23,23 +31,12 @@ const DashboardActivity = ({ calls }: DashboardActivityProps) => {
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return new Intl.DateTimeFormat('it-IT', {
+    return new Intl.DateTimeFormat('en-US', {
       day: '2-digit',
       month: 'short',
       hour: '2-digit',
       minute: '2-digit'
     }).format(date);
-  };
-
-  const getCategoryColor = (category: string) => {
-    const colors: Record<string, string> = {
-      rapport: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
-      discovery: 'bg-green-500/20 text-green-400 border-green-500/30',
-      value: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
-      objection: 'bg-red-500/20 text-red-400 border-red-500/30',
-      closing: 'bg-purple/20 text-purple border-purple/30',
-    };
-    return colors[category.toLowerCase()] || 'bg-gray-500/20 text-gray-400 border-gray-500/30';
   };
 
   if (calls.length === 0) {
@@ -50,8 +47,8 @@ const DashboardActivity = ({ calls }: DashboardActivityProps) => {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
           </svg>
         </div>
-        <p className="text-white/60">Nessuna chiamata registrata questo mese</p>
-        <p className="text-white/40 text-sm mt-2">Inizia a usare l'estensione Chrome per vedere le tue statistiche</p>
+        <p className="text-white/60">No calls recorded this month</p>
+        <p className="text-white/40 text-sm mt-2">Start using the Chrome extension to see your stats</p>
       </div>
     );
   }
@@ -59,17 +56,17 @@ const DashboardActivity = ({ calls }: DashboardActivityProps) => {
   return (
     <div className="bg-dark border border-white/10 rounded-xl overflow-hidden">
       <div className="px-6 py-4 border-b border-white/10">
-        <h3 className="text-xl font-semibold text-white">Riepilogo Attività</h3>
-        <p className="text-white/60 text-sm mt-1">Ultimi {calls.length} chiamate</p>
+        <h3 className="text-xl font-semibold text-white">Activity Summary</h3>
+        <p className="text-white/60 text-sm mt-1">Last {calls.length} calls</p>
       </div>
 
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
             <tr className="border-b border-white/10">
-              <th className="px-6 py-3 text-left text-xs font-medium text-white/60 uppercase tracking-wider">Data</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-white/60 uppercase tracking-wider">Durata</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-white/60 uppercase tracking-wider">Suggerimenti</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-white/60 uppercase tracking-wider">Date</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-white/60 uppercase tracking-wider">Duration</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-white/60 uppercase tracking-wider">Suggestions</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-white/60 uppercase tracking-wider"></th>
             </tr>
           </thead>
@@ -108,15 +105,26 @@ const DashboardActivity = ({ calls }: DashboardActivityProps) => {
                   <tr>
                     <td colSpan={4} className="px-6 py-4 bg-white/[0.02]">
                       <div className="space-y-3">
-                        <p className="text-white/60 text-sm font-medium mb-3">Suggerimenti durante la chiamata:</p>
-                        {call.suggestions.map((suggestion, idx) => (
-                          <div key={idx} className="flex gap-3 items-start">
-                            <span className={`px-2 py-1 rounded text-xs font-medium border capitalize ${getCategoryColor(suggestion.category)}`}>
-                              {suggestion.category}
-                            </span>
-                            <p className="text-white/80 text-sm flex-1">{suggestion.text}</p>
-                          </div>
-                        ))}
+                        <p className="text-white/60 text-sm font-medium mb-3">Suggestions during call:</p>
+                        {call.suggestions.map((suggestion, idx) => {
+                          const config = categoryConfig[suggestion.category.toLowerCase()];
+                          return (
+                            <div key={idx} className="flex gap-3 items-start">
+                              <span 
+                                className="px-3 py-1.5 rounded-lg text-xs font-bold border-2 capitalize flex items-center gap-1.5"
+                                style={{
+                                  backgroundColor: `${config?.color}20` || '#a78bfa20',
+                                  borderColor: `${config?.color}30` || '#a78bfa30',
+                                  color: config?.color || '#a78bfa'
+                                }}
+                              >
+                                {config && <span className="text-base">{config.emoji}</span>}
+                                {suggestion.category}
+                              </span>
+                              <p className="text-white/80 text-sm flex-1">{suggestion.text}</p>
+                            </div>
+                          );
+                        })}
                       </div>
                     </td>
                   </tr>
