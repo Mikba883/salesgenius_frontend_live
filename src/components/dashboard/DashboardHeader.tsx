@@ -68,8 +68,12 @@ const DashboardHeader = ({ user }: DashboardHeaderProps) => {
 
   return (
     <div className="flex items-center justify-between mb-8">
-      <div>
-        <p className="text-white/60">Welcome back, {user.user_metadata?.name || user.email}</p>
+      <div className="flex items-center gap-6">
+        <img src="/images/logo/logo.svg" alt="Logo" className="h-8" />
+        <div>
+          <p className="text-white/60 text-sm">Welcome back</p>
+          <p className="text-white font-semibold">{user.user_metadata?.name || user.email}</p>
+        </div>
       </div>
 
       <div className="relative" ref={dropdownRef}>
