@@ -189,14 +189,7 @@ export default function OnboardingPage() {
 
   if (isPremium && user) {
     return (
-      <div className="min-h-screen bg-dark relative overflow-hidden">
-        {/* Background effects */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2">
-            <img src="/images/blur/blur-02.svg" alt="blur" className="max-w-none opacity-30" />
-          </div>
-        </div>
-
+      <div className="min-h-screen bg-dark relative">
         <DashboardHeader user={user} />
         
         <div className="pt-32 pb-20 px-4">
@@ -227,40 +220,14 @@ export default function OnboardingPage() {
                   transition={{ duration: 0.3 }}
                   className="bg-black/60 border border-white/10 rounded-2xl p-8 md:p-12 backdrop-blur-sm"
                 >
-                  {/* Navigation arrows */}
-                  <div className="flex items-center justify-between mb-8">
-                    <button
-                      onClick={prevStep}
-                      disabled={currentStep === 0}
-                      className={`p-2 rounded-full transition-all ${
-                        currentStep === 0 
-                          ? 'opacity-0 pointer-events-none' 
-                          : 'bg-white/5 hover:bg-white/10 text-white'
-                      }`}
-                    >
-                      <ChevronLeft className="w-6 h-6" />
-                    </button>
-
-                    <div className="text-center flex-1">
-                      <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">
-                        {steps[currentStep].title}
-                      </h1>
-                      <p className="text-lg text-white/60 max-w-2xl mx-auto">
-                        {steps[currentStep].subtitle}
-                      </p>
-                    </div>
-
-                    <button
-                      onClick={nextStep}
-                      disabled={currentStep === steps.length - 1}
-                      className={`p-2 rounded-full transition-all ${
-                        currentStep === steps.length - 1 
-                          ? 'opacity-0 pointer-events-none' 
-                          : 'bg-white/5 hover:bg-white/10 text-white'
-                      }`}
-                    >
-                      <ChevronRight className="w-6 h-6" />
-                    </button>
+                  {/* Title and subtitle */}
+                  <div className="text-center mb-8">
+                    <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">
+                      {steps[currentStep].title}
+                    </h1>
+                    <p className="text-lg text-white/60 max-w-2xl mx-auto">
+                      {steps[currentStep].subtitle}
+                    </p>
                   </div>
 
                   {/* GIF demo */}
@@ -276,13 +243,40 @@ export default function OnboardingPage() {
                   <div className="flex justify-center">
                     <button
                       onClick={steps[currentStep].ctaAction}
-                      className="px-8 py-4 bg-gradient-to-r from-purple to-blue text-white rounded-lg font-semibold hover:opacity-90 transition-opacity text-lg"
+                      className="px-12 py-5 bg-gradient-to-r from-purple to-blue text-white rounded-lg font-bold hover:opacity-90 transition-opacity text-xl"
                     >
                       {steps[currentStep].cta}
                     </button>
                   </div>
                 </motion.div>
               </AnimatePresence>
+
+              {/* Navigation arrows - OUTSIDE card, below */}
+              <div className="flex justify-center items-center gap-8 mt-8">
+                <button
+                  onClick={prevStep}
+                  disabled={currentStep === 0}
+                  className={`p-4 rounded-full transition-all ${
+                    currentStep === 0 
+                      ? 'opacity-0 pointer-events-none' 
+                      : 'bg-white/10 hover:bg-white/20 text-white border border-white/20'
+                  }`}
+                >
+                  <ChevronLeft className="w-10 h-10" />
+                </button>
+
+                <button
+                  onClick={nextStep}
+                  disabled={currentStep === steps.length - 1}
+                  className={`p-4 rounded-full transition-all ${
+                    currentStep === steps.length - 1 
+                      ? 'opacity-0 pointer-events-none' 
+                      : 'bg-white/10 hover:bg-white/20 text-white border border-white/20'
+                  }`}
+                >
+                  <ChevronRight className="w-10 h-10" />
+                </button>
+              </div>
             </div>
           </div>
         </div>
