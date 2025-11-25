@@ -24,7 +24,7 @@ const PricingPage = () => {
       if (error) throw error;
 
       if (data?.url) {
-        window.open(data.url, '_blank');
+        window.location.href = data.url;
       }
     } catch (error: any) {
       console.error('Checkout error:', error);
@@ -109,7 +109,7 @@ const PricingPage = () => {
                 disabled={loading}
                 className="w-full flex items-center justify-center gap-2 font-bold text-white text-lg py-4 px-12 rounded-lg transition-all ease-in-out duration-300 relative pricing-button-gradient hover:shadow-[0_0_30px_rgba(139,92,246,0.6)] hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {loading ? 'Loading...' : 'Subscribe Now'}
+            {loading ? 'Redirecting to checkout...' : 'Subscribe Now'}
           </button>
 
           {/* bg shapes */}
