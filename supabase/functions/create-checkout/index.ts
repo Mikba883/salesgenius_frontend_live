@@ -70,7 +70,7 @@ serve(async (req) => {
           coupon: 'c3PeyN7p', // Sconto 70% Piano Individuale
         },
       ],
-      success_url: `${req.headers.get("origin")}/dashboard?session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${req.headers.get("origin")}/onboarding?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${req.headers.get("origin")}/pricing`,
       metadata: {
         user_id: user.id,
