@@ -45,7 +45,7 @@ serve(async (req) => {
     // Verify the webhook signature
     let event: Stripe.Event;
     try {
-      event = stripe.webhooks.constructEvent(body, signature, webhookSecret);
+      event = await stripe.webhooks.constructEventAsync(body, signature, webhookSecret);
       logStep("Webhook signature verified", { eventType: event.type });
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : String(err);
