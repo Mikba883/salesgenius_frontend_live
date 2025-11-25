@@ -42,6 +42,33 @@ serve(async (req) => {
     if (!user?.email) throw new Error("User not authenticated or email not available");
     logStep("User authenticated", { userId: user.id, email: user.email });
 
+    // Ensure user_profiles row exists for this user
+    const { data: existingProfile, error: profileError } = await supabaseClient
+      .from('user_profiles')
+      .select('id, user_id, email, is_premium')
+      .eq('user_id', user.id)
+      .maybeSingle();
+
+    if (profileError) {
+      logStep("Error fetching user_profiles", { error: profileError.message });
+    }
+
+    if (!existingProfile) {
+      const { error: insertError } = await supabaseClient
+        .from('user_profiles')
+        .insert({
+          user_id: user.id,
+          email: user.email,
+          is_premium: false,
+        });
+
+      if (insertError) {
+        logStep("Error inserting user_profiles", { error: insertError.message });
+      } else {
+        logStep("Created user_profiles row for user", { userId: user.id, email: user.email });
+      }
+    }
+
     const stripe = new Stripe(stripeKey, { apiVersion: "2025-08-27.basil" });
     const customers = await stripe.customers.list({ email: user.email, limit: 1 });
     
