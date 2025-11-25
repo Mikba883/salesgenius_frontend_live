@@ -67,8 +67,10 @@ const SignInPage = () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'zoom',
       options: {
-        redirectTo: "https://obtwneqykrktfedopxwz.supabase.co/auth/v1/callback"
-      }
+        // Dopo il login con Zoom torna sempre alla pagina di login,
+        // dove il listener onAuthStateChange gestisce redirect a pricing/dashboard
+        redirectTo: `${window.location.origin}/login`,
+      },
     });
     if (error) {
       setMessage(error.message);
