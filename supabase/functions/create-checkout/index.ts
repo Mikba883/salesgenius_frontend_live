@@ -67,7 +67,7 @@ serve(async (req) => {
       mode: "subscription",
       discounts: [
         {
-          coupon: '5qYxDbln', // 70% off first month
+          coupon: 'c3PeyN7p', // Sconto 70% Piano Individuale
         },
       ],
       success_url: `${req.headers.get("origin")}/dashboard?session_id={CHECKOUT_SESSION_ID}`,
