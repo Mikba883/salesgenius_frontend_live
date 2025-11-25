@@ -67,7 +67,7 @@ const SignInPage = () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'zoom',
       options: {
-        redirectTo: `${window.location.origin}/dashboard`
+        redirectTo: "https://obtwneqykrktfedopxwz.supabase.co/auth/v1/callback"
       }
     });
     if (error) {
