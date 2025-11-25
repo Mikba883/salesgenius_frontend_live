@@ -69,7 +69,6 @@ const DashboardHeader = ({ user }: DashboardHeaderProps) => {
   return (
     <div className="flex items-center justify-between mb-8">
       <div>
-        <h1 className="text-3xl font-bold text-white mb-2">Dashboard</h1>
         <p className="text-white/60">Welcome back, {user.user_metadata?.name || user.email}</p>
       </div>
 
@@ -91,7 +90,7 @@ const DashboardHeader = ({ user }: DashboardHeaderProps) => {
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
               </svg>
-              Gestisci Abbonamento
+              Manage Subscription
             </button>
             
             <div className="border-t border-white/10"></div>

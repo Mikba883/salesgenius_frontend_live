@@ -101,7 +101,7 @@ const DashboardPage = () => {
 
   return (
     <Layout>
-      <section className="relative z-10 overflow-hidden pt-35 md:pt-40 xl:pt-45 pb-20">
+      <section className="relative z-10 overflow-hidden pt-35 md:pt-40 xl:pt-45 pb-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-8 xl:px-0">
           <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10 -mx-28">
             <div className="absolute -z-1 -top-[128%] sm:-top-[107%] xl:-top-[73%] left-1/2 -translate-x-1/2 hero-circle-gradient w-full h-[1282px] rounded-full max-w-[1282px]"></div>
@@ -127,21 +127,21 @@ const DashboardPage = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                   </div>
-                  <h3 className="text-2xl font-bold text-white">Inizia con SalesGenius</h3>
+                    <h3 className="text-2xl font-bold text-white">Get Started with SalesGenius</h3>
+                  </div>
+                  <p className="text-white/70">
+                    Learn how to install and use the Chrome extension to get real-time AI suggestions during your sales calls.
+                  </p>
                 </div>
-                <p className="text-white/70">
-                  Scopri come installare e usare l'estensione Chrome per ottenere suggerimenti AI in tempo reale durante le tue chiamate di vendita.
-                </p>
-              </div>
-              <Link
-                to="/onboarding"
-                className="inline-flex items-center gap-2 px-8 py-3 bg-purple hover:bg-purple/80 text-white font-medium rounded-lg transition-colors"
-              >
-                Guida Completa
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </Link>
+                <Link
+                  to="/onboarding"
+                  className="inline-flex items-center gap-2 px-8 py-3 bg-purple hover:bg-purple/80 text-white font-medium rounded-lg transition-colors"
+                >
+                  Complete Guide
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </Link>
             </div>
           </div>
         </div>
