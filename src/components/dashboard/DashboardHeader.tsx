@@ -86,13 +86,15 @@ const DashboardHeader = ({ user }: DashboardHeaderProps) => {
       <div className="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0 flex items-center justify-between lg:py-2">
         <div className="flex items-center gap-6">
           <img src="/images/logo/logo.svg" alt="Logo" className="w-auto h-auto" />
-          <div>
+        </div>
+
+        <div className="flex items-center gap-4">
+          <div className="hidden md:block text-right">
             <p className="text-white/60 text-sm">Welcome back</p>
             <p className="text-white font-semibold">{user.user_metadata?.name || user.email}</p>
           </div>
-        </div>
-
-        <div className="relative" ref={dropdownRef}>
+          
+          <div className="relative" ref={dropdownRef}>
           <button
             onClick={() => setDropdownOpen(!dropdownOpen)}
             className="w-12 h-12 rounded-full bg-gradient-to-br from-purple to-blue flex items-center justify-center text-white font-semibold hover:shadow-lg transition-shadow"
@@ -126,6 +128,7 @@ const DashboardHeader = ({ user }: DashboardHeaderProps) => {
             </button>
           </div>
         )}
+          </div>
         </div>
       </div>
     </header>
