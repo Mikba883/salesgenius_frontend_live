@@ -53,41 +53,65 @@ export default function OnboardingPage() {
   };
 
   useEffect(() => {
-    const fetchUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (user) setUser(user);
-    };
-    fetchUser();
-
     let pollInterval: NodeJS.Timeout;
     let maxAttempts = 4;
 
-    const startPolling = async () => {
-      const isActive = await checkSubscription();
-      
-      if (isActive) {
+    const init = async () => {
+      // Fetch user first
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) {
+        navigate('/login');
+        return;
+      }
+      setUser(user);
+
+      // Check is_premium directly from database first
+      const { data: profile } = await supabase
+        .from('user_profiles')
+        .select('is_premium')
+        .eq('user_id', user.id)
+        .maybeSingle();
+
+      // If already premium, show onboarding immediately without polling
+      if (profile?.is_premium) {
+        console.log('[Onboarding] User already premium, skipping verification');
+        setIsPremium(true);
+        setLoading(false);
         return;
       }
 
-      pollInterval = setInterval(async () => {
-        setAttempts(prev => prev + 1);
-
-        if (attempts >= maxAttempts) {
-          clearInterval(pollInterval);
-          setLoading(false);
-          setError('Il pagamento sta richiedendo più tempo del previsto. Prova a ricaricare la pagina tra qualche minuto.');
-          return;
-        }
-
+      // Only if NOT premium: start polling Stripe (for post-payment scenario)
+      console.log('[Onboarding] User not premium yet, starting subscription polling');
+      
+      const startPolling = async () => {
         const isActive = await checkSubscription();
         
         if (isActive) {
-          clearInterval(pollInterval);
+          return;
         }
-      }, 3000);
+
+        pollInterval = setInterval(async () => {
+          setAttempts(prev => prev + 1);
+
+          if (attempts >= maxAttempts) {
+            clearInterval(pollInterval);
+            setLoading(false);
+            setError('Il pagamento sta richiedendo più tempo del previsto. Prova a ricaricare la pagina tra qualche minuto.');
+            return;
+          }
+
+          const isActive = await checkSubscription();
+          
+          if (isActive) {
+            clearInterval(pollInterval);
+          }
+        }, 3000);
+      };
+
+      startPolling();
     };
 
-    startPolling();
+    init();
 
     return () => {
       if (pollInterval) {
