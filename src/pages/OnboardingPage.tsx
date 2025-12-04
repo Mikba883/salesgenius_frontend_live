@@ -132,30 +132,22 @@ export default function OnboardingPage() {
       title: "Install Sales Genius Extension",
       subtitle: "Add our Chrome extension to get real-time sales suggestions during your calls",
       cta: "Download Extension",
-      ctaAction: () => window.open('https://chrome.google.com/webstore', '_blank')
+      ctaAction: () => window.open('https://chromewebstore.google.com/detail/salesgenius-real-time-ai/hcbaejkdphoiigkdpjcngocecnoipnpj', '_blank'),
+      gif: "/images/video/gif1.gif"
     },
     {
       title: "Enable Permissions",
       subtitle: "Accept terms and allow microphone access so we can listen to your calls",
-      cta: "Accept & Enable Microphone",
-      ctaAction: () => {
-        // Request microphone permission
-        navigator.mediaDevices.getUserMedia({ audio: true })
-          .then(() => {
-            console.log('Microphone permission granted');
-            setCurrentStep(2);
-          })
-          .catch((err) => {
-            console.error('Microphone permission denied:', err);
-            alert('Please allow microphone access to continue');
-          });
-      }
+      cta: "Open Extension Settings",
+      ctaAction: () => window.open('chrome-extension://hcbaejkdphoiigkdpjcngocecnoipnpj/onboarding.html', '_blank'),
+      gif: "/images/video/gif2.gif"
     },
     {
       title: "You're Ready!",
       subtitle: "Here's how to activate Sales Genius during your video calls",
       cta: "Go to Dashboard",
-      ctaAction: () => navigate('/dashboard')
+      ctaAction: () => navigate('/dashboard'),
+      gif: "/images/video/gif3.gif"
     }
   ];
 
@@ -257,7 +249,7 @@ export default function OnboardingPage() {
                   {/* GIF demo */}
                   <div className="mb-8 flex justify-center">
                     <img 
-                      src="/images/video/gif.gif" 
+                      src={steps[currentStep].gif} 
                       alt="Demo" 
                       className="max-w-full md:max-w-2xl rounded-xl border-2 border-white/10 shadow-2xl"
                     />
@@ -267,7 +259,7 @@ export default function OnboardingPage() {
                   <div className="flex justify-center">
                     <button
                       onClick={steps[currentStep].ctaAction}
-                      className="px-12 py-5 bg-gradient-to-r from-purple to-blue text-white rounded-lg font-bold hover:opacity-90 transition-opacity text-xl"
+                      className="px-14 py-6 hero-button-gradient text-white rounded-lg font-bold hover:opacity-90 transition-all duration-300 text-xl shadow-lg hover:shadow-purple/30"
                     >
                       {steps[currentStep].cta}
                     </button>
