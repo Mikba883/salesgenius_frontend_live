@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthLayout from '@/components/layout/AuthLayout';
 import { supabase } from '@/integrations/supabase/client';
@@ -13,21 +13,30 @@ const SignInPage = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
+  
+  // ⚠️ ANTI-LOOP: Previene eventi duplicati
+  const isProcessingRef = useRef(false);
 
   useEffect(() => {
-    // Setup del listener per i cambiamenti di autenticazione
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
         console.log('[SignInPage] Auth event:', event, 'Has session:', !!session);
         
-        if (session?.user) {
+        // ⚠️ ANTI-LOOP: Ignora se stiamo già processando
+        if (isProcessingRef.current) {
+          console.log('[SignInPage] ⏭️ Skip: già in elaborazione');
+          return;
+        }
+        
+        // ✅ Processa SOLO SIGNED_IN (ignora TOKEN_REFRESHED sulla pagina login)
+        if (session?.user && event === 'SIGNED_IN') {
+          isProcessingRef.current = true;
+          
           // 🔑 Sincronizza token con estensione Chrome in BACKGROUND (non-blocking)
-          if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
-            console.log('[SignInPage] 🔄 Sincronizzazione token con estensione Chrome (background)...');
-            syncSessionWithExtension(session).catch(err => 
-              console.warn('[SignInPage] ⚠️ Extension sync failed (non-blocking):', err)
-            );
-          }
+          console.log('[SignInPage] 🔄 Sincronizzazione token con estensione Chrome (background)...');
+          syncSessionWithExtension(session).catch(err => 
+            console.warn('[SignInPage] ⚠️ Extension sync failed (non-blocking):', err)
+          );
           
           // Check subscription status
           try {
@@ -41,7 +50,7 @@ const SignInPage = () => {
             if (profileError) {
               console.error('[SignInPage] ❌ Errore query profile:', profileError);
             }
-            console.log('[SignInPage] Profile data:', profileData);
+            console.log('[SignInPage] ✅ Profile data:', profileData);
             
             if (profileData?.is_premium) {
               console.log('[SignInPage] ✅ Premium user, redirect to dashboard');
@@ -52,8 +61,9 @@ const SignInPage = () => {
             }
           } catch (err) {
             console.error('[SignInPage] ❌ Eccezione durante query:', err);
-            // Fallback: redirect to pricing anyway
             navigate('/pricing');
+          } finally {
+            isProcessingRef.current = false;
           }
         }
       }
