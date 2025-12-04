@@ -21,24 +21,38 @@ const SignInPage = () => {
         console.log('[SignInPage] Auth event:', event, 'Has session:', !!session);
         
         if (session?.user) {
-          // 🔑 CRITICO: Sincronizza token con estensione Chrome PRIMA del redirect
+          // 🔑 Sincronizza token con estensione Chrome in BACKGROUND (non-blocking)
           if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
-            console.log('[SignInPage] 🔄 Sincronizzazione token con estensione Chrome...');
-            await syncSessionWithExtension(session);
+            console.log('[SignInPage] 🔄 Sincronizzazione token con estensione Chrome (background)...');
+            syncSessionWithExtension(session).catch(err => 
+              console.warn('[SignInPage] ⚠️ Extension sync failed (non-blocking):', err)
+            );
           }
           
           // Check subscription status
-          const { data: profileData } = await supabase
-            .from('user_profiles')
-            .select('is_premium')
-            .eq('user_id', session.user.id)
-            .maybeSingle();
-          
-          if (profileData?.is_premium) {
-            console.log('[SignInPage] ✅ Premium user, redirect to dashboard');
-            navigate('/dashboard');
-          } else {
-            console.log('[SignInPage] ℹ️ Non-premium user, redirect to pricing');
+          try {
+            console.log('[SignInPage] 📊 Query user_profiles per:', session.user.id);
+            const { data: profileData, error: profileError } = await supabase
+              .from('user_profiles')
+              .select('is_premium')
+              .eq('user_id', session.user.id)
+              .maybeSingle();
+            
+            if (profileError) {
+              console.error('[SignInPage] ❌ Errore query profile:', profileError);
+            }
+            console.log('[SignInPage] Profile data:', profileData);
+            
+            if (profileData?.is_premium) {
+              console.log('[SignInPage] ✅ Premium user, redirect to dashboard');
+              navigate('/dashboard');
+            } else {
+              console.log('[SignInPage] ℹ️ Non-premium user, redirect to pricing');
+              navigate('/pricing');
+            }
+          } catch (err) {
+            console.error('[SignInPage] ❌ Eccezione durante query:', err);
+            // Fallback: redirect to pricing anyway
             navigate('/pricing');
           }
         }
