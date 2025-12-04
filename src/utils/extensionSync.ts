@@ -208,3 +208,39 @@ export const notifyExtensionLogout = async (): Promise<void> => {
 export const isExtensionAvailable = (): boolean => {
   return typeof chrome !== 'undefined' && !!chrome.runtime;
 };
+
+/**
+ * Richiede all'estensione Chrome di aprire la pagina di onboarding
+ * Questo bypassa il blocco di sicurezza di Chrome sugli URL chrome-extension://
+ * @returns Promise<boolean> - true se la richiesta è stata inviata con successo
+ */
+export const requestExtensionOnboarding = async (): Promise<boolean> => {
+  if (!EXTENSION_ID) {
+    console.warn('[Extension Sync] ⚠️ EXTENSION_ID non configurato');
+    window.open('https://chromewebstore.google.com/detail/salesgenius-real-time-ai/hcbaejkdphoiigkdpjcngocecnoipnpj', '_blank');
+    return false;
+  }
+
+  if (typeof chrome === 'undefined' || !chrome.runtime) {
+    console.warn('[Extension Sync] ⚠️ Chrome runtime non disponibile');
+    window.open('https://chromewebstore.google.com/detail/salesgenius-real-time-ai/hcbaejkdphoiigkdpjcngocecnoipnpj', '_blank');
+    return false;
+  }
+
+  return new Promise((resolve) => {
+    chrome.runtime.sendMessage(
+      EXTENSION_ID,
+      { type: 'openOnboarding' },
+      (response) => {
+        if (chrome.runtime.lastError) {
+          console.warn('[Extension Sync] ⚠️ Estensione non raggiungibile:', chrome.runtime.lastError.message);
+          alert('Per favore assicurati che l\'estensione SalesGenius sia installata e attiva, poi riprova.');
+          resolve(false);
+        } else {
+          console.log('[Extension Sync] ✅ Richiesta apertura onboarding inviata con successo');
+          resolve(true);
+        }
+      }
+    );
+  });
+};

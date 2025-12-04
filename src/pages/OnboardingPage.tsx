@@ -5,6 +5,7 @@ import DashboardHeader from '@/components/dashboard/DashboardHeader';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import type { User } from '@supabase/supabase-js';
+import { requestExtensionOnboarding } from '@/utils/extensionSync';
 
 export default function OnboardingPage() {
   const navigate = useNavigate();
@@ -139,7 +140,9 @@ export default function OnboardingPage() {
       title: "Enable Permissions",
       subtitle: "Accept terms and allow microphone access so we can listen to your calls",
       cta: "Open Extension Settings",
-      ctaAction: () => window.open('chrome-extension://hcbaejkdphoiigkdpjcngocecnoipnpj/onboarding.html', '_blank'),
+      ctaAction: async () => {
+        await requestExtensionOnboarding();
+      },
       gif: "/images/video/gif2.gif"
     },
     {
