@@ -4,6 +4,9 @@ import { supabase } from '@/integrations/supabase/client';
 // ⚠️ ID ESTENSIONE CHROME (da variabile d'ambiente)
 const EXTENSION_ID = import.meta.env.VITE_CHROME_EXTENSION_ID;
 
+// 🆔 DEBUG: Verifica ID caricato all'avvio
+console.log('[Extension Sync] 🆔 EXTENSION_ID caricato:', EXTENSION_ID || 'NON CONFIGURATO');
+
 /**
  * Sincronizza la sessione Supabase con l'estensione Chrome inviando access_token, refresh_token e expires_at
  * per permettere all'estensione di ottenere nuovi token quando necessario
