@@ -39,7 +39,13 @@ export default function OnboardingPage() {
       console.log('[Onboarding] Subscription check result:', data);
 
       if (data.subscribed) {
-        // Track purchase completion
+        // Track purchase completion - Direct calls
+        if (typeof window.fbq !== 'undefined') {
+          window.fbq('track', 'Purchase', { value: 11.70, currency: 'USD' });
+        }
+        if (typeof window.gtag !== 'undefined') {
+          window.gtag('event', 'purchase', { value: 11.70, currency: 'USD', transaction_id: `sub_${Date.now()}` });
+        }
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
           event: 'purchase_completed',

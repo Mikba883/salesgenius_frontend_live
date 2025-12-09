@@ -3,6 +3,8 @@
 declare global {
   interface Window {
     dataLayer: Record<string, any>[];
+    fbq: (...args: any[]) => void;
+    gtag: (...args: any[]) => void;
   }
 }
 
