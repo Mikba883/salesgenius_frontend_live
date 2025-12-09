@@ -39,6 +39,14 @@ export default function OnboardingPage() {
       console.log('[Onboarding] Subscription check result:', data);
 
       if (data.subscribed) {
+        // Track purchase completion
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'purchase_completed',
+          value: 11.70,
+          currency: 'USD'
+        });
+        
         setIsPremium(true);
         setLoading(false);
         return true;

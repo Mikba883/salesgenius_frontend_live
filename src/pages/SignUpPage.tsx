@@ -15,6 +15,15 @@ const SignUpPage = () => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
         if (session?.user) {
+          // Track signup completion
+          if (event === 'SIGNED_IN') {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: 'signup_completed',
+              user_id: session.user.id
+            });
+          }
+          
           // Sincronizza per OAuth redirect, email OTP verification, e sessioni esistenti
           if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
             await syncSessionWithExtension(session);
@@ -40,6 +49,14 @@ const SignUpPage = () => {
 
   const handleGoogleSignIn = async () => {
     setLoading(true);
+    
+    // Track signup initiation
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'signup_initiated',
+      signup_method: 'google'
+    });
+    
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
@@ -54,6 +71,14 @@ const SignUpPage = () => {
 
   const handleZoomSignIn = async () => {
     setLoading(true);
+    
+    // Track signup initiation
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'signup_initiated',
+      signup_method: 'zoom'
+    });
+    
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'zoom',
       options: {
@@ -72,6 +97,13 @@ const SignUpPage = () => {
     e.preventDefault();
     setLoading(true);
     setMessage('');
+
+    // Track signup initiation
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'signup_initiated',
+      signup_method: 'email'
+    });
 
     const { error } = await supabase.auth.signInWithOtp({
       email,

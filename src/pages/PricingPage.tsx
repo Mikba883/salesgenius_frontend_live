@@ -18,6 +18,14 @@ const PricingPage = () => {
         return;
       }
 
+      // Track checkout initiation
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'checkout_initiated',
+        value: 11.70,
+        currency: 'USD'
+      });
+
       const { data, error } = await supabase.functions.invoke('create-checkout', {
         body: { priceId: 'price_1SWyNHGUM0wmwBaNz9XWYcMv' }
       });
