@@ -18,7 +18,15 @@ const PricingPage = () => {
         return;
       }
 
-      // Track checkout initiation
+      // Track checkout initiation - Direct calls with beacon transport
+      if (typeof window.fbq !== 'undefined') {
+        window.fbq('track', 'InitiateCheckout', { value: 11.70, currency: 'USD' });
+      }
+      if (typeof window.gtag !== 'undefined') {
+        window.gtag('event', 'begin_checkout', { value: 11.70, currency: 'USD', transport_type: 'beacon' });
+      }
+      
+      // Keep dataLayer for GTM backup
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         event: 'checkout_initiated',
