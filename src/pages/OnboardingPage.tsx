@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import DashboardHeader from '@/components/dashboard/DashboardHeader';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -10,8 +10,11 @@ import { trackGA4Event, trackFBEvent } from '@/utils/analytics';
 
 export default function OnboardingPage() {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(true);
-  const [isPremium, setIsPremium] = useState(false);
+  const [searchParams] = useSearchParams();
+  const fromDashboard = searchParams.get('from') === 'dashboard';
+  
+  const [loading, setLoading] = useState(!fromDashboard); // Skip loading if from dashboard
+  const [isPremium, setIsPremium] = useState(fromDashboard); // Assume premium if from dashboard
   const [error, setError] = useState<string | null>(null);
   const [attempts, setAttempts] = useState(0);
   const [currentStep, setCurrentStep] = useState(0);
@@ -52,7 +55,7 @@ export default function OnboardingPage() {
       return false;
     } catch (err) {
       console.error('[Onboarding] Failed to check subscription:', err);
-      setError('Errore durante la verifica del pagamento');
+      setError('Error verifying payment');
       setLoading(false);
       return false;
     }
@@ -70,6 +73,12 @@ export default function OnboardingPage() {
         return;
       }
       setUser(user);
+
+      // If coming from dashboard, skip all checks - user is already verified premium
+      if (fromDashboard) {
+        console.log('[Onboarding] Coming from dashboard, skipping verification');
+        return;
+      }
 
       // Check is_premium directly from database first
       const { data: profile } = await supabase
@@ -99,10 +108,10 @@ export default function OnboardingPage() {
         pollInterval = setInterval(async () => {
           setAttempts(prev => prev + 1);
 
-          if (attempts >= maxAttempts) {
+        if (attempts >= maxAttempts) {
             clearInterval(pollInterval);
             setLoading(false);
-            setError('Il pagamento sta richiedendo più tempo del previsto. Prova a ricaricare la pagina tra qualche minuto.');
+            setError('Payment is taking longer than expected. Try reloading the page in a few minutes.');
             return;
           }
 
@@ -178,11 +187,11 @@ export default function OnboardingPage() {
         <div className="min-h-screen flex items-center justify-center">
           <div className="text-center">
             <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary mb-4"></div>
-            <h2 className="text-2xl font-semibold text-white mb-2">Stiamo verificando il tuo pagamento...</h2>
-            <p className="text-white/60">Attendere qualche secondo ⏳</p>
+            <h2 className="text-2xl font-semibold text-white mb-2">Verifying your payment...</h2>
+            <p className="text-white/60">Please wait a few seconds ⏳</p>
             {attempts > 0 && (
               <p className="text-sm text-white/40 mt-2">
-                Tentativo {attempts} di 4...
+                Attempt {attempts} of 4...
               </p>
             )}
           </div>
@@ -203,7 +212,7 @@ export default function OnboardingPage() {
               onClick={handleRetry}
               className="px-6 py-3 bg-gradient-to-r from-purple to-blue text-white rounded-lg font-semibold hover:opacity-90 transition-opacity"
             >
-              Riprova
+              Retry
             </button>
           </div>
         </div>
