@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
 import AuthLayout from '@/components/layout/AuthLayout';
 import { supabase } from '@/integrations/supabase/client';
-import { trackGA4Event, trackFBEvent } from '@/utils/analytics';
+import { trackGA4EventOnce, trackFBEventOnce } from '@/utils/analytics';
 
 const PricingPage = () => {
   const navigate = useNavigate();
@@ -19,9 +19,9 @@ const PricingPage = () => {
         return;
       }
 
-      // Track checkout initiation with debug logging
-      trackFBEvent('InitiateCheckout', { value: 11.70, currency: 'USD' });
-      trackGA4Event('begin_checkout', { value: 11.70, currency: 'USD' });
+      // Track checkout initiation (once per session)
+      trackFBEventOnce('checkout_initiated', 'InitiateCheckout', { value: 11.70, currency: 'USD' });
+      trackGA4EventOnce('checkout_initiated', 'begin_checkout', { value: 11.70, currency: 'USD' });
 
       const { data, error } = await supabase.functions.invoke('create-checkout', {
         body: { priceId: 'price_1SWyNHGUM0wmwBaNz9XWYcMv' }
@@ -118,7 +118,7 @@ const PricingPage = () => {
             {loading ? (
               <>
                 <Loader2 className="w-5 h-5 animate-spin" />
-                <span>Caricamento...</span>
+                <span>Loading...</span>
               </>
             ) : (
               'Start Now'
