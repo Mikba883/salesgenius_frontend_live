@@ -49,7 +49,7 @@ const DashboardPage = () => {
         .from('user_profiles')
         .select('is_premium')
         .eq('user_id', session.user.id)
-        .single();
+        .maybeSingle();
       
       if (!profileData?.is_premium) {
         navigate('/pricing');
@@ -134,7 +134,7 @@ const DashboardPage = () => {
                   </p>
                 </div>
                 <Link
-                  to="/onboarding"
+                  to="/onboarding?from=dashboard"
                   className="inline-flex items-center gap-2 px-8 py-3 bg-purple hover:bg-purple/80 text-white font-medium rounded-lg transition-colors"
                 >
                   Complete Guide
