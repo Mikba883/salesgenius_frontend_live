@@ -25,10 +25,6 @@ const SignUpPage = () => {
         if (session?.user && event === 'SIGNED_IN') {
           isProcessingRef.current = true;
           
-          // Track events
-          trackFBEvent('CompleteRegistration', { content_name: 'signup' });
-          trackGA4Event('sign_up', { method: 'oauth', user_id: session.user.id });
-          
           // 🔥 Sync estensione in BACKGROUND (non-blocking)
           syncSessionWithExtension(session).catch(() => {});
           
@@ -58,7 +54,10 @@ const SignUpPage = () => {
   const handleGoogleSignIn = async () => {
     setLoading(true);
     
-    // Track signup initiation with debug logging
+    // 🎯 Flag per tracking CompleteRegistration in App.tsx
+    localStorage.setItem('pending_signup', 'true');
+    
+    // Track signup initiation
     trackFBEvent('Lead', { content_name: 'signup_google' });
     trackGA4Event('sign_up_intent', { method: 'google' });
     
@@ -69,6 +68,7 @@ const SignUpPage = () => {
       }
     });
     if (error) {
+      localStorage.removeItem('pending_signup');
       setMessage(error.message);
       setLoading(false);
     }
@@ -77,19 +77,21 @@ const SignUpPage = () => {
   const handleZoomSignIn = async () => {
     setLoading(true);
     
-    // Track signup initiation with debug logging
+    // 🎯 Flag per tracking CompleteRegistration in App.tsx
+    localStorage.setItem('pending_signup', 'true');
+    
+    // Track signup initiation
     trackFBEvent('Lead', { content_name: 'signup_zoom' });
     trackGA4Event('sign_up_intent', { method: 'zoom' });
     
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'zoom',
       options: {
-        // Dopo il login con Zoom torna alla pagina di login
-        // che si occupa di mandare l'utente a pricing o dashboard
         redirectTo: `${window.location.origin}/login`,
       },
     });
     if (error) {
+      localStorage.removeItem('pending_signup');
       setMessage(error.message);
       setLoading(false);
     }
@@ -100,7 +102,10 @@ const SignUpPage = () => {
     setLoading(true);
     setMessage('');
 
-    // Track signup initiation with debug logging
+    // 🎯 Flag per tracking CompleteRegistration in App.tsx
+    localStorage.setItem('pending_signup', 'true');
+    
+    // Track signup initiation
     trackFBEvent('Lead', { content_name: 'signup_email' });
     trackGA4Event('sign_up_intent', { method: 'email' });
 
@@ -112,6 +117,7 @@ const SignUpPage = () => {
     });
 
     if (error) {
+      localStorage.removeItem('pending_signup');
       setMessage(error.message);
     } else {
       navigate('/check-email');
