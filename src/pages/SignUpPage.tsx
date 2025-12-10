@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthLayout from '@/components/layout/AuthLayout';
 import { supabase } from '@/integrations/supabase/client';
@@ -11,33 +11,43 @@ const SignUpPage = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
+  
+  // ⚠️ ANTI-LOOP: Previene eventi duplicati
+  const isProcessingRef = useRef(false);
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
-        if (session?.user) {
-          // Track signup completion with debug logging
-          if (event === 'SIGNED_IN') {
-            trackFBEvent('CompleteRegistration', { content_name: 'signup' });
-            trackGA4Event('sign_up', { method: 'oauth', user_id: session.user.id });
-          }
+        // Ignora se già in elaborazione
+        if (isProcessingRef.current) return;
+        
+        // ✅ Processa SOLO SIGNED_IN (ignora TOKEN_REFRESHED)
+        if (session?.user && event === 'SIGNED_IN') {
+          isProcessingRef.current = true;
           
-          // Sincronizza per OAuth redirect, email OTP verification, e sessioni esistenti
-          if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
-            await syncSessionWithExtension(session);
-          }
+          // Track events
+          trackFBEvent('CompleteRegistration', { content_name: 'signup' });
+          trackGA4Event('sign_up', { method: 'oauth', user_id: session.user.id });
           
-          // Check subscription status
-          const { data: profileData } = await supabase
-            .from('user_profiles')
-            .select('is_premium')
-            .eq('user_id', session.user.id)
-            .maybeSingle();
+          // 🔥 Sync estensione in BACKGROUND (non-blocking)
+          syncSessionWithExtension(session).catch(() => {});
           
-          if (profileData?.is_premium) {
-            navigate('/dashboard');
-          } else {
-            navigate('/pricing');
+          try {
+            const { data: profileData } = await supabase
+              .from('user_profiles')
+              .select('is_premium')
+              .eq('user_id', session.user.id)
+              .maybeSingle();
+            
+            if (profileData?.is_premium) {
+              navigate('/dashboard');
+            } else {
+              navigate('/pricing');
+            }
+          } catch {
+            navigate('/pricing'); // Fallback sicuro
+          } finally {
+            isProcessingRef.current = false;
           }
         }
       }
