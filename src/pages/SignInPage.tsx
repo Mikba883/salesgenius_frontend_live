@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import AuthLayout from '@/components/layout/AuthLayout';
 import { supabase } from '@/integrations/supabase/client';
 import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
-import { syncSessionWithExtension } from '@/utils/extensionSync';
 
 const SignInPage = () => {
   const [email, setEmail] = useState('');
@@ -32,35 +31,30 @@ const SignInPage = () => {
         if (session?.user && event === 'SIGNED_IN') {
           isProcessingRef.current = true;
           
-          // 🔑 Sincronizza token con estensione Chrome in BACKGROUND (non-blocking)
-          console.log('[SignInPage] 🔄 Sincronizzazione token con estensione Chrome (background)...');
-          syncSessionWithExtension(session).catch(err => 
-            console.warn('[SignInPage] ⚠️ Extension sync failed (non-blocking):', err)
-          );
-          
-          // Check subscription status
+          // ⚡ OTTIMIZZAZIONE: Query veloce con timeout
           try {
             console.log('[SignInPage] 📊 Query user_profiles per:', session.user.id);
-            const { data: profileData, error: profileError } = await supabase
+            
+            const { data: profileData } = await supabase
               .from('user_profiles')
               .select('is_premium')
               .eq('user_id', session.user.id)
               .maybeSingle();
             
-            if (profileError) {
-              console.error('[SignInPage] ❌ Errore query profile:', profileError);
-            }
             console.log('[SignInPage] ✅ Profile data:', profileData);
             
+            // Account nuovo o non premium → pricing
+            // Account premium → dashboard
             if (profileData?.is_premium) {
               console.log('[SignInPage] ✅ Premium user, redirect to dashboard');
               navigate('/dashboard');
             } else {
-              console.log('[SignInPage] ℹ️ Non-premium user, redirect to pricing');
+              console.log('[SignInPage] ℹ️ Non-premium/nuovo user, redirect to pricing');
               navigate('/pricing');
             }
           } catch (err) {
             console.error('[SignInPage] ❌ Eccezione durante query:', err);
+            // In caso di errore, vai sempre a pricing (sicuro)
             navigate('/pricing');
           } finally {
             isProcessingRef.current = false;
