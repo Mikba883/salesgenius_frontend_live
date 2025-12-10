@@ -4,6 +4,7 @@ import AuthLayout from '@/components/layout/AuthLayout';
 import { supabase } from '@/integrations/supabase/client';
 import { Mail } from 'lucide-react';
 import { syncSessionWithExtension } from '@/utils/extensionSync';
+import { trackGA4Event, trackFBEvent } from '@/utils/analytics';
 
 const SignUpPage = () => {
   const [email, setEmail] = useState('');
@@ -15,19 +16,10 @@ const SignUpPage = () => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
         if (session?.user) {
-          // Track signup completion - Direct calls with beacon transport
+          // Track signup completion with debug logging
           if (event === 'SIGNED_IN') {
-            if (typeof window.fbq !== 'undefined') {
-              window.fbq('track', 'CompleteRegistration', { content_name: 'signup' });
-            }
-            if (typeof window.gtag !== 'undefined') {
-              window.gtag('event', 'sign_up', { method: 'oauth' });
-            }
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({
-              event: 'signup_completed',
-              user_id: session.user.id
-            });
+            trackFBEvent('CompleteRegistration', { content_name: 'signup' });
+            trackGA4Event('sign_up', { method: 'oauth', user_id: session.user.id });
           }
           
           // Sincronizza per OAuth redirect, email OTP verification, e sessioni esistenti
@@ -56,18 +48,9 @@ const SignUpPage = () => {
   const handleGoogleSignIn = async () => {
     setLoading(true);
     
-    // Track signup initiation - Direct calls with beacon transport
-    if (typeof window.fbq !== 'undefined') {
-      window.fbq('track', 'Lead', { content_name: 'signup_google' });
-    }
-    if (typeof window.gtag !== 'undefined') {
-      window.gtag('event', 'sign_up_intent', { method: 'google', transport_type: 'beacon' });
-    }
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: 'signup_initiated',
-      signup_method: 'google'
-    });
+    // Track signup initiation with debug logging
+    trackFBEvent('Lead', { content_name: 'signup_google' });
+    trackGA4Event('sign_up_intent', { method: 'google' });
     
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
@@ -84,18 +67,9 @@ const SignUpPage = () => {
   const handleZoomSignIn = async () => {
     setLoading(true);
     
-    // Track signup initiation - Direct calls with beacon transport
-    if (typeof window.fbq !== 'undefined') {
-      window.fbq('track', 'Lead', { content_name: 'signup_zoom' });
-    }
-    if (typeof window.gtag !== 'undefined') {
-      window.gtag('event', 'sign_up_intent', { method: 'zoom', transport_type: 'beacon' });
-    }
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: 'signup_initiated',
-      signup_method: 'zoom'
-    });
+    // Track signup initiation with debug logging
+    trackFBEvent('Lead', { content_name: 'signup_zoom' });
+    trackGA4Event('sign_up_intent', { method: 'zoom' });
     
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'zoom',
@@ -116,18 +90,9 @@ const SignUpPage = () => {
     setLoading(true);
     setMessage('');
 
-    // Track signup initiation - Direct calls
-    if (typeof window.fbq !== 'undefined') {
-      window.fbq('track', 'Lead', { content_name: 'signup_email' });
-    }
-    if (typeof window.gtag !== 'undefined') {
-      window.gtag('event', 'sign_up_intent', { method: 'email' });
-    }
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: 'signup_initiated',
-      signup_method: 'email'
-    });
+    // Track signup initiation with debug logging
+    trackFBEvent('Lead', { content_name: 'signup_email' });
+    trackGA4Event('sign_up_intent', { method: 'email' });
 
     const { error } = await supabase.auth.signInWithOtp({
       email,

@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import type { User } from '@supabase/supabase-js';
 import { requestExtensionOnboarding } from '@/utils/extensionSync';
+import { trackGA4Event, trackFBEvent } from '@/utils/analytics';
 
 export default function OnboardingPage() {
   const navigate = useNavigate();
@@ -39,19 +40,9 @@ export default function OnboardingPage() {
       console.log('[Onboarding] Subscription check result:', data);
 
       if (data.subscribed) {
-        // Track purchase completion - Direct calls
-        if (typeof window.fbq !== 'undefined') {
-          window.fbq('track', 'Purchase', { value: 11.70, currency: 'USD' });
-        }
-        if (typeof window.gtag !== 'undefined') {
-          window.gtag('event', 'purchase', { value: 11.70, currency: 'USD', transaction_id: `sub_${Date.now()}` });
-        }
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-          event: 'purchase_completed',
-          value: 11.70,
-          currency: 'USD'
-        });
+        // Track purchase completion with debug logging
+        trackFBEvent('Purchase', { value: 11.70, currency: 'USD' });
+        trackGA4Event('purchase', { value: 11.70, currency: 'USD', transaction_id: `sub_${Date.now()}` });
         
         setIsPremium(true);
         setLoading(false);
