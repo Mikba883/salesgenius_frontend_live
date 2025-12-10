@@ -2,6 +2,7 @@ import React, { useEffect, Component, ErrorInfo, ReactNode } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { syncSessionWithExtension } from '@/utils/extensionSync';
+import { trackGA4Event, trackFBEvent } from '@/utils/analytics';
 import HomePage from './pages/HomePage';
 import SignInPage from './pages/SignInPage';
 import SignUpPage from './pages/SignUpPage';
@@ -49,12 +50,24 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 }
 
 function App() {
-  // 🔄 LISTENER GLOBALE per sincronizzazione token con estensione Chrome
+  // 🔄 LISTENER GLOBALE per sincronizzazione token e tracking signup
   useEffect(() => {
-    console.log('[App] 🎯 Inizializzazione listener globale TOKEN_REFRESHED');
+    console.log('[App] 🎯 Inizializzazione listener globale');
     
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, session) => {
+        // 🎯 TRACKING COMPLETEREGISTRATION per nuove registrazioni
+        if (event === 'SIGNED_IN' && session) {
+          const isPendingSignup = localStorage.getItem('pending_signup');
+          
+          if (isPendingSignup) {
+            console.log('[App] 🎉 Nuova registrazione completata - Tracking CompleteRegistration');
+            trackFBEvent('CompleteRegistration', { content_name: 'signup' });
+            trackGA4Event('sign_up', { method: 'oauth', user_id: session.user.id });
+            localStorage.removeItem('pending_signup');
+          }
+        }
+        
         // Sincronizza solo quando il token viene rinfrescato
         if (event === 'TOKEN_REFRESHED' && session) {
           console.log('[App] 🔄 TOKEN_REFRESHED rilevato - Sincronizzazione con estensione Chrome');
@@ -74,7 +87,7 @@ function App() {
 
     // Cleanup al dismount dell'app
     return () => {
-      console.log('[App] 🧹 Pulizia listener globale TOKEN_REFRESHED');
+      console.log('[App] 🧹 Pulizia listener globale');
       subscription.unsubscribe();
     };
   }, []); // Array vuoto = esegue solo al mount
