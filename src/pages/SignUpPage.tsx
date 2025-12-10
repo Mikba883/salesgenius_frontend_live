@@ -4,7 +4,7 @@ import AuthLayout from '@/components/layout/AuthLayout';
 import { supabase } from '@/integrations/supabase/client';
 import { Mail } from 'lucide-react';
 import { syncSessionWithExtension } from '@/utils/extensionSync';
-import { trackGA4Event, trackFBEvent } from '@/utils/analytics';
+import { trackGA4EventOnce, trackFBEventOnce } from '@/utils/analytics';
 
 const SignUpPage = () => {
   const [email, setEmail] = useState('');
@@ -57,9 +57,9 @@ const SignUpPage = () => {
     // 🎯 Flag per tracking CompleteRegistration in App.tsx
     localStorage.setItem('pending_signup', 'true');
     
-    // Track signup initiation
-    trackFBEvent('Lead', { content_name: 'signup_google' });
-    trackGA4Event('sign_up_intent', { method: 'google' });
+    // Track signup initiation (once per method)
+    trackFBEventOnce('lead_google', 'Lead', { content_name: 'signup_google' });
+    trackGA4EventOnce('lead_google', 'sign_up_intent', { method: 'google' });
     
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
@@ -80,9 +80,9 @@ const SignUpPage = () => {
     // 🎯 Flag per tracking CompleteRegistration in App.tsx
     localStorage.setItem('pending_signup', 'true');
     
-    // Track signup initiation
-    trackFBEvent('Lead', { content_name: 'signup_zoom' });
-    trackGA4Event('sign_up_intent', { method: 'zoom' });
+    // Track signup initiation (once per method)
+    trackFBEventOnce('lead_zoom', 'Lead', { content_name: 'signup_zoom' });
+    trackGA4EventOnce('lead_zoom', 'sign_up_intent', { method: 'zoom' });
     
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'zoom',
@@ -105,9 +105,9 @@ const SignUpPage = () => {
     // 🎯 Flag per tracking CompleteRegistration in App.tsx
     localStorage.setItem('pending_signup', 'true');
     
-    // Track signup initiation
-    trackFBEvent('Lead', { content_name: 'signup_email' });
-    trackGA4Event('sign_up_intent', { method: 'email' });
+    // Track signup initiation (once per method)
+    trackFBEventOnce('lead_email', 'Lead', { content_name: 'signup_email' });
+    trackGA4EventOnce('lead_email', 'sign_up_intent', { method: 'email' });
 
     const { error } = await supabase.auth.signInWithOtp({
       email,
