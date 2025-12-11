@@ -31,11 +31,41 @@ export const trackFBEvent = (eventName: string, params: Record<string, any> = {}
   console.log(`[FB] Attempting to send event: ${eventName}`, params);
   
   if (typeof window.fbq !== 'undefined') {
-    window.fbq('track', eventName, params);
-    console.log(`[FB] ✅ Event sent via fbq: ${eventName}`);
+    const fbq = window.fbq as any;
+    
+    // Verifica che fbq sia la funzione originale di Meta
+    if (fbq.callMethod || Array.isArray(fbq.queue)) {
+      window.fbq('track', eventName, params);
+      console.log(`[FB] ✅ Event sent via REAL Meta fbq: ${eventName}`);
+    } else {
+      console.warn(`[FB] ⚠️ fbq exists but missing callMethod/queue - may be overwritten`);
+      window.fbq('track', eventName, params);
+      console.log(`[FB] ⚠️ Event sent via potentially stubbed fbq: ${eventName}`);
+    }
   } else {
-    console.warn(`[FB] ⚠️ fbq not available: ${eventName}`);
+    console.warn(`[FB] ❌ fbq not available: ${eventName}`);
   }
+};
+
+// Diagnostic function to check Meta Pixel state
+export const diagnoseFBPixel = () => {
+  console.group('[FB Pixel Diagnostics]');
+  console.log('fbq exists:', typeof window.fbq !== 'undefined');
+  console.log('fbq type:', typeof window.fbq);
+  
+  if (window.fbq) {
+    const fbq = window.fbq as any;
+    console.log('fbq.callMethod exists:', !!fbq.callMethod);
+    console.log('fbq.queue exists:', Array.isArray(fbq.queue));
+    console.log('fbq.queue length:', fbq.queue?.length || 0);
+    console.log('fbq.loaded:', fbq.loaded);
+    console.log('fbq.version:', fbq.version);
+    console.log('fbq.getState available:', typeof fbq.getState === 'function');
+    if (typeof fbq.getState === 'function') {
+      console.log('fbq.getState():', fbq.getState());
+    }
+  }
+  console.groupEnd();
 };
 
 // Combined tracking for both platforms
