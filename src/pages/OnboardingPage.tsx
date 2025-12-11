@@ -7,6 +7,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import type { User } from '@supabase/supabase-js';
 import { requestExtensionOnboarding } from '@/utils/extensionSync';
 import { trackGA4EventOnce, trackFBEventOnce } from '@/utils/analytics';
+import { trackPurchase } from '@/utils/metaCAPI';
 
 export default function OnboardingPage() {
   const navigate = useNavigate();
@@ -48,6 +49,7 @@ export default function OnboardingPage() {
         const purchaseKey = user?.id ? `purchase_${user.id}` : `purchase_${Date.now()}`;
         trackFBEventOnce(purchaseKey, 'Purchase', { value: 11.70, currency: 'USD' });
         trackGA4EventOnce(purchaseKey, 'purchase', { value: 11.70, currency: 'USD', transaction_id: purchaseKey });
+        trackPurchase(user?.email || undefined); // Server-side CAPI
         
         // Reset checkout flag so future purchases can be tracked
         localStorage.removeItem('fb_tracked_checkout_initiated');
