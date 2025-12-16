@@ -4,7 +4,7 @@ import AuthLayout from '@/components/layout/AuthLayout';
 import { supabase } from '@/integrations/supabase/client';
 import { Mail } from 'lucide-react';
 import { syncSessionWithExtension } from '@/utils/extensionSync';
-import { trackGA4EventOnce, trackFBEventOnce } from '@/utils/analytics';
+import { trackGA4EventOncePerSession, trackFBEventOnce } from '@/utils/analytics';
 import { trackLead } from '@/utils/metaCAPI';
 
 const SignUpPage = () => {
@@ -60,7 +60,7 @@ const SignUpPage = () => {
     
     // Track signup initiation (once per method)
     trackFBEventOnce('lead_google', 'Lead', { content_name: 'signup_google' });
-    trackGA4EventOnce('lead_google', 'sign_up_intent', { method: 'google' });
+    trackGA4EventOncePerSession('sign_up_intent_google', 'sign_up_intent', { method: 'google' });
     trackLead(); // Server-side CAPI
     
     const { error } = await supabase.auth.signInWithOAuth({
@@ -84,7 +84,7 @@ const SignUpPage = () => {
     
     // Track signup initiation (once per method)
     trackFBEventOnce('lead_zoom', 'Lead', { content_name: 'signup_zoom' });
-    trackGA4EventOnce('lead_zoom', 'sign_up_intent', { method: 'zoom' });
+    trackGA4EventOncePerSession('sign_up_intent_zoom', 'sign_up_intent', { method: 'zoom' });
     trackLead(); // Server-side CAPI
     
     const { error } = await supabase.auth.signInWithOAuth({
@@ -110,7 +110,7 @@ const SignUpPage = () => {
     
     // Track signup initiation (once per method)
     trackFBEventOnce('lead_email', 'Lead', { content_name: 'signup_email' });
-    trackGA4EventOnce('lead_email', 'sign_up_intent', { method: 'email' });
+    trackGA4EventOncePerSession('sign_up_intent_email', 'sign_up_intent', { method: 'email' });
     trackLead(email); // Server-side CAPI con email
 
     const { error } = await supabase.auth.signInWithOtp({

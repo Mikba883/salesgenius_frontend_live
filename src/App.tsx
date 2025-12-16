@@ -2,7 +2,8 @@ import React, { useEffect, Component, ErrorInfo, ReactNode } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { syncSessionWithExtension } from '@/utils/extensionSync';
-import { trackGA4Event, trackFBEvent } from '@/utils/analytics';
+import { trackGA4Event } from '@/utils/analytics';
+import { trackCompleteRegistration } from '@/utils/metaCAPI';
 import HomePage from './pages/HomePage';
 import SignInPage from './pages/SignInPage';
 import SignUpPage from './pages/SignUpPage';
@@ -61,8 +62,8 @@ function App() {
           const isPendingSignup = localStorage.getItem('pending_signup');
           
           if (isPendingSignup) {
-            console.log('[App] 🎉 Nuova registrazione completata - Tracking CompleteRegistration');
-            trackFBEvent('CompleteRegistration', { content_name: 'signup' });
+            console.log('[App] 🎉 Nuova registrazione completata - Tracking CompleteRegistration via CAPI');
+            trackCompleteRegistration(session.user.email || undefined); // Server-side CAPI
             trackGA4Event('sign_up', { method: 'oauth', user_id: session.user.id });
             localStorage.removeItem('pending_signup');
           }
