@@ -106,3 +106,11 @@ export const trackInitiateCheckout = (email?: string, value: number = 11.70, cur
 
 export const trackPurchase = (email?: string, value: number = 11.70, currency: string = 'USD') => 
   trackServerEvent('Purchase', { email }, { value, currency });
+
+// PageView event via CAPI (bypasses browser blocking)
+export const trackPageView = (pageUrl?: string) => 
+  trackServerEvent('PageView', undefined, { content_name: pageUrl || window.location.pathname });
+
+// ViewContent event via CAPI
+export const trackViewContent = (contentName: string, email?: string) => 
+  trackServerEvent('ViewContent', { email }, { content_name: contentName });

@@ -94,7 +94,7 @@ export const trackFBEventOnce = (
   return true;
 };
 
-// Track GA4 event only once per unique key (stored in localStorage)
+// Track GA4 event only once per unique key (stored in localStorage) - PERMANENT
 export const trackGA4EventOnce = (
   eventKey: string,
   eventName: string, 
@@ -102,10 +102,44 @@ export const trackGA4EventOnce = (
 ) => {
   const storageKey = `ga4_tracked_${eventKey}`;
   if (localStorage.getItem(storageKey)) {
-    console.log(`[GA4] ⏭️ Skip ${eventName}: already tracked (${eventKey})`);
+    console.log(`[GA4] ⏭️ Skip ${eventName}: already tracked permanently (${eventKey})`);
     return false;
   }
   trackGA4Event(eventName, params);
   localStorage.setItem(storageKey, Date.now().toString());
+  return true;
+};
+
+// Track GA4 event only once per SESSION (stored in sessionStorage) - RESETS ON NEW TAB
+export const trackGA4EventOncePerSession = (
+  eventKey: string,
+  eventName: string, 
+  params: Record<string, any> = {}
+) => {
+  const storageKey = `ga4_session_${eventKey}`;
+  if (sessionStorage.getItem(storageKey)) {
+    console.log(`[GA4] ⏭️ Skip ${eventName}: already tracked this session (${eventKey})`);
+    return false;
+  }
+  trackGA4Event(eventName, params);
+  sessionStorage.setItem(storageKey, Date.now().toString());
+  console.log(`[GA4] ✅ Session event tracked: ${eventName} (${eventKey})`);
+  return true;
+};
+
+// Track FB event only once per SESSION (stored in sessionStorage) - RESETS ON NEW TAB
+export const trackFBEventOncePerSession = (
+  eventKey: string,
+  eventName: string, 
+  params: Record<string, any> = {}
+) => {
+  const storageKey = `fb_session_${eventKey}`;
+  if (sessionStorage.getItem(storageKey)) {
+    console.log(`[FB] ⏭️ Skip ${eventName}: already tracked this session (${eventKey})`);
+    return false;
+  }
+  trackFBEvent(eventName, params);
+  sessionStorage.setItem(storageKey, Date.now().toString());
+  console.log(`[FB] ✅ Session event tracked: ${eventName} (${eventKey})`);
   return true;
 };

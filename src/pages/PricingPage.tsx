@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
 import AuthLayout from '@/components/layout/AuthLayout';
 import { supabase } from '@/integrations/supabase/client';
-import { trackGA4EventOnce, trackFBEventOnce } from '@/utils/analytics';
+import { trackGA4EventOncePerSession, trackFBEventOncePerSession } from '@/utils/analytics';
 import { trackInitiateCheckout } from '@/utils/metaCAPI';
 
 const PricingPage = () => {
@@ -21,8 +21,8 @@ const PricingPage = () => {
       }
 
       // Track checkout initiation (once per session)
-      trackFBEventOnce('checkout_initiated', 'InitiateCheckout', { value: 11.70, currency: 'USD' });
-      trackGA4EventOnce('checkout_initiated', 'begin_checkout', { value: 11.70, currency: 'USD' });
+      trackFBEventOncePerSession('checkout_initiated', 'InitiateCheckout', { value: 11.70, currency: 'USD' });
+      trackGA4EventOncePerSession('checkout_initiated', 'begin_checkout', { value: 11.70, currency: 'USD' });
       trackInitiateCheckout(session.user.email || undefined); // Server-side CAPI
 
       const { data, error } = await supabase.functions.invoke('create-checkout', {
